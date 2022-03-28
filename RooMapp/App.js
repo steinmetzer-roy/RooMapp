@@ -17,7 +17,7 @@ export default function App() {
     setCourse('');
   }
 
-  const deleteCourseFromList = (index: number) => {
+  const deleteCourseFromList = (index) => {
     let itemsCopy = [...courseItems];
     itemsCopy.splice(index, 1);
     setCourseItems(itemsCopy)

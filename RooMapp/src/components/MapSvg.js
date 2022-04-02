@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { G, Path } from "react-native-svg"
 
-//this component was created with a svg to react-native component converter: https://react-svgr.com/playground/?native=true
+//This component was created with a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 const SvgComponent = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"

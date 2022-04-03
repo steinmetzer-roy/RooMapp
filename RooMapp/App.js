@@ -7,7 +7,7 @@ export default function App() {
 
 
   return (
-      <View>
+      <View style={styles.body}>
         <MapScreen>
 
         </MapScreen>
@@ -17,6 +17,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+        alignItems: "stretch",
+        justifyContent : "flex-start",
+        backgroundColor : "#000000",
+
+    }
 
 
 });

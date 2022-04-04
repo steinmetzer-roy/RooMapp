@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 
 
 const SubmitButton = (props) => {
-    return <button type="submit" >Submit</button>;
+    return <button type="submit">Submit</button>;
 }
 
 class RegisterForm extends Component {
@@ -76,16 +76,20 @@ class RegisterForm extends Component {
 
             <form onSubmit={this.handleSubmit}>
                 <label for="fname">Name: </label>
-                <input id="fname" type="text" value={this.state.firstName} onChange={this.firstNameChange} />
+                <br /><br />
+                <TextInput style={styles.input} id="fname" type="text" value={this.state.firstName} onChange={this.firstNameChange} />
                 <br /><br />
                 <label for="lname">Number: </label>
-                <input id="lname" type="text" value={this.state.lastName} onChange={this.lastNameChange} />
+                <br /><br />
+                <TextInput style={styles.input} id="lname" type="text" value={this.state.lastName} onChange={this.lastNameChange} />
                 <br /><br />
                 <label for="email">Time: </label>
-                <input id="email" type="text" value={this.state.email} onChange={this.emailChange} />
+                <br /><br />
+                <TextInput style={styles.input} id="email" type="text" value={this.state.email} onChange={this.emailChange} />
                 <br /><br />
                 <label for="contact">Day of week: </label>
-                <input id="contact" type="text" value={this.state.contact} onChange={this.contactChange} />
+                <br /><br />
+                <TextInput style={styles.input} id="contact" type="text" value={this.state.contact} onChange={this.contactChange} />
                 <br /><br />
                 <SubmitButton />
             </form>
@@ -137,8 +141,10 @@ const CourseScreen = () => {
                 </View>
             </View> {/*TODO: make this a separate screen, leave a "go back" button here only*/}
             {/* Write course info here*/}
+            <RegisterForm />
+
             <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "Padding" : "height"} //TODO: Search if necessary and why an error here?
+                behavior={Platform.OS === "ios" ? "Padding" : "height"} //TODO: Search if necessary
                 style={styles.writeCourseWrapper}
             >
                 {/* TODO: put on separate lines */}
@@ -153,7 +159,6 @@ const CourseScreen = () => {
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
-            <RegisterForm />
 
         </View>
 
@@ -205,6 +210,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     addText: {},
+
+    
 
 });
 

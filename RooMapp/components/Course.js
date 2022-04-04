@@ -11,7 +11,7 @@ const Course = (props) => {
                 {/* TODO: allow many lines here (first for course name, second for room...) */}
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View style={styles.circular}></View><FaEraser />
+            <View></View><FaEraser />
         </View>
     )
 }
@@ -42,13 +42,6 @@ const styles = StyleSheet.create({
     },
     itemText: {
         maxWidth: '80%',
-    },
-    circular: {
-        width: 12,
-        height: 12,
-        borderColor: '#55BCF6',
-        borderWidth: 2,
-        borderRadius: 5,
     },
 });
 

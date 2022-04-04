@@ -4,6 +4,10 @@ import { FaEraser } from 'react-icons/fa';
 
 const Course = (props) => {
 
+    function sayHello() {
+        alert('You clicked me!');
+    }
+
     return (
         <View style={styles.item}>
             <View style={styles.itemLeft}>
@@ -11,7 +15,7 @@ const Course = (props) => {
                 {/* TODO: allow many lines here (first for course name, second for room...) */}
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View></View><FaEraser />
+            <View><button onClick={sayHello}><FaEraser /></button></View>
         </View>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import Course from '../../components/Course';
 import {
     Keyboard,
@@ -10,6 +10,91 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
+import { render } from 'react-dom';
+
+
+const SubmitButton = (props) => {
+    return <button type="submit" >Submit</button>;
+}
+
+class RegisterForm extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            contact: ''
+        };
+
+        this.firstNameChange = this.firstNameChange.bind(this);
+        this.lastNameChange = this.lastNameChange.bind(this);
+        this.emailChange = this.emailChange.bind(this);
+        this.contactChange = this.contactChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }
+
+
+    firstNameChange(event) {
+        this.setState({
+            firstName: event.target.value
+        });
+        console.log(event.target.value);
+    }
+
+    lastNameChange(event) {
+        this.setState({
+            lastName: event.target.value
+        });
+    }
+
+    emailChange(event) {
+        this.setState({
+            email: event.target.value
+        });
+    }
+
+    contactChange(event) {
+        this.setState({
+            contact: event.target.value
+        });
+    }
+
+    handleSubmit(event) {
+        console.log("form has been submitted: ");
+        console.log(this.state.firstName + " - " + this.state.lastName + " - " + this.state.email + " - " + this.state.contact);
+        event.preventDefault();
+    }
+
+
+    render() {
+        return (
+
+            <form onSubmit={this.handleSubmit}>
+                <label for="fname">Name: </label>
+                <input id="fname" type="text" value={this.state.firstName} onChange={this.firstNameChange} />
+                <br /><br />
+                <label for="lname">Number: </label>
+                <input id="lname" type="text" value={this.state.lastName} onChange={this.lastNameChange} />
+                <br /><br />
+                <label for="email">Time: </label>
+                <input id="email" type="text" value={this.state.email} onChange={this.emailChange} />
+                <br /><br />
+                <label for="contact">Day of week: </label>
+                <input id="contact" type="text" value={this.state.contact} onChange={this.contactChange} />
+                <br /><br />
+                <SubmitButton />
+            </form>
+
+        );
+    }
+
+}
+
 
 const CourseScreen = () => {
     const [course, setCourse] = useState();
@@ -68,7 +153,11 @@ const CourseScreen = () => {
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
+            <RegisterForm />
+
         </View>
+
+
     );
 }
 

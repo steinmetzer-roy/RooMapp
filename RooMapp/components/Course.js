@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { FaEraser } from 'react-icons/fa';
 
 const Course = (props) => {
 
@@ -10,7 +11,7 @@ const Course = (props) => {
                 {/* TODO: allow many lines here (first for course name, second for room...) */}
                 <Text style={styles.itemText}>{props.text}</Text>
             </View>
-            <View style={styles.circular}></View>
+            <View style={styles.circular}></View><FaEraser />
         </View>
     )
 }

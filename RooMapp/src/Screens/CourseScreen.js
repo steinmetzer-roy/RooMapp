@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Course from '../../components/Course';
 import {
     Keyboard,
@@ -68,7 +68,7 @@ const CourseScreen = () => {
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
-        </View >
+        </View>
     );
 }
 

@@ -19,9 +19,8 @@ const CourseScreen = () => {
     const [courseItems, setCourseItems] = useState([]); //"courseItems" is a list of courses
 
     const handleAddCourse = () => {
-        //TODO: if none of the fields are empty, continue
         Keyboard.dismiss();
-        setCourseItems([...courseItems, course]) //why is there an error here?
+        setCourseItems([...courseItems, course])
         setCourse('');
     }
 
@@ -44,6 +43,7 @@ const CourseScreen = () => {
                         courseItems.map((item, index) => {
                             return (
                                 <TouchableOpacity key={index} onPress={() => deleteCourseFromList(index)}>
+                                    {/* Jim/Roy: add code to go to the next page / "more info about a specific" here under onPress, probably */}
                                     <Course text={item} />
                                 </TouchableOpacity>
                             )
@@ -51,7 +51,7 @@ const CourseScreen = () => {
                     }
                 </View>
             </View> {/*TODO: make this a separate screen, leave a "go back" button here only*/}
-            {/* Write a course info here*/}
+            {/* Write course info here*/}
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "Padding" : "height"} //TODO: Search if necessary and why an error here?
                 style={styles.writeCourseWrapper}

@@ -105,9 +105,9 @@ const CourseScreen = () => {
     const [classroom, setClassroom] = useState(); //TODO: search how to save data like this: ['SEP', '3.070', '14:00', 'Wednesday'] instead of "SEP, 3.070, 14:00, Wednesday" which is currently possible
     const [time, setTime] = useState();
     const [weekday, setWeekday] = useState();
-    const [courseItems, setCourseItems] = useState([]); //"courseItems" is a list of courses
+    const [courseItems, setCourseItems] = useState([]); //"courseItems" is the name of the state (to track what was written in the input field), "setCourseItems" is the function we will use to set that state. If I do "setCourseItems("SEP")" then everytime I refer to courseItems, it will refer to "SEP". State is used when things change often in the app
 
-    const handleAddCourse = () => {
+    const handleAddCourse = () => { //log the course that we have stored at state, "onChangeText={text => setCourse(text)}" - will grab whatever the text is and will set the course to be that text
         Keyboard.dismiss();
         setCourseItems([...courseItems, course])
         setCourse('');
@@ -148,6 +148,7 @@ const CourseScreen = () => {
                 style={styles.writeCourseWrapper}
             >
                 {/* TODO: put on separate lines */}
+                {/* "value={course}" allows seeing the real time changes*/}
                 <TextInput style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
                 <TextInput style={styles.input} placeholder={'Room number'} value={course} onChangeText={text => setCourse(text)} />
                 <TextInput style={styles.input} placeholder={'Time'} value={course} onChangeText={text => setCourse(text)} />
@@ -210,8 +211,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     addText: {},
-
-    
 
 });
 

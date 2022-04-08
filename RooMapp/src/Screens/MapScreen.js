@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Alert, Pressable, Text} from 'react-native';
+import {View, StyleSheet, Image, Pressable, Text} from 'react-native';
 import {Svg, Rect} from "react-native-svg";
 
 
 import SvgImage from "../components/MapSvg"
+import {ImageBackground} from "react-native-web";
 
 const MapScreen = (props) => {
 
@@ -21,13 +22,15 @@ const MapScreen = (props) => {
     height = height*0.7;
     width= width*0.7;
 
-
+    let viewBox = "0 0 " + width +" "+ height;
 
     const onPressFunction = () => {
         console.log("test");
 
     }
-
+    //1619.459
+    //top part: viewBox="0 0 400 1200"
+    //
     return (
         <View style={{flexDirection: "column"}}>
             <View height={10} style={styles.head}>
@@ -43,11 +46,17 @@ const MapScreen = (props) => {
                         Left side
                     </Text>
                 </View>
+                    <View style={styles.middleView} >
+                            <Svg  style={styles.svg} preserveAspectRatio="xMidYMid meet"  height={height}  viewBox="0 0 400 1619.459" >
+                                <SvgImage />
+                                <Rect x="5%" y="50%" width="90%" height="10%"/>
+                            </Svg>
 
-                <Svg  style={styles.svg} x="0" y="0" width={width} height={height} viewBox="0 0 400 1619.459">
-                    <SvgImage  />
-                    <Rect x="0%" y="50%" width="100%" height="10%"/>
-                </Svg>
+
+                    </View>
+
+
+
 
                 <View style={styles.rightSideView}>
                     <Text>
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     },
 
     body : {
-        alignItems: "center",
+        alignItems: "start",
         justifyContent: "center",
         margin: 10,
         backgroundColor: "#5555ff",
@@ -113,16 +122,28 @@ const styles = StyleSheet.create({
 
 
     },
-
+    //"fake margin" made with borders of the same color as the outer component
+    //because box-sizing doesnt work...
     rightSideView : {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#0000ff",
         flexDirection:"column",
-        height : "50%",
-        margin : 20,
+        borderWidth : 20,
+        borderColor: "#5555ff",
 
+
+    },
+
+    middleView : {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0000ff",
+        flexDirection:"column",
+        borderWidth : 20,
+        borderColor: "#5555ff",
 
     },
 
@@ -132,9 +153,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#ff00ff",
         flexDirection:"column",
-        height : "50%",
-        margin : 20,
-
+        borderWidth : 20,
+        borderColor: "#5555ff",
 
     },
 

@@ -1,29 +1,31 @@
+//Custom Screens
+import CourseScreen from './src/Screens/CourseScreen';
+import MapScreen from './src/Screens/MapScreen';
+//Dependencies for Sidebar and Screenhandling
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+//Default React Components
+import React, { useState } from 'react';
+import {
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native';
 
-import React from 'react';
-import {StyleSheet, View } from 'react-native';
-import MapScreen from "./src/Screens/MapScreen.js";
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-
-
-  return (
-      <View style={styles.body}>
-        <MapScreen>
-
-        </MapScreen>
-      </View>
-
-  );
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator useLegacyImplementation>
+                <Drawer.Screen name="CourseScreen" component={CourseScreen} />
+                <Drawer.Screen name="MapScreen" component={MapScreen} />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        alignItems: "stretch",
-        justifyContent : "flex-start",
-        backgroundColor : "#000000",
-
-    }
-
-
-});

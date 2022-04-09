@@ -1,22 +1,31 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Pressable, Text} from 'react-native';
-
-
 import SvgImage from "../components/MapSvg"
-const testRooms = [
-    "room1",
-    "room2"
-];
+
+
 const MapScreen = (props) => {
 
-    const [selectedRoom, setSelectedRoom] = useState(testRooms[1]);
+    //rooms to be used as input(for testing purposes)
+    const testRooms = [
+        "room1",
+        "room2",
+        "room3"
+    ];
 
+    //names of the rooms with associated coordinates on the svg
+    const roomCoords = [
+        {room: "room1", x: 124, y: 1580},
+        {room: "room2", x: 124, y: 1320},
+        {room: "room3", x: 124, y: 410},
+    ];
+
+    const [selectedRoom, setSelectedRoom] = useState(testRooms[2]);
 
 
     if (props.name !== undefined) {
         setSelectedRoom(props.room);
     }
-
+    //set width/height
     let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
@@ -24,18 +33,32 @@ const MapScreen = (props) => {
     height = height * 0.7;
     width = width * 0.7;
 
+    //get x and y position of selectedRoom
+    const test = roomCoords.find(elements => elements.room === selectedRoom)
+
+    let x = test.x;
+    let y = test.y;
+    let viewBox;
+
+    //change viewbox to only display top or bottom part of the map
+    if (y < 1100) {
+        viewBox = "0 0 400 1200";
+    } else {
+        viewBox = "0 1000 400 600";
+    }
+
     const onPressFunction = () => {
         if (selectedRoom === testRooms[0]) {
             setSelectedRoom(testRooms[1]);
+        } else if (selectedRoom === testRooms[1]) {
+            setSelectedRoom(testRooms[2]);
         } else {
             setSelectedRoom(testRooms[0]);
         }
 
     }
 
-    //viewBox="0 0 400 1619.459"
-    //top part: viewBox="0 0 400 1200"
-    //bottom part: viewBox="0 1000 400 600"
+    //original viewBox="0 0 400 1619.459"
     return (
         <View style={{flexDirection: "column"}}>
             <View height={10} style={styles.head}>
@@ -53,8 +76,8 @@ const MapScreen = (props) => {
                 </View>
                 <View style={styles.middleView}>
 
-                    <SvgImage  style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                               viewBox="0 1000 400 600" room={selectedRoom}/>
+                    <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                              viewBox={viewBox} arrowx={x} arrowy={y}/>
 
 
                 </View>
@@ -70,7 +93,7 @@ const MapScreen = (props) => {
                                    {backgroundColor: pressed ? "#dddddd" : "#00ff00", margin: 10,}
                                ]}
                     >
-                        <Text> Switch room, {selectedRoom.room} chosen!</Text>
+                        <Text> Switch room, {selectedRoom} chosen!</Text>
                     </Pressable>
 
                 </View>

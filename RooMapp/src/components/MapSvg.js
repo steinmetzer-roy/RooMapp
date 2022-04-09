@@ -31,7 +31,7 @@ const SvgComponent = (props) => (
                 fill="#c65d5e"
             />
 
-            <MapArrow room={props.room}/>
+            <MapArrow arrowx={props.arrowx} arrowy={props.arrowy}/>
         </G>
     </Svg>
 )

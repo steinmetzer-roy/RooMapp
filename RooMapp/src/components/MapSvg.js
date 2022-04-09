@@ -1,5 +1,6 @@
 import * as React from "react"
-import Svg, { G, Path } from "react-native-svg"
+import Svg, {G, Path} from "react-native-svg"
+import MapArrow from "./MapArrow"
 
 //This component was created with a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 const SvgComponent = (props) => (
@@ -29,7 +30,10 @@ const SvgComponent = (props) => (
                 d="m42.395 1450.819-1.861.647.172 68.017.172 68.017 34.045.175c23.645.122 34.314-.048 34.925-.555 1.022-.848.867-134.788-.158-135.802-.825-.816-65.014-1.292-67.295-.499"
                 fill="#c65d5e"
             />
+
+            <MapArrow room={props.room}/>
         </G>
     </Svg>
 )
+
 export default SvgComponent;

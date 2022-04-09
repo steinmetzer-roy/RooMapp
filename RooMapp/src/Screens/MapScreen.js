@@ -9,14 +9,18 @@ const MapScreen = (props) => {
     const testRooms = [
         "room1",
         "room2",
-        "room3"
+        "room3",
+        "room4",
+        "room5",
     ];
 
     //names of the rooms with associated coordinates on the svg
     const roomCoords = [
-        {room: "room1", x: 110, y: 1778},
-        {room: "room2", x: 110, y: 1482},
-        {room: "room3", x: 110, y: 450},
+        {room: "room1", x: 110, y: 1778, dir: "left"},
+        {room: "room2", x: 110, y: 1482, dir: "left"},
+        {room: "room3", x: 110, y: 450, dir: "left"},
+        {room: "room4", x: 85, y: 685, dir: "top"},
+        {room: "room5", x: 85, y: 1285, dir: "bottom"},
     ];
 
     const [selectedRoom, setSelectedRoom] = useState(testRooms[2]);
@@ -34,7 +38,8 @@ const MapScreen = (props) => {
     width = width * 0.7;
 
     //get x and y position of selectedRoom
-    const test = roomCoords.find(elements => elements.room === selectedRoom)
+    const test = roomCoords.find(elements => elements.room === selectedRoom);
+    console.log(test);
 
     let x = test.x;
     let y = test.y;
@@ -48,14 +53,8 @@ const MapScreen = (props) => {
     }
 
     const onPressFunction = () => {
-        if (selectedRoom === testRooms[0]) {
-            setSelectedRoom(testRooms[1]);
-        } else if (selectedRoom === testRooms[1]) {
-            setSelectedRoom(testRooms[2]);
-        } else {
-            setSelectedRoom(testRooms[0]);
-        }
-
+        let index = testRooms.findIndex(elements => elements === selectedRoom);
+        setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
     //original viewBox="0 0 400 1619.459"
@@ -77,7 +76,7 @@ const MapScreen = (props) => {
                 <View style={styles.middleView}>
 
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                              viewBox={viewBox} arrowx={x} arrowy={y}/>
+                              viewBox={viewBox} room={roomCoords.find(elements => elements.room === selectedRoom)}/>
 
 
                 </View>

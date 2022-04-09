@@ -6,25 +6,52 @@ import {Line, Polygon, G} from "react-native-svg";
 const MapArrow = (props) => {
 
 
-    let x = props.arrowx;
-    let y = props.arrowy;
+    let x = props.room.x;
+    let y = props.room.y;
 
+    //entrance
+    const startY = 1235;
+    const startX = 110;
 
+    //
+    const leftCorridorX = 110;
+
+    //x coords of rooms that are not directly on the left corridor but on another small hallway next to it
+    const leftNotchX = 85;
 
     let jsx;
 
-    //left corridor
-    if (x === 110) {
-        //points for the triangle/polygon
-        let points = "110," + (y - 5) + " 110," + (y + 5) + " 100," + y;
-        jsx = <G>
-                <Line x1="110" y1="1235" x2="110" y2={y} style={styles.line}/>
-                <Polygon points={points} fill="#000000" stroke="#000000"/>
-            </G>;
+    //make the tip of the arrow
+    let points;
+    if (props.room.dir === "left") {
+        points = x + "," + (y - 5) + " " + x + "," + (y + 5) + " " + (x - 10) + "," + y;
+    } else if (props.room.dir === "top") {
+        points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y - 10);
+    } else if (props.room.dir === "bottom") {
+        points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y + 10);
     }
 
+    let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
 
-    console.log(x, y);
+    //rooms that are on the left corridor just next to it
+    if (x === leftCorridorX) {
+        jsx = <G>
+            <Line x1={startX} y1={startY} x2={startX} y2={y} style={styles.line}/>
+            {triangle}
+        </G>;
+    } else if (x === leftNotchX) {
+        //rooms that are in small hallways next to the left corridor
+        jsx = <G>
+            <Line x1={startX} y1={startY} x2={startX} y2={y} style={styles.line}/>
+            <Line x1={startX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>;
+
+    } else {
+        jsx = <G>
+
+        </G>
+    }
 
     return (
         jsx

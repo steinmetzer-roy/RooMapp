@@ -4,8 +4,8 @@ import {View, StyleSheet, Pressable, Text} from 'react-native';
 
 import SvgImage from "../components/MapSvg"
 const testRooms = [
-    {room: "room1", xy: [124,1580]},
-    {room: "room2", xy: [124,1200]}
+    "room1",
+    "room2"
 ];
 const MapScreen = (props) => {
 

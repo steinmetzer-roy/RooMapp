@@ -1,17 +1,23 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Line, Polygon, G} from "react-native-svg";
 
 
 const MapArrow = (props) => {
+    const roomCoords = [
+        {room: "room1", x: 124, y: 1580},
+        {room: "room2", x: 124, y: 1320}
+    ];
 
-    let x = props.room.xy[0];
-    let y = props.room.xy[1];
+    const test = roomCoords.find(elements => elements.room === props.room)
 
-    let points="124,"+(y-5)+" 124,"+(y+5)+" 114,"+y;
+    let x = test.x;
+    let y = test.y;
+
+    let points = "124," + (y - 5) + " 124," + (y + 5) + " 114," + y;
     //points="124,1575 124,1585 114,1580"
 
-    console.log(x,y);
+    console.log(x, y);
 
     return (
         <G>

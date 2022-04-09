@@ -8,23 +8,30 @@ const MapArrow = (props) => {
 
     let x = props.arrowx;
     let y = props.arrowy;
-    let points = "124," + (y - 5) + " 124," + (y + 5) + " 114," + y;
-    //points="124,1575 124,1585 114,1580"
+
+
+
+    let jsx;
+
+    //left corridor
+    if (x === 110) {
+        //points for the triangle/polygon
+        let points = "110," + (y - 5) + " 110," + (y + 5) + " 100," + y;
+        jsx = <G>
+                <Line x1="110" y1="1235" x2="110" y2={y} style={styles.line}/>
+                <Polygon points={points} fill="#000000" stroke="#000000"/>
+            </G>;
+    }
+
 
     console.log(x, y);
 
     return (
-        <G>
-            <Line x1="124" y1="1100" x2="124" y2={y} style={styles.line}/>
-            <Polygon points={points} fill="#000000" stroke="#000000"/>
-        </G>
+        jsx
     );
 
 }
 
-//using width: 3
-//left corridor: x=124
-//escalator: y= 1100
 const styles = StyleSheet.create({
     line: {
         stroke: "#FF0000",

@@ -14,9 +14,9 @@ const MapScreen = (props) => {
 
     //names of the rooms with associated coordinates on the svg
     const roomCoords = [
-        {room: "room1", x: 124, y: 1580},
-        {room: "room2", x: 124, y: 1320},
-        {room: "room3", x: 124, y: 410},
+        {room: "room1", x: 110, y: 1778},
+        {room: "room2", x: 110, y: 1482},
+        {room: "room3", x: 110, y: 450},
     ];
 
     const [selectedRoom, setSelectedRoom] = useState(testRooms[2]);
@@ -42,9 +42,9 @@ const MapScreen = (props) => {
 
     //change viewbox to only display top or bottom part of the map
     if (y < 1100) {
-        viewBox = "0 0 400 1200";
+        viewBox = "0 0 400 1300";
     } else {
-        viewBox = "0 1000 400 600";
+        viewBox = "0 1200 400 600";
     }
 
     const onPressFunction = () => {

@@ -11,6 +11,7 @@ import {
     View
 } from 'react-native';
 import { render } from 'react-dom';
+import { courseData } from "../data.js";
 
 
 const SubmitButton = (props) => {
@@ -93,12 +94,9 @@ class RegisterForm extends Component {
                 <br /><br />
                 <SubmitButton />
             </form>
-
         );
     }
-
 }
-
 
 const CourseScreen = () => {
     const [course, setCourse] = useState();
@@ -106,11 +104,14 @@ const CourseScreen = () => {
     const [time, setTime] = useState();
     const [weekday, setWeekday] = useState();
     const [courseItems, setCourseItems] = useState([]); //"courseItems" is the name of the state (to track what was written in the input field), "setCourseItems" is the function we will use to set that state. If I do "setCourseItems("SEP")" then everytime I refer to courseItems, it will refer to "SEP". State is used when things change often in the app
+    const [classroomItems, setClassroomItems] = useState([]);
 
     const handleAddCourse = () => { //log the course that we have stored at state, "onChangeText={text => setCourse(text)}" - will grab whatever the text is and will set the course to be that text
         Keyboard.dismiss();
         setCourseItems([...courseItems, course])
+        setClassroomItems([...classroomItems, classroom])
         setCourse('');
+        console.log(course + " - " + classroom + " - " + time + " - " + weekday);
     }
 
     const deleteCourseFromList = (index) => {
@@ -129,11 +130,16 @@ const CourseScreen = () => {
                 <View style={styles.items}>
                     {/*This is where the courses will go*/}
                     {
-                        courseItems.map((item, index) => {
+                        courseData.map((data, key) => {
                             return (
-                                <TouchableOpacity key={index} onPress={() => deleteCourseFromList(index)}>
-                                    {/* Jim/Roy: add code to go to the next page / "more info about a specific" here under onPress, probably */}
-                                    <Course text={item} />
+                                <TouchableOpacity key={key} onPress={() => deleteCourseFromList(index)}>
+                                    {data.name +
+                                        " , " +
+                                        data.room +
+                                        " ," +
+                                        data.time +
+                                        ", " +
+                                        data.weekday}
                                 </TouchableOpacity>
                             )
                         })
@@ -148,22 +154,26 @@ const CourseScreen = () => {
                 style={styles.writeCourseWrapper}
             >
                 {/* TODO: put on separate lines */}
-                {/* "value={course}" allows seeing the real time changes*/}
-                <TextInput style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
-                <TextInput style={styles.input} placeholder={'Room number'} value={course} onChangeText={text => setCourse(text)} />
-                <TextInput style={styles.input} placeholder={'Time'} value={course} onChangeText={text => setCourse(text)} />
-                <TextInput style={styles.input} placeholder={'Day of the week'} value={course} onChangeText={text => setCourse(text)} />
+                <form>
+                    {/* "value={course}" allows seeing the real time changes*/}
+                    <br /><br />
+                    <TextInput style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
+                    <br /><br />
+                    <TextInput style={styles.input} placeholder={'Room number'} value={classroom} onChangeText={text => setClassroom(text)} />
+                    <br /><br />
+                    <TextInput style={styles.input} placeholder={'Time'} value={time} onChangeText={text => setTime(text)} />
+                    <br /><br />
+                    <TextInput style={styles.input} placeholder={'Day of the week'} value={weekday} onChangeText={text => setWeekday(text)} />
+                    <br /><br />
 
-                <TouchableOpacity onPress={() => handleAddCourse()}>
-                    <View style={styles.addWrapper}>
-                        <Text style={styles.addText}>+</Text>
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleAddCourse()}>
+                        <View style={styles.addWrapper}>
+                            <Text style={styles.addText}>+</Text>
+                        </View>
+                    </TouchableOpacity>
+                </form>
             </KeyboardAvoidingView>
-
         </View>
-
-
     );
 }
 

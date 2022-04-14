@@ -8,12 +8,12 @@ export const courseData = [
         name: "Software Testing",
         room: "2300",
         time: "14.00",
-        weekday: "Wednesdays",
+        weekday: "Wed",
     },
     {
         name: "Networks 2",
         room: "1600",
         time: "14.00",
-        weekday: "Thursdays",
+        weekday: "Thu",
     },
 ];

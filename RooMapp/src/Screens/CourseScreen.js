@@ -12,10 +12,15 @@ import {
 } from 'react-native';
 import { render } from 'react-dom';
 import { courseData } from "../data.js";
+import { FaEraser } from 'react-icons/fa';
 
 
 const SubmitButton = (props) => {
     return <button type="submit">Submit</button>;
+}
+
+function APIcodeToDelete() {
+    alert('This will soon delete the item (when API (or another solution) is working)');
 }
 
 class RegisterForm extends Component {
@@ -129,17 +134,32 @@ const CourseScreen = () => {
 
                 <View style={styles.items}>
                     {/*This is where the courses will go*/}
+                    {/*Jim: similar code to this:"onPress={() => deleteCourseFromList(key)" (inside of "TouchableOpacity") should take us to your page */}
+
                     {
                         courseData.map((data, key) => {
                             return (
-                                <TouchableOpacity key={key} onPress={() => deleteCourseFromList(index)}>
-                                    {data.name +
-                                        " , " +
-                                        data.room +
-                                        " ," +
-                                        data.time +
-                                        ", " +
-                                        data.weekday}
+                                <TouchableOpacity key={key} onPress={() => deleteCourseFromList(key)}>
+                                    <View style={styles.item}>
+
+                                        <View style={styles.itemLeft}>
+                                            <View style={styles.square}></View>
+                                            <Text>{data.room + "   " + data.time + "   " + data.weekday + "   " + data.name}</Text>
+                                        </View>
+                                        <View><button onClick={APIcodeToDelete}><FaEraser /></button></View>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })
+                    }
+                </View>
+                <View style={styles.items}>
+                    {/*This is where the courses will go*/}
+                    {
+                        courseItems.map((item, index) => {
+                            return (
+                                <TouchableOpacity key={index} onPress={() => deleteCourseFromList(index)}>
+                                    <Course text={item} />
                                 </TouchableOpacity>
                             )
                         })
@@ -190,6 +210,15 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
     },
+    item: {
+        backgroundColor: '#FFF',
+        padding: 15,
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 20,
+    },
     items: {
         marginTop: 30,
     },
@@ -221,6 +250,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     addText: {},
+    itemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+    },
+    square:
+    {
+        width: 24,
+        height: 24,
+        backgroundColor: '#55BCF6',
+        opacity: 0.4,
+        borderRadius: 5,
+        marginRight: 15,
+    },
 
 });
 

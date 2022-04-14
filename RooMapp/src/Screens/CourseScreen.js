@@ -105,7 +105,7 @@ class RegisterForm extends Component {
 
 const CourseScreen = () => {
     const [course, setCourse] = useState();
-    const [classroom, setClassroom] = useState(); //TODO: search how to save data like this: ['SEP', '3.070', '14:00', 'Wednesday'] instead of "SEP, 3.070, 14:00, Wednesday" which is currently possible
+    const [classroom, setClassroom] = useState();
     const [time, setTime] = useState();
     const [weekday, setWeekday] = useState();
     const [courseItems, setCourseItems] = useState([]); //"courseItems" is the name of the state (to track what was written in the input field), "setCourseItems" is the function we will use to set that state. If I do "setCourseItems("SEP")" then everytime I refer to courseItems, it will refer to "SEP". State is used when things change often in the app
@@ -129,11 +129,13 @@ const CourseScreen = () => {
         localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
     }
 
-    const deleteCourseFromList = (index) => {
+    const deleteCourseFromList = (index) => { //needs to be changed 
         let itemsCopy = [...courseItems];
         itemsCopy.splice(index, 1);
         setCourseItems(itemsCopy)
     }
+
+    const coursesFromStorage = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, so that when the page is opened, the courses already in storage would show up in the list
 
     return (
         <View style={styles.container}>
@@ -143,18 +145,15 @@ const CourseScreen = () => {
                 <Text style={styles.sectionTitle}>My Courses</Text>
 
                 <View style={styles.items}>
-                    {/*This is where the courses will go*/}
-                    {/*Jim: similar code to this:"onPress={() => deleteCourseFromList(key)" (inside of "TouchableOpacity") should take us to your page */}
-
                     {
-                        courseData.map((data, key) => {
+                        coursesFromStorage.map((data, key) => {
                             return (
                                 <TouchableOpacity key={key} onPress={() => deleteCourseFromList(key)}>
                                     <View style={styles.item}>
 
                                         <View style={styles.itemLeft}>
                                             <View style={styles.square}></View>
-                                            <Text>{data.room + "   " + data.time + "   " + data.weekday + "   " + data.name}</Text>
+                                            <Text>{data.classroom + "   " + data.time + "   " + data.weekday + "   " + data.course}</Text>
                                         </View>
                                         <View><button onClick={APIcodeToDelete}><FaEraser /></button></View>
                                     </View>
@@ -163,18 +162,7 @@ const CourseScreen = () => {
                         })
                     }
                 </View>
-                <View style={styles.items}>
-                    {/*This is where the courses will go*/}
-                    {
-                        courseItems.map((item, index) => {
-                            return (
-                                <TouchableOpacity key={index} onPress={() => deleteCourseFromList(index)}>
-                                    <Course text={item} />
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                </View>
+
             </View> {/*TODO: make this a separate screen, leave a "go back" button here only*/}
             {/* Write course info here*/}
             <RegisterForm />

@@ -15,23 +15,6 @@ const Course = (props) => {
                 <View style={styles.square}></View>
                 {/* TODO: allow many lines here (first for course name, second for room...) */}
                 <Text style={styles.itemText}>{props.text}</Text>
-                {/* <>
-                    <div>
-                        {courseData.map((data, key) => { // It maps over the courseData JSON array, which takes a callback function as argument. This function is then called for every stock inside the courseData array. Each time callback executes, it returns and renders a <div> displaying data for every company in a comma separated manner.
-                            return (
-                                <div key={key}>
-                                    {data.name +
-                                        " , " +
-                                        data.room +
-                                        " ," +
-                                        data.time +
-                                        ", " +
-                                        data.weekday}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </> */}
             </View>
             <View><button onClick={sayHello}><FaEraser /></button></View>
         </View>

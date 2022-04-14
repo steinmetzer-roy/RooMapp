@@ -110,13 +110,23 @@ const CourseScreen = () => {
     const [weekday, setWeekday] = useState();
     const [courseItems, setCourseItems] = useState([]); //"courseItems" is the name of the state (to track what was written in the input field), "setCourseItems" is the function we will use to set that state. If I do "setCourseItems("SEP")" then everytime I refer to courseItems, it will refer to "SEP". State is used when things change often in the app
     const [classroomItems, setClassroomItems] = useState([]);
+    var obj = { "course": course, "classroom": classroom, "time": time, "weekday": weekday };
 
     const handleAddCourse = () => { //log the course that we have stored at state, "onChangeText={text => setCourse(text)}" - will grab whatever the text is and will set the course to be that text
         Keyboard.dismiss();
-        setCourseItems([...courseItems, course])
-        setClassroomItems([...classroomItems, classroom])
+        setCourseItems([...courseItems, course])//needed now that I have JSON?
+        setClassroomItems([...classroomItems, classroom])//needed now that I have JSON?
         setCourse('');
+        setClassroom('');
+        setTime('');
+        setWeekday('');
         console.log(course + " - " + classroom + " - " + time + " - " + weekday);
+        var userInput = obj; //user enters name, room, time, day
+        var arryOfArrays = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, I don't want to overwrite existing data
+        if (!arryOfArrays) { arryOfArrays = []; } //if user is entering courses for the first time, give them an empty array
+        arryOfArrays.push(userInput); //push the latest input into an array of courses that were there in the past
+        var arryOfArraysStringified = JSON.stringify(arryOfArrays); //needed to convert into a format local storage likes
+        localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
     }
 
     const deleteCourseFromList = (index) => {
@@ -177,7 +187,7 @@ const CourseScreen = () => {
                 <form>
                     {/* "value={course}" allows seeing the real time changes*/}
                     <br /><br />
-                    <TextInput style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
+                    <TextInput id="testInput" style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
                     <br /><br />
                     <TextInput style={styles.input} placeholder={'Room number'} value={classroom} onChangeText={text => setClassroom(text)} />
                     <br /><br />
@@ -188,7 +198,7 @@ const CourseScreen = () => {
 
                     <TouchableOpacity onPress={() => handleAddCourse()}>
                         <View style={styles.addWrapper}>
-                            <Text style={styles.addText}>+</Text>
+                            <Text style={styles.addText}>Submit</Text>
                         </View>
                     </TouchableOpacity>
                 </form>

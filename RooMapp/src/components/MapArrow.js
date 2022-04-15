@@ -15,9 +15,13 @@ const MapArrow = (props) => {
 
     //
     const leftCorridorX = 110;
+    const rightCorridorX = 285;
 
     //x coords of rooms that are not directly on the left corridor but on another small hallway next to it
     const leftNotchX = 85;
+    const rightNotchX = 312;
+
+    const middleRoomX = 145;
 
     let jsx;
 
@@ -29,6 +33,8 @@ const MapArrow = (props) => {
         points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y - 10);
     } else if (props.room.dir === "bottom") {
         points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y + 10);
+    } else if (props.room.dir === "right") {
+        points = x + "," + (y - 5) + " " + x + "," + (y + 5) + " " + (x + 10) + "," + y;
     }
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
@@ -47,6 +53,40 @@ const MapArrow = (props) => {
             {triangle}
         </G>;
 
+    } else if (x === rightCorridorX) {
+        jsx =
+            <G>
+                <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={y} style={styles.line}/>
+                {triangle}
+            </G>
+
+    } else if (x === rightNotchX) {
+        jsx = <G>
+            <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={y} style={styles.line}/>
+            <Line x1={rightCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>
+    } else if (x === middleRoomX && y === 1700) {
+        //bottom room in the middle
+        jsx = <G>
+            <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={1750} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={1750} x2={middleRoomX} y2={1750} style={styles.line}/>
+            <Line x1={middleRoomX} y1={1750} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>
+    } else if (x === middleRoomX && y === 120) {
+        jsx = <G>
+            <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={50} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={50} x2={middleRoomX} y2={50} style={styles.line}/>
+            <Line x1={middleRoomX} y1={50} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>
+    } else if (x === middleRoomX) {
+        jsx = <G>
+            <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={y} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>
     } else {
         jsx = <G>
 

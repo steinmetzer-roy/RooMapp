@@ -23,8 +23,8 @@ export default function App() {
     return (
         <NavigationContainer>
             <Drawer.Navigator useLegacyImplementation>
-                <Drawer.Screen name="CourseScreen" component={CourseScreen} />
                 <Drawer.Screen name="MapScreen" component={MapScreen} />
+                <Drawer.Screen name="CourseScreen" component={CourseScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
     );

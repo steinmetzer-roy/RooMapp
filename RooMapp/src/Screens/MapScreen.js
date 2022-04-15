@@ -7,6 +7,8 @@ const MapScreen = (props) => {
 
     //rooms to be used as input(for testing purposes)
     const testRooms = [
+        "3.500",
+        "3.190",
         "3.520",
         "3.010",
         "3.530",
@@ -30,25 +32,41 @@ const MapScreen = (props) => {
 
     //names of the rooms with associated coordinates on the svg
     const roomCoords = [
-        {room: "3.200", x: 285, y: 475, dir: "right"},
-        {room: "3.350", x: 110, y: 1778, dir: "left"},
         {room: "room2", x: 110, y: 1482, dir: "left"},
         {room: "room3", x: 110, y: 450, dir: "left"},
         {room: "room4", x: 85, y: 685, dir: "top"},
-        {room: "3.330", x: 85, y: 1285, dir: "bottom"},
-        {room: "3.370", x: 285, y: 1778, dir: "right"},
         {room: "room7", x: 312, y: 1285, dir: "bottom"},
-        {room: "3.070", x: 110, y: 475, dir: "left"},
-        {room: "3.040", x: 85, y: 900, dir: "top"},
-        {room: "3.010", x: 85, y: 905, dir: "bottom"},
         {room: "room10", x: 85, y: 905, dir: "bottom"},
-        {room: "3.220", x: 312, y: 685, dir: "bottom"},
+
+
+        {room: "3.010", x: 85, y: 905, dir: "bottom"},
+
+        {room: "3.040", x: 85, y: 900, dir: "top"},
+
+        {room: "3.070", x: 110, y: 475, dir: "left"},
+
         {room: "3.110", x: 85, y: 160, dir: "bottom"},
-        {room: "3.380", x: 285, y: 1400, dir: "right"},
+
+        {room: "3.190", x: 285, y: 450, dir: "right"},
+        {room: "3.200", x: 285, y: 475, dir: "right"},
+
+        {room: "3.220", x: 312, y: 685, dir: "bottom"},
         {room: "3.230", x: 312, y: 950, dir: "top"},
-        {room: "3.540", x: 145, y: 1700, dir: "top"},
-        {room: "3.530", x: 145, y: 1290, dir: "bottom"},
+
+        {room: "3.330", x: 85, y: 1285, dir: "bottom"},
+
+        {room: "3.350", x: 110, y: 1778, dir: "left"},
+
+        {room: "3.370", x: 285, y: 1778, dir: "right"},
+        {room: "3.380", x: 285, y: 1400, dir: "right"},
+
+        {room: "3.500", x: 165, y: 1175, dir: "top"},
+
         {room: "3.520", x: 145, y: 120, dir: "bottom"},
+        {room: "3.530", x: 145, y: 1290, dir: "bottom"},
+        {room: "3.540", x: 145, y: 1700, dir: "top"},
+
+
     ];
 
     const [selectedRoom, setSelectedRoom] = useState(testRooms[0]);
@@ -67,14 +85,13 @@ const MapScreen = (props) => {
 
     //get x and y position of selectedRoom
     const test = roomCoords.find(elements => elements.room === selectedRoom);
-    console.log(test);
 
     let x = test.x;
     let y = test.y;
     let viewBox;
 
-    //change viewbox to only display top or bottom part of the map
-    if (y < 1100) {
+    //change viewBox to only display top or bottom part of the map
+    if (y < 1200) {
         viewBox = "0 0 400 1300";
     } else {
         viewBox = "0 1200 400 600";
@@ -85,7 +102,7 @@ const MapScreen = (props) => {
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
-    //original viewBox="0 0 400 1619.459"
+
     return (
         <View style={{flexDirection: "column"}}>
             <View height={10} style={styles.head}>

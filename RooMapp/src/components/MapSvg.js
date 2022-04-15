@@ -2,11 +2,11 @@ import * as React from "react"
 import Svg, {G, Path} from "react-native-svg"
 import MapArrow from "./MapArrow"
 
-//This component was created with a svg to react-native component converter: https://react-svgr.com/playground/?native=true
+//This component was created with a png to svg converter and a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 const SvgComponent = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
-
+        //original viewBox="0 0 400 1619.459"
         {...props}
     >
         <G fillRule="evenodd">

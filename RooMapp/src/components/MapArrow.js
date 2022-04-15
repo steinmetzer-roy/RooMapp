@@ -9,18 +9,19 @@ const MapArrow = (props) => {
     let x = props.room.x;
     let y = props.room.y;
 
-    //entrance
+    //entrance/escalator
     const startY = 1235;
     const startX = 110;
 
-    //
+    //x coordinates of rooms on left and right corridors
     const leftCorridorX = 110;
     const rightCorridorX = 285;
 
-    //x coords of rooms that are not directly on the left corridor but on another small hallway next to it
+    //x coordinates of rooms that are not directly on a corridor but on another small hallway next to it
     const leftNotchX = 85;
     const rightNotchX = 312;
 
+    //x coordinates for the big rooms in the middle
     const middleRoomX = 145;
 
     let jsx;
@@ -54,6 +55,7 @@ const MapArrow = (props) => {
         </G>;
 
     } else if (x === rightCorridorX) {
+        //rooms that are in the right corridor
         jsx =
             <G>
                 <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={y} style={styles.line}/>
@@ -61,6 +63,7 @@ const MapArrow = (props) => {
             </G>
 
     } else if (x === rightNotchX) {
+        //rooms that are in small hallways next to the right corridor
         jsx = <G>
             <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={y} style={styles.line}/>
             <Line x1={rightCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
@@ -75,6 +78,7 @@ const MapArrow = (props) => {
             {triangle}
         </G>
     } else if (x === middleRoomX && y === 120) {
+        //top room in the middle
         jsx = <G>
             <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={50} style={styles.line}/>
             <Line x1={leftCorridorX} y1={50} x2={middleRoomX} y2={50} style={styles.line}/>
@@ -82,6 +86,14 @@ const MapArrow = (props) => {
             {triangle}
         </G>
     } else if (x === middleRoomX) {
+        //other rooms in the middle
+        jsx = <G>
+            <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={y} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>
+    } else if (x === 165) {
+        //big room just top of the escalator
         jsx = <G>
             <Line x1={leftCorridorX} y1={startY} x2={leftCorridorX} y2={y} style={styles.line}/>
             <Line x1={leftCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>

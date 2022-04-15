@@ -1,3 +1,4 @@
+//TODO: make sure that the item that was deleted also disappears from the UI without needing to refresh
 import React, { useState, Component } from 'react';
 import Course from '../../components/Course';
 import {
@@ -20,7 +21,7 @@ const SubmitButton = (props) => {
 }
 
 function APIcodeToDelete() {
-    alert('This will soon delete the item (when API (or another solution) is working)');
+    // alert('This will soon delete the item (when API (or another solution) is working)');
 }
 
 class RegisterForm extends Component {
@@ -41,9 +42,7 @@ class RegisterForm extends Component {
         this.emailChange = this.emailChange.bind(this);
         this.contactChange = this.contactChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
-
 
     firstNameChange(event) {
         this.setState({
@@ -129,13 +128,19 @@ const CourseScreen = () => {
         localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
     }
 
-    const deleteCourseFromList = (index) => { //needs to be changed 
-        let itemsCopy = [...courseItems];
-        itemsCopy.splice(index, 1);
-        setCourseItems(itemsCopy)
-    }
-
     const coursesFromStorage = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, so that when the page is opened, the courses already in storage would show up in the list
+
+    const deleteCourseFromList = (toDelete) => { //needs to be changed 
+        // let itemsCopy = [...courseItems];
+        // itemsCopy.splice(key, 1);
+        // setCourseItems(itemsCopy)
+        console.log(toDelete); // 0, 1, 2 or 3
+        var arryOfArrays = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, I don't want to overwrite existing data
+        console.log(arryOfArrays);
+        arryOfArrays.splice(toDelete, 1) //delete 1 item, at position "toDelete"
+        var arryOfArraysStringified = JSON.stringify(arryOfArrays); //needed to convert into a format local storage likes
+        localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
+    }
 
     return (
         <View style={styles.container}>
@@ -155,7 +160,7 @@ const CourseScreen = () => {
                                             <View style={styles.square}></View>
                                             <Text>{data.classroom + "   " + data.time + "   " + data.weekday + "   " + data.course}</Text>
                                         </View>
-                                        <View><button onClick={APIcodeToDelete}><FaEraser /></button></View>
+                                        <View><button onClick={() => deleteCourseFromList(key)}><FaEraser /></button></View>
                                     </View>
                                 </TouchableOpacity>
                             )

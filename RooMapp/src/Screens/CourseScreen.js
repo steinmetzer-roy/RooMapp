@@ -80,19 +80,19 @@ class RegisterForm extends Component {
         return (
 
             <form onSubmit={this.handleSubmit}>
-                <label for="fname">Name: </label>
+                <label htmlFor="fname">Name: </label>
                 <br /><br />
                 <TextInput style={styles.input} id="fname" type="text" value={this.state.firstName} onChange={this.firstNameChange} />
                 <br /><br />
-                <label for="lname">Number: </label>
+                <label htmlFor="lname">Number: </label>
                 <br /><br />
                 <TextInput style={styles.input} id="lname" type="text" value={this.state.lastName} onChange={this.lastNameChange} />
                 <br /><br />
-                <label for="email">Time: </label>
+                <label htmlFor="email">Time: </label>
                 <br /><br />
                 <TextInput style={styles.input} id="email" type="text" value={this.state.email} onChange={this.emailChange} />
                 <br /><br />
-                <label for="contact">Day of week: </label>
+                <label htmlFor="contact">Day of week: </label>
                 <br /><br />
                 <TextInput style={styles.input} id="contact" type="text" value={this.state.contact} onChange={this.contactChange} />
                 <br /><br />
@@ -145,7 +145,6 @@ const CourseScreen = () => {
     return (
         <View style={styles.container}>
 
-            {/* My Courses */}
             <View style={styles.courseWrapper}>
                 <Text style={styles.sectionTitle}>My Courses</Text>
 
@@ -168,17 +167,14 @@ const CourseScreen = () => {
                     }
                 </View>
 
-            </View> {/*TODO: make this a separate screen, leave a "go back" button here only*/}
-            {/* Write course info here*/}
+            </View>
             <RegisterForm />
 
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "Padding" : "height"} //TODO: Search if necessary
                 style={styles.writeCourseWrapper}
             >
-                {/* TODO: put on separate lines */}
                 <form>
-                    {/* "value={course}" allows seeing the real time changes*/}
                     <br /><br />
                     <TextInput id="testInput" style={styles.input} placeholder={'Course name'} value={course} onChangeText={text => setCourse(text)} />
                     <br /><br />

@@ -58,6 +58,7 @@ const SvgComponent = (props) => (
         </G>
     </Svg>
 )
-
+//todo make rest of the rooms clickable
+//todo showing the room info should not change the arrow( a double click triggers a click)
 
 export default SvgComponent;

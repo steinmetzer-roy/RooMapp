@@ -39,9 +39,10 @@ const MapScreen = (props) => {
 
     ];
 
-    //names of the rooms with associated coordinates on the svg
     //todo find the names of rooms
     //todo find direction of escalator exit
+
+    //names of the rooms with associated coordinates on the svg
     const roomCoords = [
         {room: "3.010", x: 85, y: 905, dir: "bottom"},
         {room: "3.040", x: 85, y: 900, dir: "top"},
@@ -77,11 +78,12 @@ const MapScreen = (props) => {
 
 
     ];
-
+    //room that the arrow is pointing to
     const [selectedRoom, setSelectedRoom] = useState(testRooms[0]);
-    const [showModal, setShowModal] = useState(true);
+    //whether the modal is shown with the room information
+    const [showModal, setShowModal] = useState(false);
+    //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(testRooms[0]);
-
 
 
     if (props.name !== undefined) {
@@ -109,11 +111,13 @@ const MapScreen = (props) => {
         viewBox = "0 1200 400 600";
     }
 
+    //loops through the available rooms
     const onPressFunction = () => {
         let index = testRooms.findIndex(elements => elements === selectedRoom);
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
+    //changes the selectedRoom so that an arrow is drawn to the correct room
     const onSvgClick = (a) => (e) => {
         let b = roomCoords.find(elements => elements.room === a);
         if (b) {
@@ -122,8 +126,9 @@ const MapScreen = (props) => {
             console.log("Could not find room");
         }
     }
-
+    //changes the state so that the modal with room information is displayed
     const onSvgDoubleClick = (room) => (e) => {
+        e.preventDefault();
         if (roomCoords.find(elements => elements.room === room)) {
             setModalRoom(room);
             setShowModal(true);

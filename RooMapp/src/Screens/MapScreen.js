@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Pressable, Text} from 'react-native';
+import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
 import SvgImage from "../components/MapSvg"
 
 
@@ -79,6 +79,9 @@ const MapScreen = (props) => {
     ];
 
     const [selectedRoom, setSelectedRoom] = useState(testRooms[0]);
+    const [showModal, setShowModal] = useState(true);
+    const [modalRoom, setModalRoom] = useState(testRooms[0]);
+
 
 
     if (props.name !== undefined) {
@@ -111,20 +114,52 @@ const MapScreen = (props) => {
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
-    const onClick = (a) => (e) => {
+    const onSvgClick = (a) => (e) => {
         let b = roomCoords.find(elements => elements.room === a);
         if (b) {
             setSelectedRoom(b.room);
         } else {
             console.log("Could not find room");
         }
+    }
 
+    const onSvgDoubleClick = (room) => (e) => {
+        if (roomCoords.find(elements => elements.room === room)) {
+            setModalRoom(room);
+            setShowModal(true);
+        } else {
+            console.log("Could not find room");
+        }
 
     }
 
 
     return (
         <View style={{flexDirection: "column"}}>
+            <Modal animationType="fade"
+                   transparent={true}
+                   visible={showModal}
+            >
+                <View style={styles.modalView}>
+                    <View style={styles.modal}>
+                        <Text style={{fontSize: 50}}>
+                            Room: {modalRoom}
+                        </Text>
+                        <Pressable onPress={() => setShowModal(false)}
+                                   style={({pressed}) => [
+                                       {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
+                                       styles.button
+                                   ]}
+                        >
+                            <Text>
+                                Exit
+                            </Text>
+                        </Pressable>
+                    </View>
+                </View>
+
+
+            </Modal>
             <View height={10} style={styles.head}>
                 <Text style={styles.title}>
                     Map
@@ -142,7 +177,8 @@ const MapScreen = (props) => {
 
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
                               viewBox={viewBox} room={roomCoords.find(elements => elements.room === selectedRoom)}
-                              onClick={onClick}/>
+                              onClick={onSvgClick} onDoubleClick={(room) => onSvgDoubleClick(room)}
+                    />
 
 
                 </View>
@@ -251,7 +287,22 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderRadius: 10,
 
-    }
+    },
+
+    modal: {
+        width: "40%",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#00ff00",
+    },
+
+    modalView: {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+        backgroundColor: "#00000099"
+    },
+
 
 });
 

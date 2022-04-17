@@ -3,6 +3,7 @@ import Svg, {G, Path} from "react-native-svg"
 import MapArrow from "./MapArrow"
 
 //This component was created with a png to svg converter and a svg to react-native component converter: https://react-svgr.com/playground/?native=true
+
 const SvgComponent = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
@@ -31,8 +32,32 @@ const SvgComponent = (props) => (
                 fill="#7c7c7c"
             />
             <MapArrow room={props.room}/>
+
+            <rect x={10} y={10} width={90} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={185} width={90} height={170} opacity="0%" color="#ffffff" onClick={props.onClick("3.110")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={350} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={465} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.070")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={575} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={710} width={90} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.040")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={930} width={90} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.010")}
+                  style={{cursor: "pointer"}}/>
+
+
         </G>
     </Svg>
 )
+
 
 export default SvgComponent;

@@ -37,7 +37,6 @@ const MapScreen = (props) => {
         "3.540",
 
 
-
     ];
 
     //names of the rooms with associated coordinates on the svg
@@ -112,6 +111,17 @@ const MapScreen = (props) => {
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
+    const onClick = (a) => (e) => {
+        let b = roomCoords.find(elements => elements.room === a);
+        if (b) {
+            setSelectedRoom(b.room);
+        } else {
+            console.log("Could not find room");
+        }
+
+
+    }
+
 
     return (
         <View style={{flexDirection: "column"}}>
@@ -131,7 +141,8 @@ const MapScreen = (props) => {
                 <View style={styles.middleView}>
 
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                              viewBox={viewBox} room={roomCoords.find(elements => elements.room === selectedRoom)}/>
+                              viewBox={viewBox} room={roomCoords.find(elements => elements.room === selectedRoom)}
+                              onClick={onClick}/>
 
 
                 </View>

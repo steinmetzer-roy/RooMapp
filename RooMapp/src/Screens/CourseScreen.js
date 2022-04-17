@@ -24,7 +24,7 @@ function APIcodeToDelete() {
     // alert('This will soon delete the item (when API (or another solution) is working)');
 }
 
-class RegisterForm extends Component {
+class RegisterForm extends Component { //look into how to delete this code, it was needed to try out an earlier version
 
     constructor(props) {
 
@@ -80,23 +80,7 @@ class RegisterForm extends Component {
         return (
 
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="fname">Name: </label>
-                <br /><br />
-                <TextInput style={styles.input} id="fname" type="text" value={this.state.firstName} onChange={this.firstNameChange} />
-                <br /><br />
-                <label htmlFor="lname">Number: </label>
-                <br /><br />
-                <TextInput style={styles.input} id="lname" type="text" value={this.state.lastName} onChange={this.lastNameChange} />
-                <br /><br />
-                <label htmlFor="email">Time: </label>
-                <br /><br />
-                <TextInput style={styles.input} id="email" type="text" value={this.state.email} onChange={this.emailChange} />
-                <br /><br />
-                <label htmlFor="contact">Day of week: </label>
-                <br /><br />
-                <TextInput style={styles.input} id="contact" type="text" value={this.state.contact} onChange={this.contactChange} />
-                <br /><br />
-                <SubmitButton />
+
             </form>
         );
     }
@@ -126,6 +110,7 @@ const CourseScreen = () => {
         arryOfArrays.push(userInput); //push the latest input into an array of courses that were there in the past
         var arryOfArraysStringified = JSON.stringify(arryOfArrays); //needed to convert into a format local storage likes
         localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
+        window.location.reload(false);
     }
 
     const coursesFromStorage = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, so that when the page is opened, the courses already in storage would show up in the list
@@ -140,6 +125,7 @@ const CourseScreen = () => {
         arryOfArrays.splice(toDelete, 1) //delete 1 item, at position "toDelete"
         var arryOfArraysStringified = JSON.stringify(arryOfArrays); //needed to convert into a format local storage likes
         localStorage.setItem("savedCourses", arryOfArraysStringified); //save the new version: all old courses + the latest addition
+        window.location.reload(false);
     }
 
     return (

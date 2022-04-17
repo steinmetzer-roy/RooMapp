@@ -144,10 +144,11 @@ const MapScreen = (props) => {
 
                     <Pressable onPress={onPressFunction}
                                style={({pressed}) => [
-                                   {backgroundColor: pressed ? "#dddddd" : "#00ff00", margin: 10,}
+                                   {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
+                                   styles.button
                                ]}
                     >
-                        <Text> Switch room, {selectedRoom} chosen!</Text>
+                        <Text style={{textAlign: "center"}}> Switch room, {selectedRoom} chosen!</Text>
                     </Pressable>
 
                 </View>
@@ -231,6 +232,15 @@ const styles = StyleSheet.create({
         borderColor: "#5555ff",
 
     },
+
+    button: {
+        height: 40,
+        width: "40%",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+
+    }
 
 });
 

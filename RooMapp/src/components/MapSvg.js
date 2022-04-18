@@ -54,7 +54,32 @@ const SvgComponent = (props) => (
             <rect x={10} y={930} width={90} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.010")} onDoubleClick={props.onDoubleClick("3.010")}
                   style={{cursor: "pointer"}}/>
 
+            <rect x={300} y={10} width={90} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
 
+            <rect x={300} y={135} width={90} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={260} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={350} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.190")} onDoubleClick={props.onDoubleClick("3.190")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={465} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("3.200")} onDoubleClick={props.onDoubleClick("3.200")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={575} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={710} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.220")} onDoubleClick={props.onDoubleClick("3.220")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={820} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("3.230")} onDoubleClick={props.onDoubleClick("3.230")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={980} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
         </G>
     </Svg>
 )

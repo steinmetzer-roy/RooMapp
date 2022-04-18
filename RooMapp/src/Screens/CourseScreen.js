@@ -113,8 +113,7 @@ const CourseScreen = () => {
         window.location.reload(false);
     }
 
-    // const coursesFromStorage = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, so that when the page is opened, the courses already in storage would show up in the list
-    const coursesFromStorage = [{}, { course: "Testing", classroom: "1000", time: "13", weekday: "Mon" }];
+    const coursesFromStorage = JSON.parse(window.localStorage.getItem('savedCourses')); //I take what is already in local storage, so that when the page is opened, the courses already in storage would show up in the list
 
     const deleteCourseFromList = (toDelete) => { //needs to be changed 
         // let itemsCopy = [...courseItems];

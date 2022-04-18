@@ -145,12 +145,23 @@ const MapScreen = (props) => {
 
     }
 
-    //todo make this zoom relative to mouse cursor
+    //todo fix zooming out
+    //todo make zoom work for bottom part of the map
     const zoom = (e) => {
-        console.log(e.deltaY);
-        console.log(e.pageX);
-        console.log(e.pageY);
+        //position of the mouse relative to the page
+        let mouseX = e.pageX;
+        let mouseY = e.pageY;
+        //position of the svg relative to the page
+        let svgX = e.currentTarget.getBoundingClientRect().x;
+        let svgY = e.currentTarget.getBoundingClientRect().y;
         console.log(e.currentTarget.getBoundingClientRect());
+        //position of the mouse relative to the svg as a ratio
+        let relativeX = (mouseX - svgX)/e.currentTarget.getBoundingClientRect().width;
+        let relativeY = (mouseY - svgY)/e.currentTarget.getBoundingClientRect().height;
+        console.log(relativeX,relativeY);
+        //modifier to give targeting with the mouse more weight
+        let modifier = 2.5;
+
         if (y <= 1200) {
             let x = viewBox.x;
             let y = viewBox.y;
@@ -162,8 +173,8 @@ const MapScreen = (props) => {
             w = w + e.deltaY / 4 * ratio;
             h = h + e.deltaY / 4;
 
-            x = x - e.deltaY / 8* ratio;
-            y = y - e.deltaY / 8 ;
+            x = x - e.deltaY / 8 * ratio * relativeX * modifier;
+            y = y - e.deltaY / 8 * relativeY * modifier;
 
             let v = {x: x, y: y, w: w, h: h};
             setViewBox(v);

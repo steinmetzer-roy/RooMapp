@@ -89,6 +89,7 @@ const MapScreen = (props) => {
     if (props.name !== undefined) {
         setSelectedRoom(props.room);
     }
+
     //set width/height
     let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -102,14 +103,20 @@ const MapScreen = (props) => {
 
     let x = test.x;
     let y = test.y;
-    let viewBox;
 
+    let vb;
     //change viewBox to only display top or bottom part of the map
-    if (y < 1200) {
-        viewBox = "0 0 400 1300";
+    if (y <= 1200) {
+        vb = {x: 0, y: 0, w: 400, h: 1300};
     } else {
-        viewBox = "0 1200 400 600";
+        vb = {x: 0, y: 1200, w: 400, h: 600};
     }
+
+    //todo: viewBox should update on rerender and show bottom part of map
+    const [viewBox, setViewBox] = useState(vb);
+
+
+
 
     //loops through the available rooms
     const onPressFunction = () => {
@@ -136,6 +143,37 @@ const MapScreen = (props) => {
             console.log("Could not find room");
         }
 
+    }
+
+    //todo make this zoom relative to mouse cursor
+    const zoom = (e) => {
+        console.log(e.deltaY);
+        console.log(e.pageX);
+        console.log(e.pageY);
+        console.log(e.currentTarget.getBoundingClientRect());
+        if (y <= 1200) {
+            let x = viewBox.x;
+            let y = viewBox.y;
+            let w = viewBox.w;
+            let h = viewBox.h;
+            let ratio = w/h;
+
+
+            w = w + e.deltaY / 4 * ratio;
+            h = h + e.deltaY / 4;
+
+            x = x - e.deltaY / 8* ratio;
+            y = y - e.deltaY / 8 ;
+
+            let v = {x: x, y: y, w: w, h: h};
+            setViewBox(v);
+        } else {
+            let x = 0;
+            let y = 1200;
+            let w = 400;
+            let h = 600;
+
+        }
     }
 
 
@@ -178,11 +216,13 @@ const MapScreen = (props) => {
                         Left side
                     </Text>
                 </View>
-                <View style={styles.middleView}>
+                <View style={styles.middleView} >
 
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                              viewBox={viewBox} room={roomCoords.find(elements => elements.room === selectedRoom)}
+                              viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                              room={roomCoords.find(elements => elements.room === selectedRoom)}
                               onClick={onSvgClick} onDoubleClick={(room) => onSvgDoubleClick(room)}
+                              onWheel={(e) => zoom(e)}
                     />
 
 

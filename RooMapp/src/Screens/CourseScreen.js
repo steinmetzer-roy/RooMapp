@@ -1,20 +1,14 @@
 //TODO: make sure that the item that was deleted also disappears from the UI without needing to refresh
 import React, { useState, Component } from 'react';
-import Course from '../../components/Course';
 import {
     Keyboard,
-    KeyboardAvoidingView,
-    Platform,
     StyleSheet,
     Text,
-    TextInput,
-    TouchableOpacity,
     View
 } from 'react-native';
-import { render } from 'react-dom';
-import { courseData } from "../data.js";
-import { FaEraser } from 'react-icons/fa';
-
+import CourseContextProvider from '../contexts/CourseContext';
+import CourseList from '../../components/CourseList';
+import NewCourseForm from '../../components/NewCourseForm';
 
 const SubmitButton = (props) => {
     return <button type="submit">Submit</button>;
@@ -134,7 +128,7 @@ const CourseScreen = () => {
             <View style={styles.courseWrapper}>
                 <Text style={styles.sectionTitle}>My Courses</Text>
 
-                <View style={styles.items}>
+                {/* <View style={styles.items}>
                     {coursesFromStorage.map((data, key) => {
                         if (data.course) {
                             return (
@@ -157,12 +151,17 @@ const CourseScreen = () => {
                             );
                         }
                     })}
-                </View>
+                </View> */}
+                <CourseContextProvider>
+                    <CourseList />
+                    <NewCourseForm />
+                </CourseContextProvider>
+
 
             </View>
             <RegisterForm />
 
-            <KeyboardAvoidingView
+            {/* <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "Padding" : "height"} //TODO: Search if necessary
                 style={styles.writeCourseWrapper}
             >
@@ -183,7 +182,7 @@ const CourseScreen = () => {
                         </View>
                     </TouchableOpacity>
                 </form>
-            </KeyboardAvoidingView>
+            </KeyboardAvoidingView> */}
         </View>
     );
 }
@@ -214,11 +213,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     writeCourseWrapper: {
-        position: 'absolute',
-        bottom: 60,
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
+        position: 'absolute', bottom: 60, width: '100%', flexDirection: 'row', justifyContent: 'space-around',
         alignItems: 'center',
     },
     input: {
@@ -231,14 +226,7 @@ const styles = StyleSheet.create({
         width: 250,
     },
     addWrapper: {
-        width: 60,
-        height: 60,
-        backgroundColor: '#FFF',
-        borderRadius: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#C0C0C0',
-        borderWidth: 1,
+        width: 60, height: 60, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1,
     },
     addText: {},
     itemLeft: {

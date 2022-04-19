@@ -135,8 +135,8 @@ const CourseScreen = () => {
                 <Text style={styles.sectionTitle}>My Courses</Text>
 
                 <View style={styles.items}>
-                    {
-                        coursesFromStorage.map((data, key) => {
+                    {coursesFromStorage.map((data, key) => {
+                        if (data.course) {
                             return (
                                 <TouchableOpacity key={key} onPress={() => deleteCourseFromList(key)}>
                                     <View style={styles.item}>
@@ -148,9 +148,15 @@ const CourseScreen = () => {
                                         <View><button onClick={() => deleteCourseFromList(key)}><FaEraser /></button></View>
                                     </View>
                                 </TouchableOpacity>
-                            )
-                        })
-                    }
+                            );
+                        } else {
+                            return (
+                                <View>
+                                    <Text>Please add your courses</Text>
+                                </View>
+                            );
+                        }
+                    })}
                 </View>
 
             </View>

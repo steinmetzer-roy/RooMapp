@@ -85,5 +85,6 @@ const SvgComponent = (props) => (
 )
 //todo make rest of the rooms clickable
 //todo showing the room info should not change the arrow( a double click triggers a click)
-
+//todo put the name of each room on the map
+//todo use a touchable instead of onClick/onDoubleClick
 export default SvgComponent;

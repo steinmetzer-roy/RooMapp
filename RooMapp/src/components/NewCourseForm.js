@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { CourseContext } from '../src/contexts/CourseContext';
+import { CourseContext } from '../contexts/CourseContext';
 import {
-  StyleSheet, View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView
+  StyleSheet, TextInput, KeyboardAvoidingView
 } from 'react-native';
 
 const NewCourseForm = () => {

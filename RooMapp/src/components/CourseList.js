@@ -3,9 +3,9 @@
 
 import React, { useContext } from 'react'; //useContext is a hook
 import CourseDetails from './CourseDetails';
-import { CourseContext } from '../src/contexts/CourseContext';
+import { CourseContext } from '../contexts/CourseContext';
 import {
-    StyleSheet, View,
+    View,
 } from 'react-native';
 
 

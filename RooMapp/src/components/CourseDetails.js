@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CourseContext } from '../src/contexts/CourseContext';
+import { CourseContext } from '../contexts/CourseContext';
 import {
     StyleSheet, Text, View
 } from 'react-native';

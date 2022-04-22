@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
 import SvgImage from "../components/MapSvg"
+import {useFocusEffect} from "@react-navigation/native";
 
 
-const MapScreen = (props) => {
+const MapScreen = ({navigation, route}) => {
 
     //rooms to be used as input(for testing purposes)
     const testRooms = [
@@ -85,10 +86,18 @@ const MapScreen = (props) => {
     //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(testRooms[0]);
 
+    //execute this when focusing this component
+    useFocusEffect(React.useCallback(() => {
+        let room = route.params.room;
+        if (roomCoords.find(element => element.room === room)) {
+            setSelectedRoom(room);
+        } else {
+            setSelectedRoom(roomCoords[0].room);
+            console.log("This room does not exist!");
+        }
 
-    if (props.name !== undefined) {
-        setSelectedRoom(props.room);
-    }
+    }, [route.params]))
+
 
     //set width/height
     let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -114,8 +123,6 @@ const MapScreen = (props) => {
 
     //todo: viewBox should update on rerender and show bottom part of map
     const [viewBox, setViewBox] = useState(vb);
-
-
 
 
     //loops through the available rooms
@@ -156,9 +163,9 @@ const MapScreen = (props) => {
         let svgY = e.currentTarget.getBoundingClientRect().y;
         console.log(e.currentTarget.getBoundingClientRect());
         //position of the mouse relative to the svg as a ratio
-        let relativeX = (mouseX - svgX)/e.currentTarget.getBoundingClientRect().width;
-        let relativeY = (mouseY - svgY)/e.currentTarget.getBoundingClientRect().height;
-        console.log(relativeX,relativeY);
+        let relativeX = (mouseX - svgX) / e.currentTarget.getBoundingClientRect().width;
+        let relativeY = (mouseY - svgY) / e.currentTarget.getBoundingClientRect().height;
+        console.log(relativeX, relativeY);
         //modifier to give targeting with the mouse more weight
         let modifier = 2.5;
 
@@ -167,7 +174,7 @@ const MapScreen = (props) => {
             let y = viewBox.y;
             let w = viewBox.w;
             let h = viewBox.h;
-            let ratio = w/h;
+            let ratio = w / h;
 
 
             w = w + e.deltaY / 4 * ratio;
@@ -227,7 +234,7 @@ const MapScreen = (props) => {
                         Left side
                     </Text>
                 </View>
-                <View style={styles.middleView} >
+                <View style={styles.middleView}>
 
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
                               viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}

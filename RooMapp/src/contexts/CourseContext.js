@@ -3,10 +3,14 @@
 //https://www.youtube.com/watch?v=SOnMln3W0U8&list=PL4cUxeGkcC9hNokByJilPg5g9m2APUePI&index=21&ab_channel=TheNetNinja
 import React, { createContext, useReducer, useEffect } from 'react';
 import { courseReducer } from '../reducers/courseReducer';
+import {useNavigation} from "@react-navigation/native";
 
 export const CourseContext = createContext(); //this creates our context
 
 const CourseContextProvider = (props) => {
+
+    const navigation = useNavigation();
+
     //when you first log in there are no courses, hense []; third argument in useReducer is to make sure localStorage persists
     const [courses, dispatch] = useReducer(courseReducer, [], () => {
         const localData = localStorage.getItem('courses');
@@ -18,7 +22,7 @@ const CourseContextProvider = (props) => {
     }, [courses]);
 
     const goToMapScreen = (classroom) => {
-        console.log("You clicked on course, this will eventually take you to the map")
+        navigation.navigate("MapScreen", {room: classroom});
     };
 
     return (

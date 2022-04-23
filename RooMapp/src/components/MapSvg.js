@@ -33,33 +33,39 @@ const SvgComponent = (props) => (
             />
             <MapArrow room={props.room}/>
 
-            <rect x={10} y={10} width={90} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
+            <rect x={10} y={930} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.010")}
+                  onDoubleClick={props.onDoubleClick("3.010")}
                   style={{cursor: "pointer"}}/>
 
-            <rect x={10} y={185} width={90} height={170} opacity="0%" color="#ffffff" onClick={props.onClick("3.110")}
-                  onDoubleClick={props.onDoubleClick("3.110")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={350} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={465} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.070")}
-                  onDoubleClick={props.onDoubleClick("3.070")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={575} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={710} width={90} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.040")}
+            <rect x={10} y={710} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.040")}
                   onDoubleClick={props.onDoubleClick("3.040")}
                   style={{cursor: "pointer"}}/>
 
-            <rect x={10} y={930} width={90} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.010")}
-                  onDoubleClick={props.onDoubleClick("3.010")}
+            <rect x={10} y={575} width={85} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  onDoubleClick={props.onDoubleClick("")}
                   style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={465} width={85} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.070")}
+                  onDoubleClick={props.onDoubleClick("3.070")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={350} width={85} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={185} width={85} height={170} opacity="0%" color="#ffffff" onClick={props.onClick("3.110")}
+                  onDoubleClick={props.onDoubleClick("3.110")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={10} width={85} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+
+
+
+
+
 
             <rect x={300} y={10} width={90} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("")}
                   onDoubleClick={props.onDoubleClick("")}
@@ -98,22 +104,57 @@ const SvgComponent = (props) => (
                   style={{cursor: "pointer"}}/>
 
 
-            <rect x={130} y={170} width={135} height={180} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.520")}
-                  onDoubleClick={props.onDoubleClick("3.520")}/>
 
-            <rect x={130} y={610} width={135} height={240} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}/>
+            <rect x={10} y={1305} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.330")}
+                  onDoubleClick={props.onDoubleClick("3.330")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={1470} width={85} height={25} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={10} y={1635} width={85} height={155} opacity="0%" color="#ffffff" onClick={props.onClick("3.350")}
+                  onDoubleClick={props.onDoubleClick("3.350")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={1635} width={85} height={155} opacity="0%" color="#ffffff" onClick={props.onClick("3.370")}
+                  onDoubleClick={props.onDoubleClick("3.370")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={1390} width={85} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.380")}
+                  onDoubleClick={props.onDoubleClick("3.380")}
+                  style={{cursor: "pointer"}}/>
+
+            <rect x={300} y={1305} width={85} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("")}
+                  onDoubleClick={props.onDoubleClick("")}
+                  style={{cursor: "pointer"}}/>
+
+
 
             <rect x={130} y={875} width={135} height={240} opacity="0%" color="#ffffff"
                   style={{cursor: "pointer"}} onClick={props.onClick("3.500")}
                   onDoubleClick={props.onDoubleClick("3.500")}/>
 
+            <rect x={130} y={610} width={135} height={240} opacity="0%" color="#ffffff"
+                  style={{cursor: "pointer"}} onClick={props.onClick("")} onDoubleClick={props.onDoubleClick("")}/>
+
+            <rect x={130} y={170} width={135} height={180} opacity="0%" color="#ffffff"
+                  style={{cursor: "pointer"}} onClick={props.onClick("3.520")}
+                  onDoubleClick={props.onDoubleClick("3.520")}/>
+
+            <rect x={130} y={1305} width={135} height={190} opacity="0%" color="#ffffff"
+                  style={{cursor: "pointer"}} onClick={props.onClick("3.530")}
+                  onDoubleClick={props.onDoubleClick("3.530")}/>
+
+            <rect x={130} y={1495} width={135} height={190} opacity="0%" color="#ffffff"
+                  style={{cursor: "pointer"}} onClick={props.onClick("3.540")}
+                  onDoubleClick={props.onDoubleClick("3.540")}/>
+
 
         </G>
     </Svg>
 )
-//todo make rest of the rooms clickable
+
 //todo showing the room info should not change the arrow( a double click triggers a click)
 //todo put the name of each room on the map
 //todo use a touchable instead of onClick/onDoubleClick

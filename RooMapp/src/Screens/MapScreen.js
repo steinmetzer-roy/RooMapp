@@ -118,7 +118,6 @@ const MapScreen = ({navigation, route}) => {
         vb = {x: 0, y: 1200, w: 400, h: 600};
     }
 
-    //todo: viewBox should update on rerender and show bottom part of map
     const [viewBox, setViewBox] = useState(vb);
 
     //adapt the viewBox to the selectedRoom

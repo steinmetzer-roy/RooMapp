@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
 import SvgImage from "../components/MapSvg"
 import {useFocusEffect} from "@react-navigation/native";
@@ -100,18 +100,14 @@ const MapScreen = ({navigation, route}) => {
     }, [route.params]))
 
 
-    //set width/height
-    let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    //set height
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
-
     height = height * 0.7;
-    width = width * 0.7;
 
     //get x and y position of selectedRoom
     const test = roomCoords.find(elements => elements.room === selectedRoom);
 
-    let x = test.x;
     let y = test.y;
 
     let vb;
@@ -134,27 +130,32 @@ const MapScreen = ({navigation, route}) => {
 
         let vb;
         //change viewBox to only display top or bottom part of the map
+
         if (y <= 1200) {
             vb = {x: 0, y: 0, w: 400, h: 1300};
         } else {
             vb = {x: 0, y: 1200, w: 400, h: 600};
         }
         setViewBox(vb);
+
     }
 
     //loops through the available rooms
     const onPressFunction = () => {
         let index = testRooms.findIndex(elements => elements === selectedRoom);
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
-        adaptViewBox();
     }
+
+    //call adaptViewBox whenever selectedRoom changes
+    useEffect(() => {
+        adaptViewBox();
+    },[selectedRoom]);
 
     //changes the selectedRoom so that an arrow is drawn to the correct room
     const onSvgClick = (a) => (e) => {
         let b = roomCoords.find(elements => elements.room === a);
         if (b) {
             setSelectedRoom(b.room);
-            adaptViewBox();
         } else {
             console.log("Could not find room");
         }

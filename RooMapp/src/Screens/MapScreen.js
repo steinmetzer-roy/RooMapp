@@ -95,6 +95,7 @@ const MapScreen = ({navigation, route}) => {
             setSelectedRoom(roomCoords[0].room);
             console.log("This room does not exist!");
         }
+        adaptViewBox();
 
     }, [route.params]))
 
@@ -124,11 +125,28 @@ const MapScreen = ({navigation, route}) => {
     //todo: viewBox should update on rerender and show bottom part of map
     const [viewBox, setViewBox] = useState(vb);
 
+    //adapt the viewBox to the selectedRoom
+    const adaptViewBox = () => {
+        //get x and y position of selectedRoom
+        const currentRoom = roomCoords.find(elements => elements.room === selectedRoom);
+
+        let y = currentRoom.y;
+
+        let vb;
+        //change viewBox to only display top or bottom part of the map
+        if (y <= 1200) {
+            vb = {x: 0, y: 0, w: 400, h: 1300};
+        } else {
+            vb = {x: 0, y: 1200, w: 400, h: 600};
+        }
+        setViewBox(vb);
+    }
 
     //loops through the available rooms
     const onPressFunction = () => {
         let index = testRooms.findIndex(elements => elements === selectedRoom);
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
+        adaptViewBox();
     }
 
     //changes the selectedRoom so that an arrow is drawn to the correct room
@@ -136,6 +154,7 @@ const MapScreen = ({navigation, route}) => {
         let b = roomCoords.find(elements => elements.room === a);
         if (b) {
             setSelectedRoom(b.room);
+            adaptViewBox();
         } else {
             console.log("Could not find room");
         }

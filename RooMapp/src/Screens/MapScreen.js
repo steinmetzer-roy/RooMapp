@@ -148,7 +148,7 @@ const MapScreen = ({navigation, route}) => {
     //call adaptViewBox whenever selectedRoom changes
     useEffect(() => {
         adaptViewBox();
-    },[selectedRoom]);
+    }, [selectedRoom]);
 
     //changes the selectedRoom so that an arrow is drawn to the correct room
     const onSvgClick = (a) => (e) => {
@@ -172,7 +172,6 @@ const MapScreen = ({navigation, route}) => {
     }
 
     //todo fix zooming out
-    //todo make zoom work for bottom part of the map
     const zoom = (e) => {
         //position of the mouse relative to the page
         let mouseX = e.pageX;
@@ -188,29 +187,23 @@ const MapScreen = ({navigation, route}) => {
         //modifier to give targeting with the mouse more weight
         let modifier = 2.5;
 
-        if (y <= 1200) {
-            let x = viewBox.x;
-            let y = viewBox.y;
-            let w = viewBox.w;
-            let h = viewBox.h;
-            let ratio = w / h;
+
+        let x = viewBox.x;
+        let y = viewBox.y;
+        let w = viewBox.w;
+        let h = viewBox.h;
+        let ratio = w / h;
 
 
-            w = w + e.deltaY / 4 * ratio;
-            h = h + e.deltaY / 4;
+        w = w + e.deltaY / 4 * ratio;
+        h = h + e.deltaY / 4;
 
-            x = x - e.deltaY / 8 * ratio * relativeX * modifier;
-            y = y - e.deltaY / 8 * relativeY * modifier;
+        x = x - e.deltaY / 8 * ratio * relativeX * modifier;
+        y = y - e.deltaY / 8 * relativeY * modifier;
 
-            let v = {x: x, y: y, w: w, h: h};
-            setViewBox(v);
-        } else {
-            let x = 0;
-            let y = 1200;
-            let w = 400;
-            let h = 600;
+        let v = {x: x, y: y, w: w, h: h};
+        setViewBox(v);
 
-        }
     }
 
 

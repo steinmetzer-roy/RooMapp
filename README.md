@@ -12,7 +12,7 @@ Clone project
 
   2. Console: "npm install" -- installs dependencies
 
-  3. In order to run the project, please navigate to where the project was saved for example "..\RooMapp\RooMapp". Run "npm install" to install dependencies, then run "expo start". By opening "http://localhost:19002/" or similar, you will be able to click on "Run in web browser".
+  3. In order to run the project, please navigate to where the project was saved for example "..\RooMapp\RooMapp". Run "npm install" to install dependencies, then run "expo start". By pressing "w" on your keyboard or by opening the localhost address indicated in the console, you will be able to click on "Run in web browser" which will open the project for you.
 
 What to expect
 

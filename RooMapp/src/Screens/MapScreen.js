@@ -323,9 +323,7 @@ const MapScreen = ({navigation, route}) => {
             <View style={styles.body}>
 
                 <View style={styles.leftSideView}>
-                    <Text>
-                        Left side
-                    </Text>
+
                 </View>
                 <View style={styles.middleView}>
 
@@ -403,6 +401,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         fontSize: 40,
+        color: "#FFFFFF",
 
 
     },

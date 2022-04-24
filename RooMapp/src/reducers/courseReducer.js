@@ -8,6 +8,8 @@ export const courseReducer = (state, action) => {
             return [...state, {
                 name: action.course.name,
                 classroom: action.course.classroom,
+                time: action.course.time,
+                weekday: action.course.weekday,
                 id: uuid() //we generate a unique ID
             }
             ]

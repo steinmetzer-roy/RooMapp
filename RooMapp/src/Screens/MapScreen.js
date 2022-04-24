@@ -152,10 +152,15 @@ const MapScreen = ({navigation, route}) => {
 
     }
 
-    //loops through the available rooms
-    const onPressFunction = () => {
+    //loops through the available rooms for testing purposes
+    const onPressFunctionTest = () => {
         let index = testRooms.findIndex(elements => elements === selectedRoom);
         setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
+    }
+
+    //resets the viewBox
+    const onPressFunction = () => {
+        setViewBox(vb);
     }
 
     //call adaptViewBox whenever selectedRoom changes
@@ -325,9 +330,13 @@ const MapScreen = ({navigation, route}) => {
 
 
                 <View style={styles.rightSideView}>
-                    <Text>
-                        Right side
+                    <Text style={{margin: 10,fontSize: 25, color: "#FFFFFF"}}>
+                        Room {selectedRoom} selected!
                     </Text>
+
+                    <ScrollView style={createListViewStyle()}>
+                        {createListItems()}
+                    </ScrollView>
 
                     <Pressable onPress={onPressFunction}
                                style={({pressed}) => [
@@ -335,11 +344,9 @@ const MapScreen = ({navigation, route}) => {
                                    styles.button
                                ]}
                     >
-                        <Text style={{textAlign: "center"}}> Switch room, {selectedRoom} chosen!</Text>
+                        <Text style={{textAlign: "center"}}> Reset map</Text>
                     </Pressable>
-                    <ScrollView style={createListViewStyle()}>
-                        {createListItems()}
-                    </ScrollView>
+
 
 
                 </View>

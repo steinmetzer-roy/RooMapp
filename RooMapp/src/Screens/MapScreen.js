@@ -88,14 +88,24 @@ const MapScreen = ({navigation, route}) => {
 
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
-        let room = route.params.room;
-        if (roomCoords.find(element => element.room === room)) {
-            setSelectedRoom(room);
+
+        if (route.params && route.params.room) {
+            let room = route.params.room;
+            if (roomCoords.find(element => element.room === room)) {
+                setSelectedRoom(room);
+            } else {
+                setSelectedRoom(roomCoords[0].room);
+                console.log("This room does not exist!");
+            }
+
         } else {
             setSelectedRoom(roomCoords[0].room);
             console.log("This room does not exist!");
+
         }
+
         adaptViewBox();
+
 
     }, [route.params]))
 

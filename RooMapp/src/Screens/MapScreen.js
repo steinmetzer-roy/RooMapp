@@ -120,7 +120,6 @@ const MapScreen = ({navigation, route}) => {
 
     //get x and y position of selectedRoom
     const test = roomCoords.find(elements => elements.room === selectedRoom);
-
     let y = test.y;
 
     let vb;
@@ -197,11 +196,10 @@ const MapScreen = ({navigation, route}) => {
         //position of the svg relative to the page
         let svgX = e.currentTarget.getBoundingClientRect().x;
         let svgY = e.currentTarget.getBoundingClientRect().y;
-        console.log(e.currentTarget.getBoundingClientRect());
+
         //position of the mouse relative to the svg as a ratio
         let relativeX = (mouseX - svgX) / e.currentTarget.getBoundingClientRect().width;
         let relativeY = (mouseY - svgY) / e.currentTarget.getBoundingClientRect().height;
-        console.log(relativeX, relativeY);
         //modifier to give targeting with the mouse more weight
         let modifier = 2.5;
 

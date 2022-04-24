@@ -167,17 +167,18 @@ const MapScreen = ({navigation, route}) => {
         adaptViewBox();
     }, [selectedRoom]);
 
-    //changes the selectedRoom so that an arrow is drawn to the correct room
-    const onSvgClick = (a) => (e) => {
-        let b = roomCoords.find(elements => elements.room === a);
+    //checks if room is a valid room and sets selectedRoom
+    const verifyAndChangeSelectedRoom = (room) => (e) => {
+        let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
         } else {
             console.log("Could not find room");
         }
     }
-    //changes the state so that the modal with room information is displayed
-    const onSvgDoubleClick = (room) => (e) => {
+
+    //checks if room is a valid room and sets setShowModal to true
+    const verifyAndShowModal = (room) => (e) => {
         e.preventDefault();
         if (roomCoords.find(elements => elements.room === room)) {
             setModalRoom(room);
@@ -242,15 +243,27 @@ const MapScreen = ({navigation, route}) => {
                 <Text style={styles.listItem}>
                     Room
                 </Text>
+                <Text style={styles.listItem} >
+                    Time
+                </Text>
+                <Text style={styles.listItem}>
+                    Weekday
+                </Text>
             </View>
 
             {localData.map(function (item, index) {
-                return <TouchableOpacity  style={{alignItems: "center", flexDirection: "row"}} key={index+1} onPress={() => setSelectedRoom(item.classroom)}>
+                return <TouchableOpacity  style={{alignItems: "center", flexDirection: "row"}} key={index+1} onPress={verifyAndChangeSelectedRoom(item.classroom)}>
                     <Text style={styles.listItem} >
                         {item.name}
                     </Text>
                     <Text style={styles.listItem}>
                         {item.classroom}
+                    </Text>
+                    <Text style={styles.listItem} >
+                        {item.time}
+                    </Text>
+                    <Text style={styles.listItem}>
+                        {item.weekday}
                     </Text>
                 </TouchableOpacity>
             })
@@ -319,7 +332,7 @@ const MapScreen = ({navigation, route}) => {
                     <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
                               viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
                               room={roomCoords.find(elements => elements.room === selectedRoom)}
-                              onClick={onSvgClick} onDoubleClick={(room) => onSvgDoubleClick(room)}
+                              onClick={verifyAndChangeSelectedRoom} onDoubleClick={(room) => verifyAndShowModal(room)}
                               onWheel={(e) => zoom(e)}
                     />
 

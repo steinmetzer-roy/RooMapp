@@ -24,7 +24,7 @@ export default function App() {
         <NavigationContainer>
             <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "" }} drawerContent={props => DrawerEl(props)}>
                 <Drawer.Screen name="CourseScreen" children={({navigation}) => <SwipeGesture child={<CourseScreen></CourseScreen>} navigation={navigation}></SwipeGesture>} />
-                <Drawer.Screen name="MapScreen" children={({navigation}) => <SwipeGesture child={<MapScreen></MapScreen>} navigation={navigation}></SwipeGesture>} />
+                <Drawer.Screen name="MapScreen" children={({navigation,route}) => <SwipeGesture child={<MapScreen navigation={navigation} route={route}></MapScreen>} navigation={navigation}></SwipeGesture>} />
                 <Drawer.Screen name="DarkMode" component={() => { }} />
             </Drawer.Navigator>
         </NavigationContainer >

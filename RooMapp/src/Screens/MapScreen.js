@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
 import SvgImage from "../components/MapSvg"
 import {useFocusEffect} from "@react-navigation/native";
+import {ScrollView, TouchableOpacity} from "react-native-web";
 
 
 const MapScreen = ({navigation, route}) => {
@@ -112,8 +113,10 @@ const MapScreen = ({navigation, route}) => {
 
     //set height
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-
-    height = height * 0.7;
+    let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    let listHeight = height * 0.3;
+    let listWidth = width * 0.18;
+    height = height * 0.8;
 
     //get x and y position of selectedRoom
     const test = roomCoords.find(elements => elements.room === selectedRoom);
@@ -216,6 +219,58 @@ const MapScreen = ({navigation, route}) => {
 
     }
 
+    //get data from localstorage
+    const getLocalData = () => {
+        let localData = localStorage.getItem('courses');
+        localData = localData ? JSON.parse(localData) : [];
+        return localData;
+
+    }
+
+    const localData = getLocalData();
+
+    const createListItems = () => {
+
+        let jsx = <View style={{flexDirection: "column"}}>
+            <View  style={{alignItems: "center", flexDirection: "row", borderBottom: "solid"}} key={0}>
+                <Text style={styles.listItem} >
+                    Course
+                </Text>
+                <Text style={styles.listItem}>
+                    Room
+                </Text>
+            </View>
+
+            {localData.map(function (item, index) {
+                return <TouchableOpacity  style={{alignItems: "center", flexDirection: "row"}} key={index+1} onPress={() => setSelectedRoom(item.classroom)}>
+                    <Text style={styles.listItem} >
+                        {item.name}
+                    </Text>
+                    <Text style={styles.listItem}>
+                        {item.classroom}
+                    </Text>
+                </TouchableOpacity>
+            })
+
+            }
+
+        </View>;
+
+        return jsx;
+
+
+    }
+
+    //creates the style for the outermost view from the list
+    const createListViewStyle = () => {
+        return {
+            borderRadius: 10,
+            backgroundColor: "#FFFFFF",
+            height: listHeight,
+            width: listWidth,
+            margin: 10,
+        }
+    };
 
     return (
         <View style={{flexDirection: "column"}}>
@@ -245,7 +300,7 @@ const MapScreen = ({navigation, route}) => {
             </Modal>
             <View height={10} style={styles.head}>
                 <Text style={styles.title}>
-                    Map
+                    Maison du Savoir Floor 3
                 </Text>
 
             </View>
@@ -282,6 +337,10 @@ const MapScreen = ({navigation, route}) => {
                     >
                         <Text style={{textAlign: "center"}}> Switch room, {selectedRoom} chosen!</Text>
                     </Pressable>
+                    <ScrollView style={createListViewStyle()}>
+                        {createListItems()}
+                    </ScrollView>
+
 
                 </View>
 
@@ -386,6 +445,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flex: 1,
         backgroundColor: "#00000099"
+    },
+
+    listItem: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 5,
+        textAlign: "center",
     },
 
 

@@ -111,7 +111,7 @@ const MapScreen = ({navigation, route}) => {
     }, [route.params]))
 
 
-    //set height
+    //set height and width
     let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     let listHeight = height * 0.3;

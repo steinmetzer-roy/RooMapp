@@ -8,21 +8,21 @@ import CourseContextProvider from '../contexts/CourseContext';
 import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
 
-const CourseScreen = () => {
+const CourseScreen = ({customStyle}) => {
 
     return (
-        <View style={styles.container}>
-            <View style={styles.courseWrapper}>
-                <Text style={styles.sectionTitle}>My Courses</Text>
+        <View style={customStyle.container}>
+            <View style={customStyle.courseWrapper}>
+                <Text style={customStyle.sectionTitle}>My Courses</Text>
                 <CourseContextProvider>
-                    <CourseList />
-                    <NewCourseForm />
+                    <CourseList customStyle={customStyle}/>
+                    <NewCourseForm customStyle={customStyle}/>
                 </CourseContextProvider>
             </View>
         </View>
     );
 }
-
+/*
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -90,5 +90,5 @@ const styles = StyleSheet.create({
         marginRight: 15,
     },
 });
-
+*/
 export default CourseScreen;

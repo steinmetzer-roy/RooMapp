@@ -5,14 +5,13 @@ import {
 } from 'react-native';
 import { FaEraser } from 'react-icons/fa';
 
-const CourseDetails = ({ course }) => {
+const CourseDetails = ({ course, customStyle }) => {
     const { dispatch } = useContext(CourseContext);
     const { goToMapScreen } = useContext(CourseContext);
     return (
-
-        <View style={styles.item}>
-            <View style={styles.square}></View>
-            <View style={styles.itemLeft} onClick={() => goToMapScreen(course.classroom)}>
+        <View style={customStyle.item}>
+            <View style={customStyle.square}></View>
+            <View style={customStyle.itemLeft} onClick={() => goToMapScreen(course.classroom)}>
                 <div> <Text> {course.name}</Text></div>
                 <div ><Text> {course.classroom}</Text></div>
                 <div ><Text> {course.time}</Text></div>
@@ -23,7 +22,7 @@ const CourseDetails = ({ course }) => {
 
     );
 }
-
+/*
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -53,5 +52,5 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
 });
-
+*/
 export default CourseDetails;

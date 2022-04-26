@@ -80,11 +80,11 @@ const MapScreen = ({navigation, route}) => {
 
     ];
     //room that the arrow is pointing to
-    const [selectedRoom, setSelectedRoom] = useState(testRooms[0]);
+    const [selectedRoom, setSelectedRoom] = useState(roomCoords[0].room);
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
-    const [modalRoom, setModalRoom] = useState(testRooms[0]);
+    const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
 
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {

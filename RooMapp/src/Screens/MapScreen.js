@@ -48,7 +48,7 @@ const MapScreen = ({navigation, route}) => {
     const roomCoords = [
         {room: "3.010", x: 85, y: 905, dir: "bottom"},
         {room: "3.040", x: 85, y: 900, dir: "top"},
-        {room: "room4", x: 85, y: 685, dir: "top"},
+        {room: "3.050", x: 85, y: 685, dir: "top"},
         {room: "3.070", x: 110, y: 475, dir: "left"},
         {room: "3.080", x: 110, y: 450, dir: "left"},
         {room: "3.110", x: 85, y: 160, dir: "bottom"},

@@ -20,7 +20,7 @@ const CourseList = ({ customStyle }) => { //this is a functional component
             </View>
         </div>
     ) : (
-        <div style={{ fontFamily: "Arial", fontSize: 14, paddingTop: 13 }} > No courses to go to. Hello free time :)</ div>
+        <div style={{ fontFamily: "Arial", fontSize: 14, paddingTop: 13 }} > No courses to go to. Hello free time! :)</ div>
     );
 }
 

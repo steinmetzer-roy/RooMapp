@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 const NewCourseForm = ({ customStyle }) => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [time1, setStartDate] = useState('');
   const { dispatch } = useContext(CourseContext); //context we want is the course one
   const [name, setName] = useState('');
   const [classroom, setClassroom] = useState('');
@@ -18,12 +18,13 @@ const NewCourseForm = ({ customStyle }) => {
     e.preventDefault();
     dispatch({
       type: 'ADD_COURSE', course: {
-        name, classroom, time, weekday
+        name, classroom, time1, weekday
       }
     });
     setName('');
     setClassroom('');
     setTime('');
+    setStartDate('');
     setWeekday('');
   }
   // onChange is equal to some kind of a function that takes in an event object "e" and we update the state of "name" from line 6
@@ -34,10 +35,9 @@ const NewCourseForm = ({ customStyle }) => {
           onChange={(e) => setName(e.target.value)} />
         <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
           onChange={(e) => setClassroom(e.target.value)} />
-        <TextInput style={customStyle.input} placeholder="Time" value={time}
-          onChange={(e) => setTime(e.target.value)} />
+
         <DatePicker
-          selected={startDate}
+          selected={time1}
           onChange={(date) => setStartDate(date)}
           showTimeSelect
           showTimeSelectOnly

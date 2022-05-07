@@ -4,8 +4,15 @@ import {
     StyleSheet, Text, View
 } from 'react-native';
 import { FaEraser } from 'react-icons/fa';
+import { format } from 'date-fns'
+
 
 const CourseDetails = ({ course, customStyle }) => {
+    // console.log(course.time1.substr(course.time1.length - 13));
+    console.log(course.time1);
+    const hours = course.time1.substring(11, 16);
+    console.log(hours);
+
     const { dispatch } = useContext(CourseContext);
     const { goToMapScreen } = useContext(CourseContext);
     return (
@@ -14,7 +21,7 @@ const CourseDetails = ({ course, customStyle }) => {
             <View style={customStyle.itemLeft} onClick={() => goToMapScreen(course.classroom)}>
                 <div> <Text> {course.name}</Text></div>
                 <div ><Text> {course.classroom}</Text></div>
-                <div ><Text> {course.time}</Text></div>
+                <div ><Text> {hours}</Text></div>
                 <div ><Text> {course.weekday}</Text></div>
             </View>
             <View><button onClick={() => dispatch({ type: 'REMOVE_COURSE', id: course.id })}><FaEraser /></button></View>

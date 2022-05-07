@@ -6,7 +6,9 @@ import {
   StyleSheet, TextInput, KeyboardAvoidingView
 } from 'react-native';
 
+
 const NewCourseForm = ({ customStyle }) => {
+
   const [time1, setStartDate] = useState('');
   const { dispatch } = useContext(CourseContext); //context we want is the course one
   const [name, setName] = useState('');

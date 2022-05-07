@@ -8,10 +8,7 @@ import { format } from 'date-fns'
 
 
 const CourseDetails = ({ course, customStyle }) => {
-    // console.log(course.time1.substr(course.time1.length - 13));
-    console.log(course.time1);
     const hours = course.time1.substring(11, 16);
-    console.log(hours);
 
     const { dispatch } = useContext(CourseContext);
     const { goToMapScreen } = useContext(CourseContext);

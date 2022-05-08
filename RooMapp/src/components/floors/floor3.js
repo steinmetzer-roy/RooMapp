@@ -1,6 +1,6 @@
 import * as React from "react"
 import Svg, {G, Path} from "react-native-svg"
-import MapArrow from "./MapArrow"
+import MapArrow from "../MapArrow"
 
 //This component was created with a png to svg converter and a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 

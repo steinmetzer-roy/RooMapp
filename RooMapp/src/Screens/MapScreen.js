@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
-import SvgImage from "../components/MapSvg"
+import SvgImage from "../components/floors/floor3"
 import {useFocusEffect} from "@react-navigation/native";
 import {ScrollView, TouchableOpacity} from "react-native-web";
 

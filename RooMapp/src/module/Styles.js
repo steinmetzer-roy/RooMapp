@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         width: 250,
         marginTop: 10,
     },
-    drawerButtonBackgroundStyle:{
+    drawerButtonBackgroundStyle: {
         flex: 1,
         paddingVertical: 15,
         borderRadius: 30,
@@ -55,18 +55,19 @@ const styles = StyleSheet.create({
         width: 250,
         borderColor: '#C0C0C0'
     },
-    drawerButtonTitleStyle:{
-        textAlign:'center',
+    drawerButtonTitleStyle: {
+        textAlign: 'center',
     },
-    drawerNavStyle:{
+    drawerNavStyle: {
         backgroundColor: 'white',
-        alignItems:'center',
+        alignItems: 'center',
         width: 250,
 
     }
 });
 
 const stylesDarkMode = StyleSheet.create({
+
     container: {
         flex: 1,
         backgroundColor: '#2A2D32',
@@ -116,7 +117,7 @@ const stylesDarkMode = StyleSheet.create({
         marginTop: 10,
         color: '#C0C0C0'
     },
-    drawerButtonBackgroundStyle:{
+    drawerButtonBackgroundStyle: {
         flex: 1,
         paddingVertical: 15,
         borderRadius: 30,
@@ -124,14 +125,14 @@ const stylesDarkMode = StyleSheet.create({
         width: 250,
         backgroundColor: '#2A2D32',
     },
-    drawerButtonTitleStyle:{
+    drawerButtonTitleStyle: {
         color: '#C0C0C0',
-        textAlign:'center'
+        textAlign: 'center'
 
     },
-    drawerNavStyle:{
+    drawerNavStyle: {
         backgroundColor: '#C0C0C0',
-        alignItems:'center',
+        alignItems: 'center',
         width: 250,
 
     }

@@ -37,17 +37,17 @@ const NewCourseForm = ({ customStyle }) => {
           onChange={(e) => setName(e.target.value)} />
         <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
           onChange={(e) => setClassroom(e.target.value)} />
-        <div style={{ paddingTop: 10, marginLeft: 11 }}>
-          <DatePicker
-            selected={time1}
-            onChange={(date) => setStartDate(date)}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
-          />
-        </div>
+        <DatePicker
+          customInput={<TextInput style={customStyle.input} />}
+          selected={time1}
+          onChange={(date) => setStartDate(date)}
+          showTimeSelect
+          placeholderText='Time'
+          showTimeSelectOnly
+          timeIntervals={15}
+          timeCaption="Time"
+          dateFormat="h:mm aa"
+        />
         <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
           onChange={(e) => setWeekday(e.target.value)} />
         <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />

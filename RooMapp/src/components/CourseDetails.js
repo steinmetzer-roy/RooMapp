@@ -22,35 +22,5 @@ const CourseDetails = ({ course, customStyle }) => {
 
     );
 }
-/*
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#EBEAED',
-    },
-    item: {
-        backgroundColor: '#FFF',
-        padding: 15,
-        borderRadius: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: 15,
-    },
-    square:
-    {
-        width: 24,
-        height: 24,
-        backgroundColor: '#55BCF6',
-        opacity: 0.4,
-        borderRadius: 5,
-        marginRight: 15,
-    },
-    itemLeft: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        flexWrap: 'wrap'
-    },
-});
-*/
+
 export default CourseDetails;

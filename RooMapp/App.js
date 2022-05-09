@@ -8,40 +8,45 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 //Default React Components
 import React, { useState } from 'react';
 import { Button, Text, View } from 'react-native';
-//Module
-import { styles, stylesDarkMode } from './src/module/Styles';
+//Modules
+import { courseStyle, courseStyleDarkMode } from './src/module/CourseStyles';
+import { mapStyle } from './src/module/MapStyles';
 import { TouchableOpacity } from 'react-native-web';
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
 
-    const [customStyle, setcustomStyle] = useState(stylesDarkMode)
+    const [courseCustomStyle, setCourseCustomStyle] = useState(courseStyle)
+    const [mapCustomStyle, setMapCustomStyle] = useState(mapStyle)
 
     const DrawerEl = props =>
         <>
             <TouchableOpacity onPress={() => { props.navigation.navigate('CourseScreen') }}>
-                <View style={customStyle.drawerButtonBackgroundStyle}>
-                    <Text style={customStyle.drawerButtonTitleStyle}>CourseScreen</Text>
+                <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>CourseScreen</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { props.navigation.navigate('MapScreen') }}>
-                <View style={customStyle.drawerButtonBackgroundStyle}>
-                    <Text style={customStyle.drawerButtonTitleStyle}>MapScreen</Text>
+                <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>MapScreen</Text>
                 </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { customStyle == styles ? setcustomStyle(stylesDarkMode) : setcustomStyle(styles) }}>
-                <View style={customStyle.drawerButtonBackgroundStyle}>
-                    <Text style={customStyle.drawerButtonTitleStyle}>DarkMode</Text>
+            <TouchableOpacity onPress={() => {
+                 courseCustomStyle == courseStyle ? setCourseCustomStyle(courseStyleDarkMode) : setCourseCustomStyle(courseStyle); 
+                 mapCustomStyle == mapStyle ? setMapCustomStyle(mapStyleDarkMode) : setMapCustomStyle(mapStyle)  
+                 }}>
+                <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>DarkMode</Text>
                 </View>
             </TouchableOpacity>
         </>
 
     return (
         <NavigationContainer >
-            <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown:false,drawerStyle:customStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
-                <Drawer.Screen name="CourseScreen" children={({ navigation }) => <SwipeGesture child={<CourseScreen customStyle={customStyle}></CourseScreen>} navigation={navigation}></SwipeGesture>} />
-                <Drawer.Screen name="MapScreen" children={({ navigation, route }) => <SwipeGesture child={<MapScreen navigation={navigation} route={route}></MapScreen>} navigation={navigation}></SwipeGesture>} />
+            <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown: false, drawerStyle: courseCustomStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
+                <Drawer.Screen name="MapScreen" children={({ navigation, route}) => <SwipeGesture child={<MapScreen navigation={navigation} route={route} customStyle={mapCustomStyle}></MapScreen>} navigation={navigation}></SwipeGesture>} />
+                <Drawer.Screen name="CourseScreen" children={({ navigation }) => <SwipeGesture child={<CourseScreen customStyle={courseCustomStyle}></CourseScreen>} navigation={navigation}></SwipeGesture>} />
                 <Drawer.Screen name="DarkMode" component={() => { }} />
             </Drawer.Navigator>
         </NavigationContainer >

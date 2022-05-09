@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const courseStyle = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#EBEAED',
@@ -10,14 +10,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         flex: 1,
     },
-    sectionTitle: {
+    title: {
         fontSize: 24,
         fontWeight: 'bold',
+        alignSelf: 'center',
+        padding: 15,
+    },
+    titleWrapper: {
+        borderWidth: 1,
+        borderColor: 'black',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     item: {
         backgroundColor: '#FFF',
         padding: 15,
-        borderRadius: 10,
+        borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -48,12 +56,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     drawerButtonBackgroundStyle:{
-        flex: 1,
         paddingVertical: 15,
-        borderRadius: 30,
-        borderWidth: 1,
+        borderRadius: 12,
+        borderWidth: 2,
         width: 250,
-        borderColor: '#C0C0C0'
+        backgroundColor: '#C0C0C0',
+        backgroundColor: 'white',
+        borderColor: 'black',
     },
     drawerButtonTitleStyle:{
         textAlign:'center',
@@ -66,7 +75,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const stylesDarkMode = StyleSheet.create({
+const courseStyleDarkMode = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#2A2D32',
@@ -119,10 +128,11 @@ const stylesDarkMode = StyleSheet.create({
     drawerButtonBackgroundStyle:{
         flex: 1,
         paddingVertical: 15,
-        borderRadius: 30,
-        borderWidth: 1,
+        borderRadius: 12,
+        borderWidth: 2,
         width: 250,
         backgroundColor: '#2A2D32',
+        borderColor: 'gray',
     },
     drawerButtonTitleStyle:{
         color: '#C0C0C0',
@@ -137,4 +147,4 @@ const stylesDarkMode = StyleSheet.create({
     }
 });
 
-export { styles, stylesDarkMode };
+export { courseStyle, courseStyleDarkMode };

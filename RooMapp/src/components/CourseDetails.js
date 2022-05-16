@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
 import { CourseContext } from '../contexts/CourseContext';
 import {
-    StyleSheet, Text, View
+    Text, View
 } from 'react-native';
 import { FaEraser } from 'react-icons/fa';
-import { format } from 'date-fns'
-
 
 const CourseDetails = ({ course, customStyle }) => {
-    const hours = course.time1.substring(11, 16);
+    const hours = course.time1.toString().substring(11, 16);
 
     const { dispatch } = useContext(CourseContext);
     const { goToMapScreen } = useContext(CourseContext);

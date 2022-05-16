@@ -35,8 +35,38 @@ const NewCourseForm = ({ customStyle }) => {
       <form onSubmit={handleSubmit} >
         <TextInput style={customStyle.input} placeholder="Course Name" value={name}
           onChange={(e) => setName(e.target.value)} />
-        <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
-          onChange={(e) => setClassroom(e.target.value)} />
+        {/* <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
+          onChange={(e) => setClassroom(e.target.value)} /> */}
+        <div>
+          <select value={classroom} onChange={(e) => setClassroom(e.target.value)}>
+            <option value="3.010">3.010</option>
+            <option value="3.040">3.040</option>
+            <option value="3.050">3.050</option>
+            <option value="3.070">3.070</option>
+            <option value="3.080">3.080</option>
+            <option value="3.110">3.110</option>
+            <option value="3.120">3.120</option>
+            <option value="3.160">3.160</option>
+            <option value="3.170">3.170</option>
+            <option value="3.180">3.180</option>
+            <option value="3.190">3.190</option>
+            <option value="3.200">3.200</option>
+            <option value="3.210">3.210</option>
+            <option value="3.220">3.220</option>
+            <option value="3.230">3.230</option>
+            <option value="3.240">3.240</option>
+            <option value="3.330">3.330</option>
+            <option value="3.350">3.350</option>
+            <option value="3.370">3.370</option>
+            <option value="3.380">3.380</option>
+            <option value="3.390">3.390</option>
+            <option value="3.500">3.500</option>
+            <option value="3.510">3.510</option>
+            <option value="3.520">3.520</option>
+            <option value="3.530">3.530</option>
+            <option value="3.540">3.540</option>
+          </select>
+        </div>
         <DatePicker
           customInput={<TextInput style={customStyle.input} />}
           selected={time1}
@@ -50,15 +80,17 @@ const NewCourseForm = ({ customStyle }) => {
         />
         {/* <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
           onChange={(e) => setWeekday(e.target.value)} /> */}
-        <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
-          <option value="mon">Monday</option>
-          <option value="tue">Tuesday</option>
-          <option selected value="wed">Wednesday</option>
-          <option value="thu">Thursday</option>
-          <option value="fri">Friday</option>
-          <option value="sat">Saturday</option>
-          <option value="sun">Sunday</option>
-        </select>
+        <div>
+          <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+            <option value="sun">Sunday</option>
+          </select>
+        </div>
         <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
       </form >
 

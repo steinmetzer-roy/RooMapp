@@ -8,15 +8,16 @@ import CourseContextProvider from '../contexts/CourseContext';
 import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
 
-const CourseScreen = ({customStyle}) => {
+const CourseScreen = ({ customStyle }) => {
 
     return (
         <View style={customStyle.container}>
             <View style={customStyle.courseWrapper}>
                 <Text style={customStyle.sectionTitle}>My Courses</Text>
                 <CourseContextProvider>
-                    <CourseList customStyle={customStyle}/>
-                    <NewCourseForm customStyle={customStyle}/>
+                    <CourseList customStyle={customStyle} />
+                    <View style={{ flex: 1 }}></View>
+                    <NewCourseForm customStyle={customStyle} />
                 </CourseContextProvider>
             </View>
         </View>

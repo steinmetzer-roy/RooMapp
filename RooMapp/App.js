@@ -16,7 +16,7 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
 
-    const [customStyle, setcustomStyle] = useState(stylesDarkMode)
+    const [customStyle, setcustomStyle] = useState(styles)
 
     const DrawerEl = props =>
         <>
@@ -39,7 +39,7 @@ export default function App() {
 
     return (
         <NavigationContainer >
-            <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown:false,drawerStyle:customStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
+            <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown: false, drawerStyle: customStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
                 <Drawer.Screen name="CourseScreen" children={({ navigation }) => <SwipeGesture child={<CourseScreen customStyle={customStyle}></CourseScreen>} navigation={navigation}></SwipeGesture>} />
                 <Drawer.Screen name="MapScreen" children={({ navigation, route }) => <SwipeGesture child={<MapScreen navigation={navigation} route={route}></MapScreen>} navigation={navigation}></SwipeGesture>} />
                 <Drawer.Screen name="DarkMode" component={() => { }} />

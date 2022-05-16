@@ -48,8 +48,17 @@ const NewCourseForm = ({ customStyle }) => {
           timeCaption="Time"
           dateFormat="h:mm aa"
         />
-        <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
-          onChange={(e) => setWeekday(e.target.value)} />
+        {/* <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
+          onChange={(e) => setWeekday(e.target.value)} /> */}
+        <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
+          <option value="mon">Monday</option>
+          <option value="tue">Tuesday</option>
+          <option selected value="wed">Wednesday</option>
+          <option value="thu">Thursday</option>
+          <option value="fri">Friday</option>
+          <option value="sat">Saturday</option>
+          <option value="sun">Sunday</option>
+        </select>
         <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
       </form >
 

@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Pressable, Text, Modal} from 'react-native';
-import SvgImage from "../components/floors/floor3"
+import {View, StyleSheet, Pressable, Text, Modal, ScrollView} from 'react-native';
+import Floor3 from "../components/floors/floor3"
+import Floor2 from "../components/floors/floor2"
+import Floor4 from "../components/floors/floor4"
 import {useFocusEffect} from "@react-navigation/native";
-import {ScrollView, TouchableOpacity} from "react-native-web";
+import {TouchableOpacity} from "react-native-web";
+import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
 
 
 const MapScreen = ({navigation, route}) => {
@@ -85,6 +88,8 @@ const MapScreen = ({navigation, route}) => {
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
+    //what floor is showing right now
+    const [floor, setFloor] = useState(3);
 
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
@@ -235,14 +240,14 @@ const MapScreen = ({navigation, route}) => {
     const createListItems = () => {
 
         let jsx = <View style={{flexDirection: "column"}}>
-            <View  style={{alignItems: "center", flexDirection: "row", borderBottom: "solid"}} key={0}>
-                <Text style={styles.listItem} >
+            <View style={{alignItems: "center", flexDirection: "row", borderBottom: "solid"}} key={0}>
+                <Text style={styles.listItem}>
                     Course
                 </Text>
                 <Text style={styles.listItem}>
                     Room
                 </Text>
-                <Text style={styles.listItem} >
+                <Text style={styles.listItem}>
                     Time
                 </Text>
                 <Text style={styles.listItem}>
@@ -251,14 +256,15 @@ const MapScreen = ({navigation, route}) => {
             </View>
 
             {localData.map(function (item, index) {
-                return <TouchableOpacity  style={{alignItems: "center", flexDirection: "row"}} key={index+1} onPress={verifyAndChangeSelectedRoom(item.classroom)}>
-                    <Text style={styles.listItem} >
+                return <TouchableOpacity style={{alignItems: "center", flexDirection: "row"}} key={index + 1}
+                                         onPress={verifyAndChangeSelectedRoom(item.classroom)}>
+                    <Text style={styles.listItem}>
                         {item.name}
                     </Text>
                     <Text style={styles.listItem}>
                         {item.classroom}
                     </Text>
-                    <Text style={styles.listItem} >
+                    <Text style={styles.listItem}>
                         {item.time}
                     </Text>
                     <Text style={styles.listItem}>
@@ -287,7 +293,31 @@ const MapScreen = ({navigation, route}) => {
         }
     };
 
+    //renders the proper floor
+    const renderFloor = () => {
+
+        if (floor === 2)
+            return <Floor2 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}/>
+        else if (floor === 4)
+            return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}/>
+        else
+            return <Floor3 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                        viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                        room={roomCoords.find(elements => elements.room === selectedRoom)}
+                        onClick={verifyAndChangeSelectedRoom}
+                        onDoubleClick={(room) => verifyAndShowModal(room)}
+                        onWheel={(e) => zoom(e)}
+                />
+
+
+
+    };
+
+
     return (
+
         <View style={{flexDirection: "column"}}>
             <Modal animationType="fade"
                    transparent={true}
@@ -315,7 +345,7 @@ const MapScreen = ({navigation, route}) => {
             </Modal>
             <View height={10} style={styles.head}>
                 <Text style={styles.title}>
-                    Maison du Savoir Floor 3
+                    Maison du Savoir Floor {floor}
                 </Text>
 
             </View>
@@ -326,19 +356,42 @@ const MapScreen = ({navigation, route}) => {
                 </View>
                 <View style={styles.middleView}>
 
-                    <SvgImage style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                              viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                              room={roomCoords.find(elements => elements.room === selectedRoom)}
-                              onClick={verifyAndChangeSelectedRoom} onDoubleClick={(room) => verifyAndShowModal(room)}
-                              onWheel={(e) => zoom(e)}
-                    />
+                    <GestureHandlerRootView>
 
+
+                    <PanGestureHandler onHandlerStateChange={(evt) => {
+                        let { nativeEvent } = evt;
+                        //movement from left to right, ie previous floor
+                        if (nativeEvent.translationX > 30) {
+
+                            if (floor === 2) {
+                                console.log("Already on lowest floor");
+                            } else {
+                                console.log("Decreased floor");
+                                setFloor(floor - 1);
+                            }
+                        //movement from right to left, ie next floor
+                        } else if (nativeEvent.translationX < - 30) {
+                            if (floor === 4) {
+                                console.log("Already on highest floor");
+                            } else {
+                                setFloor(floor + 1);
+                                console.log("Increased floor");
+                            }
+                        }
+                    }}>
+                        <View>
+                            {renderFloor()}
+                        </View>
+
+                    </PanGestureHandler>
+                    </GestureHandlerRootView>
 
                 </View>
 
 
                 <View style={styles.rightSideView}>
-                    <Text style={{margin: 10,fontSize: 25, color: "#FFFFFF"}}>
+                    <Text style={{margin: 10, fontSize: 25, color: "#FFFFFF"}}>
                         Room {selectedRoom} selected!
                     </Text>
 
@@ -356,12 +409,12 @@ const MapScreen = ({navigation, route}) => {
                     </Pressable>
 
 
-
                 </View>
 
             </View>
 
         </View>
+
 
     )
 }

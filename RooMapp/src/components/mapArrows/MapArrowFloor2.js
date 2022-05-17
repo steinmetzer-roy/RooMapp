@@ -39,8 +39,8 @@ const MapArrowFloor2 = (props) => {
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
 
-    //if the room is not on the second floor make an arrow from escalator to escalator
-    if (props.room.room.substring(0,1) !== "2") {
+    //if the room is on the 3rd or 4th floor make an arrow from escalator to escalator
+    if (props.room.room.substring(0,1) === "3" || props.room.room.substring(0,1) === "4" ) {
        let p = leftCorridorX + "," + (startY - 5) + " " + leftCorridorX + "," + (startY + 5) + " " + (leftCorridorX + 10) + "," + startY;
         jsx = <G>
             <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={1180} style={styles.line}/>
@@ -49,9 +49,17 @@ const MapArrowFloor2 = (props) => {
             <Polygon points={p} fill="#000000" stroke="#000000"/>;
         </G>;
         return jsx;
+    } else if (props.room.room.substring(0,1) !== "2") {
+        //if room is also not on second floor return nothing
+
+        jsx =<G>
+            </G>;
+            return jsx;
     }
 
-    //todo logic missing for 3 rooms left of the escalator
+
+
+    //todo logic missing for 3 rooms left of the escalator, see if they are even real classrooms
     //rooms that are on the left corridor
     if (x === leftCorridorX) {
         jsx = <G>

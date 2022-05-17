@@ -44,8 +44,8 @@ const MapScreen = ({navigation, route}) => {
 
     ];
 
-    //todo verify room names
-    //todo find direction of escalator exit
+    //todo verify/find room names
+    //todo verify direction of escalator exits
 
     //names of the rooms with associated coordinates on the svg
     const roomCoords = [

@@ -39,8 +39,19 @@ const MapArrowFloor3 = (props) => {
     }
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
-
-    if (props.room.room.substring(0,1) !== "3") {
+    //if room is on the 4th floor draw arrow from escalator to escalator
+    if (props.room.room.substring(0,1) === "4") {
+        let p = leftCorridorX + "," + (startY - 5) + " " + leftCorridorX + "," + (startY + 5) + " " + (leftCorridorX + 10) + "," + startY;
+        jsx = <G>
+            <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={1180} style={styles.line}/>
+            <Line x1={rightCorridorX} y1={1180} x2={leftCorridorX} y2={1180} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={1180} x2={leftCorridorX} y2={startY} style={styles.line}/>
+            <Polygon points={p} fill="#000000" stroke="#000000"/>;
+        </G>;
+        return jsx;
+    }
+    else if (props.room.room.substring(0,1) !== "3") {
+        //if not on 3rd floor either draw nothing
          jsx = <G>
 
         </G>

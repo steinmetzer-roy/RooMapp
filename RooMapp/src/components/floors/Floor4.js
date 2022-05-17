@@ -30,5 +30,5 @@ const SvgComponent = (props) => (
         </G>
     </Svg>
 )
-
+//todo make rooms from floor4 clickable
 export default SvgComponent

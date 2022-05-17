@@ -5,7 +5,7 @@ import {Line, Polygon, G} from "react-native-svg";
 
 const MapArrowFloor2 = (props) => {
 
-//todo change this, copied from floor 3 for now
+
     let x = props.room.x;
     let y = props.room.y;
 
@@ -21,8 +21,8 @@ const MapArrowFloor2 = (props) => {
     //x coordinates of rooms that are not directly on a corridor but on another small hallway next to it
     const rightNotchX = 312;
 
-    //x coordinates for the big rooms in the middle
-    const middleRoomX = 145;
+    //x coordinates for some big rooms in the middle
+    const middleRoomX = 255;
 
     let jsx;
 
@@ -40,6 +40,20 @@ const MapArrowFloor2 = (props) => {
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
 
+    //if the room is not on the second floor make an arrow from escalator to escalator
+    if (props.room.room.substring(0,1) !== "2") {
+        console.log("not second floor");
+       let p = leftCorridorX + "," + (startY - 5) + " " + leftCorridorX + "," + (startY + 5) + " " + (leftCorridorX + 10) + "," + startY;
+        jsx = <G>
+            <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={1180} style={styles.line}/>
+            <Line x1={rightCorridorX} y1={1180} x2={leftCorridorX} y2={1180} style={styles.line}/>
+            <Line x1={leftCorridorX} y1={1180} x2={leftCorridorX} y2={startY} style={styles.line}/>
+            <Polygon points={p} fill="#000000" stroke="#000000"/>;
+        </G>;
+        return jsx;
+    }
+
+    //todo logic missing for 3 rooms left of the escalator
     //rooms that are on the left corridor
     if (x === leftCorridorX) {
         jsx = <G>
@@ -64,7 +78,7 @@ const MapArrowFloor2 = (props) => {
             <Line x1={rightCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
             {triangle}
         </G>
-    } else if (x === middleRoomX && y === 1700) {
+    } else if (x === middleRoomX && y === 1705) {
         //bottom room in the middle
         jsx = <G>
             <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
@@ -73,17 +87,6 @@ const MapArrowFloor2 = (props) => {
             <Line x1={leftCorridorX} y1={startY+50} x2={leftCorridorX} y2={1750} style={styles.line}/>
             <Line x1={leftCorridorX} y1={1750} x2={middleRoomX} y2={1750} style={styles.line}/>
             <Line x1={middleRoomX} y1={1750} x2={x} y2={y} style={styles.line}/>
-            {triangle}
-        </G>
-    } else if (x === middleRoomX && y === 120) {
-        //top room in the middle
-        jsx = <G>
-            <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
-            <Line x1={285} y1={startY} x2={285} y2={startY+50} style={styles.line}/>
-            <Line x1={285} y1={startY+50} x2={startX} y2={startY+50} style={styles.line}/>
-            <Line x1={leftCorridorX} y1={startY+50} x2={leftCorridorX} y2={50} style={styles.line}/>
-            <Line x1={leftCorridorX} y1={50} x2={middleRoomX} y2={50} style={styles.line}/>
-            <Line x1={middleRoomX} y1={50} x2={x} y2={y} style={styles.line}/>
             {triangle}
         </G>
     } else if (x === middleRoomX) {
@@ -96,7 +99,7 @@ const MapArrowFloor2 = (props) => {
             <Line x1={leftCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
             {triangle}
         </G>
-    } else if (x === 165) {
+    } else if (x === 235 && y === 1170) {
         //big room just top of the escalator
         jsx = <G>
             <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
@@ -106,7 +109,38 @@ const MapArrowFloor2 = (props) => {
             <Line x1={leftCorridorX} y1={y} x2={x} y2={y} style={styles.line}/>
             {triangle}
         </G>
-    } else {
+    } else if (x === 150 && y === 150) {
+        //room in the middle left all the way top
+        jsx = <G>
+            <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
+            <Line x1={285} y1={startY} x2={285} y2={startY+50} style={styles.line}/>
+            <Line x1={285} y1={startY+50} x2={startX} y2={startY+50} style={styles.line}/>
+            <Line x1={startX} y1={startY + 50} x2={startX} y2={y} style={styles.line}/>
+            <Line x1={startX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>;
+    } else if (x === 255 && y === 150) {
+        //room in the middle right all the way top
+        jsx = <G>
+            <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
+            <Line x1={285} y1={startY} x2={285} y2={startY+50} style={styles.line}/>
+            <Line x1={285} y1={startY+50} x2={startX} y2={startY+50} style={styles.line}/>
+            <Line x1={startX} y1={startY + 50} x2={startX} y2={y} style={styles.line}/>
+            <Line x1={startX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>;
+    } else if (x === 150 && y === 1285) {
+        //first middle room on the bottom
+        jsx = <G>
+            <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
+            <Line x1={285} y1={startY} x2={285} y2={startY+50} style={styles.line}/>
+            <Line x1={285} y1={startY+50} x2={startX} y2={startY+50} style={styles.line}/>
+            <Line x1={startX} y1={startY + 50} x2={startX} y2={y} style={styles.line}/>
+            <Line x1={startX} y1={y} x2={x} y2={y} style={styles.line}/>
+            {triangle}
+        </G>;
+    } else
+        {
         jsx = <G>
 
         </G>

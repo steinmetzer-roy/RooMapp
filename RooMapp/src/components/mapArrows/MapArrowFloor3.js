@@ -40,6 +40,13 @@ const MapArrowFloor3 = (props) => {
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
 
+    if (props.room.room.substring(0,1) !== "3") {
+         jsx = <G>
+
+        </G>
+        return jsx;
+    }
+
     //rooms that are on the left corridor just next to it
     if (x === leftCorridorX) {
         jsx = <G>

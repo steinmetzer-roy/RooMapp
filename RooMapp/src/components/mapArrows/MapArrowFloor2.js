@@ -9,7 +9,6 @@ const MapArrowFloor2 = (props) => {
     let x = props.room.x;
     let y = props.room.y;
 
-
     //entrance/escalator
     const startY = 1235;
     const startX = 115;
@@ -42,7 +41,6 @@ const MapArrowFloor2 = (props) => {
 
     //if the room is not on the second floor make an arrow from escalator to escalator
     if (props.room.room.substring(0,1) !== "2") {
-        console.log("not second floor");
        let p = leftCorridorX + "," + (startY - 5) + " " + leftCorridorX + "," + (startY + 5) + " " + (leftCorridorX + 10) + "," + startY;
         jsx = <G>
             <Line x1={rightCorridorX} y1={startY} x2={rightCorridorX} y2={1180} style={styles.line}/>

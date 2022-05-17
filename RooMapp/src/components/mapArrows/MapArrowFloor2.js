@@ -5,7 +5,7 @@ import {Line, Polygon, G} from "react-native-svg";
 
 const MapArrowFloor2 = (props) => {
 
-
+//todo change this, copied from floor 3 for now
     let x = props.room.x;
     let y = props.room.y;
 

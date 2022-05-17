@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Pressable, Text, Modal, ScrollView} from 'react-native';
-import Floor3 from "../components/floors/floor3"
-import Floor2 from "../components/floors/floor2"
-import Floor4 from "../components/floors/floor4"
+import Floor3 from "../components/floors/Floor3"
+import Floor2 from "../components/floors/Floor2"
+import Floor4 from "../components/floors/Floor4"
 import {useFocusEffect} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native-web";
 import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
@@ -89,8 +89,8 @@ const MapScreen = ({navigation, route}) => {
     //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
     //what floor is showing right now
-    const [floor, setFloor] = useState(3);
-
+    const [floor, setFloor] = useState(2);
+    //todo set initial floor to 3
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
 
@@ -298,7 +298,11 @@ const MapScreen = ({navigation, route}) => {
 
         if (floor === 2)
             return <Floor2 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}/>
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                           room={roomCoords.find(elements => elements.room === selectedRoom)}
+                           onClick={verifyAndChangeSelectedRoom}
+                           onDoubleClick={(room) => verifyAndShowModal(room)}
+                           onWheel={(e) => zoom(e)}/>
         else if (floor === 4)
             return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
                            viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}/>
@@ -365,18 +369,18 @@ const MapScreen = ({navigation, route}) => {
                         if (nativeEvent.translationX > 30) {
 
                             if (floor === 2) {
-                                console.log("Already on lowest floor");
+
                             } else {
-                                console.log("Decreased floor");
+
                                 setFloor(floor - 1);
                             }
                         //movement from right to left, ie next floor
                         } else if (nativeEvent.translationX < - 30) {
                             if (floor === 4) {
-                                console.log("Already on highest floor");
+
                             } else {
                                 setFloor(floor + 1);
-                                console.log("Increased floor");
+
                             }
                         }
                     }}>

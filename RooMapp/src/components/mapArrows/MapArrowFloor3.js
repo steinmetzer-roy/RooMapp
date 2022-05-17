@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Line, Polygon, G} from "react-native-svg";
 
 
-const MapArrow = (props) => {
+const MapArrowFloor3 = (props) => {
 
 
     let x = props.room.x;
@@ -136,4 +136,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MapArrow;
+export default MapArrowFloor3;

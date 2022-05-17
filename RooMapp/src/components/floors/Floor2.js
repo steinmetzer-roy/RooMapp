@@ -1,5 +1,5 @@
 import * as React from "react"
-import Svg, { G, Path } from "react-native-svg"
+import Svg, {G, Line, Path} from "react-native-svg"
 import MapArrowFloor2 from "../mapArrows/MapArrowFloor2";
 
 const SvgComponent = (props) => (

@@ -9,16 +9,16 @@ const MapArrowFloor2 = (props) => {
     let x = props.room.x;
     let y = props.room.y;
 
+
     //entrance/escalator
     const startY = 1235;
-    const startX = 110;
+    const startX = 115;
 
     //x coordinates of rooms on left and right corridors
-    const leftCorridorX = 110;
+    const leftCorridorX = 115;
     const rightCorridorX = 285;
 
     //x coordinates of rooms that are not directly on a corridor but on another small hallway next to it
-    const leftNotchX = 85;
     const rightNotchX = 312;
 
     //x coordinates for the big rooms in the middle
@@ -40,7 +40,7 @@ const MapArrowFloor2 = (props) => {
 
     let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
 
-    //rooms that are on the left corridor just next to it
+    //rooms that are on the left corridor
     if (x === leftCorridorX) {
         jsx = <G>
             <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
@@ -49,17 +49,6 @@ const MapArrowFloor2 = (props) => {
             <Line x1={startX} y1={startY + 50} x2={startX} y2={y} style={styles.line}/>
             {triangle}
         </G>;
-    } else if (x === leftNotchX) {
-        //rooms that are in small hallways next to the left corridor
-        jsx = <G>
-            <Line x1={280} y1={startY} x2={285} y2={startY} style={styles.line}/>
-            <Line x1={285} y1={startY} x2={285} y2={startY+50} style={styles.line}/>
-            <Line x1={285} y1={startY+50} x2={startX} y2={startY+50} style={styles.line}/>
-            <Line x1={startX} y1={startY+50} x2={startX} y2={y} style={styles.line}/>
-            <Line x1={startX} y1={y} x2={x} y2={y} style={styles.line}/>
-            {triangle}
-        </G>;
-
     } else if (x === rightCorridorX) {
         //rooms that are in the right corridor
         jsx =
@@ -122,7 +111,6 @@ const MapArrowFloor2 = (props) => {
 
         </G>
     }
-
     return (
         jsx
     );

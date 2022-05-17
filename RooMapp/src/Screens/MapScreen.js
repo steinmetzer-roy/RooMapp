@@ -49,6 +49,57 @@ const MapScreen = ({navigation, route}) => {
 
     //names of the rooms with associated coordinates on the svg
     const roomCoords = [
+        //floor2
+        //2 small rooms left of the escalator
+        {room: "-2", x: 90, y: 1185, dir: "left"},
+        {room: "-1", x: 90, y: 1160, dir: "left"},
+        //left rooms on top
+        {room: "1", x: 115, y: 1075, dir: "left"},
+        {room: "2", x: 115, y: 920, dir: "left"},
+        {room: "3", x: 115, y: 880, dir: "left"},
+        {room: "4", x: 115, y: 845, dir: "left"},
+        {room: "5", x: 115, y: 670, dir: "left"},
+        {room: "6", x: 115, y: 615, dir: "left"},
+        {room: "7", x: 115, y: 560, dir: "left"},
+        {room: "8", x: 115, y: 485, dir: "left"},
+        {room: "9", x: 115, y: 445, dir: "left"},
+        {room: "10", x: 115, y: 410, dir: "left"},
+        {room: "11", x: 115, y: 330, dir: "left"},
+        {room: "12", x: 115, y: 120, dir: "left"},
+        {room: "13", x: 115, y: 120, dir: "top"},
+        {room: "14", x: 150, y: 150, dir: "top"},
+        //right rooms on top
+        {room: "0", x: 312, y: 1175, dir: "bottom"},
+        {room: "15", x: 312, y: 955, dir: "bottom"},
+        {room: "16", x: 312, y: 955, dir: "top"},
+        {room: "17", x: 312, y: 685, dir: "bottom"},
+        {room: "18", x: 312, y: 685, dir: "top"},
+        {room: "19", x: 285, y: 475, dir: "right"},
+        {room: "20", x: 285, y: 450, dir: "right"},
+        {room: "21", x: 312, y: 320, dir: "top"},
+        {room: "22", x: 285, y: 120, dir: "right"},
+        {room: "23", x: 285, y: 120, dir: "top"},
+        {room: "24", x: 255, y: 150, dir: "top"},
+        //middle rooms on top
+        {room: "25", x: 255, y: 150, dir: "bottom"},
+        //is this the right entrance to this room?
+        {room: "26", x: 255, y: 520, dir: "bottom"},
+        {room: "27", x: 235, y: 1170, dir: "top"},
+        //room just bottom left of the escalator
+        {room: "28", x: 90, y: 1315, dir: "left"},
+        //left rooms on the bottom
+        {room: "29", x: 115, y: 1340, dir: "left"},
+        {room: "30", x: 115, y: 1650, dir: "left"},
+        //right rooms on the bottom
+        {room: "31", x: 285, y: 1645, dir: "right"},
+        {room: "32", x: 285, y: 1400, dir: "right"},
+        {room: "33", x: 285, y: 1375, dir: "right"},
+        //middle rooms on the bottom
+        {room: "34", x: 150, y: 1285, dir: "bottom"},
+        {room: "35", x: 255, y: 1705, dir: "top"},
+
+
+        //floor 3
         {room: "3.010", x: 85, y: 905, dir: "bottom"},
         {room: "3.040", x: 85, y: 900, dir: "top"},
         {room: "3.050", x: 85, y: 685, dir: "top"},
@@ -81,19 +132,24 @@ const MapScreen = ({navigation, route}) => {
         {room: "3.540", x: 145, y: 1700, dir: "top"},
 
 
+
+
     ];
+
+    //todo change initial room
     //room that the arrow is pointing to
-    const [selectedRoom, setSelectedRoom] = useState(roomCoords[0].room);
+    const [selectedRoom, setSelectedRoom] = useState(roomCoords[45].room);
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
-    const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
+    const [modalRoom, setModalRoom] = useState(roomCoords[45].room);
     //what floor is showing right now
     const [floor, setFloor] = useState(2);
     //todo set initial floor to 3
+
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
-
+        //todo set appropriate room if wrong room entered
         if (route.params && route.params.room) {
             let room = route.params.room;
             if (roomCoords.find(element => element.room === room)) {
@@ -104,7 +160,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[0].room);
+            setSelectedRoom(roomCoords[35].room);
             console.log("This room does not exist!");
 
         }

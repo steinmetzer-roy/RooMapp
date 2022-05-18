@@ -5,7 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import {
   StyleSheet, TextInput, KeyboardAvoidingView
 } from 'react-native';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
+const options = ['Database Management 2', 'SEP'];
 
 const NewCourseForm = ({ customStyle }) => {
 
@@ -31,10 +34,23 @@ const NewCourseForm = ({ customStyle }) => {
   }
   // onChange is equal to some kind of a function that takes in an event object "e" and we update the state of "name" from line 6
   return ( //creating the template
+
     <KeyboardAvoidingView>
+
       <form onSubmit={handleSubmit} >
-        <TextInput style={customStyle.input} placeholder="Course Name" value={name}
-          onChange={(e) => setName(e.target.value)} />
+        {/* <TextInput style={customStyle.input} placeholder="Course Name" value={name}
+          onChange={(e) => setName(e.target.value)} /> */}
+        <Autocomplete
+          disablePortal
+          value={name}
+          onChange={(event, newValue) => {
+            setName(newValue);
+          }}
+          id="name-box"
+          options={options}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Name" />}
+        />
         {/* <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
           onChange={(e) => setClassroom(e.target.value)} /> */}
         <div>
@@ -99,6 +115,11 @@ const NewCourseForm = ({ customStyle }) => {
 
   );
 }
+
+const options1 = [
+  { label: 'Database Management 2' },
+  { label: 'SEP' },
+];
 
 /*
 const styles = StyleSheet.create({

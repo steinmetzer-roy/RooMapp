@@ -177,13 +177,13 @@ const MapScreen = ({navigation, route}) => {
 
     //todo change initial room
     //room that the arrow is pointing to
-    const [selectedRoom, setSelectedRoom] = useState(roomCoords[45].room);
+    const [selectedRoom, setSelectedRoom] = useState(roomCoords[5].room);
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
-    const [modalRoom, setModalRoom] = useState(roomCoords[45].room);
+    const [modalRoom, setModalRoom] = useState(roomCoords[5].room);
     //what floor is showing right now
-    const [floor, setFloor] = useState(2);
+    const [floor, setFloor] = useState(4);
     //todo set initial floor to 3
 
     //execute this when focusing this component
@@ -200,7 +200,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[36].room);
+            setSelectedRoom(roomCoords[5].room);
             console.log("This room does not exist!");
 
         }
@@ -401,7 +401,11 @@ const MapScreen = ({navigation, route}) => {
                            onWheel={(e) => zoom(e)}/>
         else if (floor === 4)
             return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}/>
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                           room={roomCoords.find(elements => elements.room === selectedRoom)}
+                           onClick={verifyAndChangeSelectedRoom}
+                           onDoubleClick={(room) => verifyAndShowModal(room)}
+                           onWheel={(e) => zoom(e)}/>
         else
             return <Floor3 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
                         viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}

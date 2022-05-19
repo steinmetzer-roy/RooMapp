@@ -230,46 +230,78 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
     }
 
+    //get location cords translated
+    const getCords = new Promise(resolve => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(resolve);
+            console.log("geolocation accepted")
+        } else {
+            console.log("geolocation denied")
+        }
+    })
+
+    function translate(pos) {
+        let crd = pos.coords;
+
+        let rotationAngle = 2.902482546;
+
+        //let x = 49.504297768442406 -49.5044028479121;
+        //let y = 5.9489314079671125 -5.9477025091986;
+
+        let x = crd.latitude -49.5044028479121;
+        let y = crd.longitude -5.9477025091986;
+        console.log(x + " " + y);
+
+        let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2*x);
+        let ytr = -x * Math.sin(rotationAngle) + y * Math.cos(rotationAngle);
+        console.log(xtr + " " + ytr);
+
+        let newPos = { xtr: xtr, ytr: ytr };
+        console.log(newPos);
+        return newPos;
+    }
+
     const localData = getLocalData();
 
     const createListItems = () => {
 
-        let jsx = <View style={{ flexDirection: "column" }}>
-            <View style={{ alignItems: "center", flexDirection: "row", borderBottom: "solid" }} key={0}>
-                <Text style={customStyle.listItem} >
-                    Course
-                </Text>
-                <Text style={customStyle.listItem}>
-                    Room
-                </Text>
-                <Text style={customStyle.listItem} >
-                    Time
-                </Text>
-                <Text style={customStyle.listItem}>
-                    Weekday
-                </Text>
-            </View>
-
-            {localData.map(function (item, index) {
-                return <TouchableOpacity style={{ alignItems: "center", flexDirection: "row" }} key={index + 1} onPress={verifyAndChangeSelectedRoom(item.classroom)}>
+        let jsx =
+            <View style={{ flexDirection: "column" }}>
+                <View style={{ alignItems: "center", flexDirection: "row", borderBottom: "solid" }} key={0}>
                     <Text style={customStyle.listItem} >
-                        {item.name}
+                        Course
                     </Text>
                     <Text style={customStyle.listItem}>
-                        {item.classroom}
+                        Room
                     </Text>
                     <Text style={customStyle.listItem} >
-                        {item.time}
+                        Time
                     </Text>
                     <Text style={customStyle.listItem}>
-                        {item.weekday}
+                        Weekday
                     </Text>
-                </TouchableOpacity>
-            })
+                </View>
 
-            }
+                {localData.map(function (item, index) {
+                    return <TouchableOpacity style={{ alignItems: "center", flexDirection: "row" }} key={index + 1} onPress={verifyAndChangeSelectedRoom(item.classroom)}>
+                        <Text style={customStyle.listItem} >
+                            {item.name}
+                        </Text>
+                        <Text style={customStyle.listItem}>
+                            {item.classroom}
+                        </Text>
+                        <Text style={customStyle.listItem} >
+                            {item.time}
+                        </Text>
+                        <Text style={customStyle.listItem}>
+                            {item.weekday}
+                        </Text>
+                    </TouchableOpacity>
+                })
 
-        </View>;
+                }
+
+            </View>;
 
         return jsx;
 
@@ -290,8 +322,8 @@ const MapScreen = ({ navigation, route, customStyle }) => {
     };
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#EBEAED'}}>
-            <View style={{ flexDirection: "column"}}>
+        <View style={{ flex: 1, backgroundColor: '#EBEAED' }}>
+            <View style={{ flexDirection: "column" }}>
                 <Modal animationType="fade"
                     transparent={true}
                     visible={showModal}
@@ -337,7 +369,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                             viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
                             room={roomCoords.find(elements => elements.room === selectedRoom)}
                             onClick={verifyAndChangeSelectedRoom} onDoubleClick={(room) => verifyAndShowModal(room)}
-                            onWheel={(e) => zoom(e)}
+                            onWheel={(e) => zoom(e)} loccords={getCords.then((a) => {translate(a)})}
                         />
                     </View>
 

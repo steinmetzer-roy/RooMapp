@@ -55,7 +55,8 @@ const courseStyle = StyleSheet.create({
         width: 250,
         marginTop: 10,
     },
-    drawerButtonBackgroundStyle:{
+    drawerButtonBackgroundStyle: {
+        flex: 1,
         paddingVertical: 15,
         borderRadius: 12,
         borderWidth: 2,
@@ -64,12 +65,12 @@ const courseStyle = StyleSheet.create({
         backgroundColor: 'white',
         borderColor: 'black',
     },
-    drawerButtonTitleStyle:{
-        textAlign:'center',
+    drawerButtonTitleStyle: {
+        textAlign: 'center',
     },
-    drawerNavStyle:{
+    drawerNavStyle: {
         backgroundColor: 'white',
-        alignItems:'center',
+        alignItems: 'center',
         width: 250,
 
     }
@@ -125,7 +126,7 @@ const courseStyleDarkMode = StyleSheet.create({
         marginTop: 10,
         color: '#C0C0C0'
     },
-    drawerButtonBackgroundStyle:{
+    drawerButtonBackgroundStyle: {
         flex: 1,
         paddingVertical: 15,
         borderRadius: 12,
@@ -134,14 +135,14 @@ const courseStyleDarkMode = StyleSheet.create({
         backgroundColor: '#2A2D32',
         borderColor: 'gray',
     },
-    drawerButtonTitleStyle:{
+    drawerButtonTitleStyle: {
         color: '#C0C0C0',
-        textAlign:'center'
+        textAlign: 'center'
 
     },
-    drawerNavStyle:{
+    drawerNavStyle: {
         backgroundColor: '#C0C0C0',
-        alignItems:'center',
+        alignItems: 'center',
         width: 250,
 
     }

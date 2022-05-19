@@ -11,40 +11,6 @@ import {roomInfo} from "../components/data/RoomData";
 
 const MapScreen = ({navigation, route}) => {
 
-    //rooms to be used as input(for testing purposes)
-    const testRooms = [
-        "3.010",
-        "3.040",
-        "room4",
-        "3.070",
-        "room3",
-        "3.110",
-        "room11",
-        "room6",
-        "room8",
-        "room9",
-
-        "3.190",
-        "3.200",
-        "room1",
-        "3.220",
-        "3.230",
-        "room5",
-        "3.330",
-        "room2",
-        "3.350",
-        "3.370",
-        "3.380",
-        "room7",
-        "3.500",
-        "room12",
-        "3.520",
-        "3.530",
-        "3.540",
-
-
-    ];
-
     //todo verify direction of escalator exits
 
     //names of the rooms with associated coordinates on the svg
@@ -56,9 +22,9 @@ const MapScreen = ({navigation, route}) => {
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
-    const [modalRoom, setModalRoom] = useState(roomCoords[5].room);
+    const [modalRoom, setModalRoom] = useState(roomCoords[5].room);//todo is this state even needed?
     //what floor is showing right now
-    const [floor, setFloor] = useState(4);
+    const [floor, setFloor] = useState(4); //todo is this state needed? can extract this from room name
     //todo set initial floor to 3
 
     //execute this when focusing this component
@@ -124,12 +90,6 @@ const MapScreen = ({navigation, route}) => {
         }
         setViewBox(vb);
 
-    }
-
-    //loops through the available rooms for testing purposes
-    const onPressFunctionTest = () => {
-        let index = testRooms.findIndex(elements => elements === selectedRoom);
-        setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
     }
 
     //resets the viewBox

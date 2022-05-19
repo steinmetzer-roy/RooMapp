@@ -6,6 +6,7 @@ import Floor4 from "../components/floors/Floor4"
 import {useFocusEffect} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native-web";
 import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
+import {roomInfo} from "../components/data/RoomData";
 
 
 const MapScreen = ({navigation, route}) => {
@@ -48,132 +49,7 @@ const MapScreen = ({navigation, route}) => {
     //todo verify direction of escalator exits
 
     //names of the rooms with associated coordinates on the svg
-    const roomCoords = [
-        //floor2
-        //2 small rooms left of the escalator
-        {room: "2.0", x: 90, y: 1185, dir: "left"},
-        {room: "2.1", x: 90, y: 1160, dir: "left"},
-        //left rooms on top
-        {room: "2.2", x: 115, y: 1075, dir: "left"},
-        {room: "2.3", x: 115, y: 920, dir: "left"},
-        {room: "2.4", x: 115, y: 880, dir: "left"},
-        {room: "2.5", x: 115, y: 845, dir: "left"},
-        {room: "2.6", x: 115, y: 670, dir: "left"},
-        {room: "2.7", x: 115, y: 615, dir: "left"},
-        {room: "2.8", x: 115, y: 560, dir: "left"},
-        {room: "2.9", x: 115, y: 485, dir: "left"},
-        {room: "2.10", x: 115, y: 445, dir: "left"},
-        {room: "2.11", x: 115, y: 410, dir: "left"},
-        {room: "2.12", x: 115, y: 330, dir: "left"},
-        {room: "2.13", x: 115, y: 120, dir: "left"},
-        {room: "2.14", x: 115, y: 120, dir: "top"},
-        {room: "2.15", x: 150, y: 150, dir: "top"},
-        //right rooms on top
-        {room: "2.16", x: 312, y: 1175, dir: "bottom"},
-        {room: "2.17", x: 312, y: 955, dir: "bottom"},
-        {room: "2.18", x: 312, y: 955, dir: "top"},
-        {room: "2.19", x: 312, y: 685, dir: "bottom"},
-        {room: "2.20", x: 312, y: 685, dir: "top"},
-        {room: "2.21", x: 285, y: 475, dir: "right"},
-        {room: "2.22", x: 285, y: 450, dir: "right"},
-        {room: "2.23", x: 312, y: 320, dir: "top"},
-        {room: "2.24", x: 285, y: 120, dir: "right"},
-        {room: "2.25", x: 285, y: 120, dir: "top"},
-        {room: "2.26", x: 255, y: 150, dir: "top"},
-        //middle rooms on top
-        {room: "2.27", x: 255, y: 150, dir: "bottom"},
-        {room: "2.28", x: 255, y: 520, dir: "bottom"}, //is this the right entrance to this room?
-        {room: "2.29", x: 235, y: 1170, dir: "top"},
-        //room just bottom left of the escalator
-        {room: "2.29", x: 90, y: 1315, dir: "left"},
-        //left rooms on the bottom
-        {room: "2.30", x: 115, y: 1340, dir: "left"},
-        {room: "2.31", x: 115, y: 1650, dir: "left"},
-        //right rooms on the bottom
-        {room: "2.32", x: 285, y: 1645, dir: "right"},
-        {room: "2.33", x: 285, y: 1400, dir: "right"},
-        {room: "2.34", x: 285, y: 1375, dir: "right"},
-        //middle rooms on the bottom
-        {room: "2.35", x: 150, y: 1285, dir: "bottom"},
-        {room: "2.36", x: 255, y: 1705, dir: "top"},
-
-
-        //floor 3
-        {room: "3.010", x: 85, y: 905, dir: "bottom"},
-        {room: "3.040", x: 85, y: 900, dir: "top"},
-        {room: "3.050", x: 85, y: 685, dir: "top"},
-        {room: "3.070", x: 110, y: 475, dir: "left"},
-        {room: "3.080", x: 110, y: 450, dir: "left"},
-        {room: "3.110", x: 85, y: 160, dir: "bottom"},
-        {room: "3.120", x: 85, y: 160, dir: "top"},
-
-        {room: "3.160", x: 285, y: 30, dir: "right"},
-        {room: "3.170", x: 312, y: 240, dir: "top"},
-        {room: "3.180", x: 312, y: 240, dir: "bottom"},
-        {room: "3.190", x: 285, y: 450, dir: "right"},
-        {room: "3.200", x: 285, y: 475, dir: "right"},
-        {room: "3.210", x: 312, y: 685, dir: "top"},
-        {room: "3.220", x: 312, y: 685, dir: "bottom"},
-        {room: "3.230", x: 312, y: 955, dir: "top"},
-        {room: "3.240", x: 312, y: 955, dir: "bottom"},
-
-        {room: "3.330", x: 85, y: 1285, dir: "bottom"},
-        {room: "3.350", x: 110, y: 1778, dir: "left"},
-
-        {room: "3.370", x: 285, y: 1778, dir: "right"},
-        {room: "3.380", x: 285, y: 1400, dir: "right"},
-        {room: "3.390", x: 312, y: 1285, dir: "bottom"},
-
-        {room: "3.500", x: 165, y: 1175, dir: "top"},
-        {room: "3.510", x: 145, y: 530, dir: "bottom"},
-        {room: "3.520", x: 145, y: 120, dir: "bottom"},
-        {room: "3.530", x: 145, y: 1290, dir: "bottom"},
-        {room: "3.540", x: 145, y: 1700, dir: "top"},
-        //floor4
-        //top left rooms
-        {room: "4.0", x: 85, y: 1170, dir: "bottom"},
-        {room: "4.1", x: 85, y: 955, dir: "bottom"},
-        {room: "4.2", x: 85, y: 955, dir: "top"},
-        {room: "4.3", x: 85, y: 685, dir: "bottom"},
-        {room: "4.4", x: 85, y: 685, dir: "top"},
-        {room: "4.5", x: 113, y: 476, dir: "left"},
-        {room: "4.6", x: 113, y: 455, dir: "left"},
-        {room: "4.7", x: 85, y: 325, dir: "top"},
-        {room: "4.8", x: 113, y: 125, dir: "left"},
-        {room: "4.9", x: 113, y: 125, dir: "top"},
-        {room: "4.10", x: 148, y: 157, dir: "top"},
-        //top right rooms
-        {room: "4.11", x: 313, y: 1170 , dir: "bottom"},
-        {room: "4.12", x: 313, y: 955, dir: "bottom"},
-        {room: "4.13", x: 313, y: 955, dir: "top"},
-        {room: "4.14", x: 313, y: 685, dir: "bottom"},
-        {room: "4.15", x: 313, y: 685, dir: "top"},
-        {room: "4.16", x: 286, y: 476, dir: "right"},
-        {room: "4.17", x: 286, y: 455, dir: "right"},
-        {room: "4.18", x: 313, y: 325, dir: "top"},
-        {room: "4.19", x: 286, y: 125, dir: "right"},
-        {room: "4.20", x: 286, y: 125, dir: "top"},
-        {room: "4.21", x: 253, y: 157 , dir: "top"},
-        //middle rooms
-        {room: "4.22", x: 148, y: 157, dir: "bottom"},
-        {room: "4.23", x: 148, y: 532, dir: "bottom"},
-        {room: "4.24", x: 168, y: 1170, dir: "top"},
-        //bottom left rooms
-        {room: "4.25", x: 113, y: 1375, dir: "left"},
-        {room: "4.26", x: 113, y: 1400, dir: "left"},
-        {room: "4.27", x: 113, y: 1655, dir: "left"},
-        {room: "4.28", x: 113, y: 1655, dir: "bottom"},
-        {room: "4.29", x: 147, y: 1655, dir: "bottom"},
-        //bottom right rooms
-        {room: "4.30", x: 286, y: 1375, dir: "right"},
-        {room: "4.31", x: 286, y: 1400, dir: "right"},
-        {room: "4.32", x: 286, y: 1655, dir: "right"},
-        {room: "4.33", x: 286, y: 1655, dir: "bottom"},
-        {room: "4.34", x: 253, y: 1655, dir: "bottom"},
-        //bottom middle rooms
-        {room: "4.35", x: 147, y: 1655, dir: "top"},
-        {room: "4.36", x: 147, y: 1280, dir: "bottom"},
-    ];
+    const roomCoords = roomInfo;
 
     //todo change initial room
     //room that the arrow is pointing to
@@ -200,7 +76,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[5].room);
+            setSelectedRoom(roomCoords[99].room);
             console.log("This room does not exist!");
 
         }

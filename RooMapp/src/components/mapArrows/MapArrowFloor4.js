@@ -42,7 +42,6 @@ const MapArrowFloor4 = (props) => {
 
     //if room is not on 4th floor return nothing
      if (props.room.room.substring(0,1) !== "4") {
-         console.log("test");
         jsx =<G>
         </G>;
         return jsx;

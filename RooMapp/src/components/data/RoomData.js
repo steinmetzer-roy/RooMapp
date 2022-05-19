@@ -1,10 +1,13 @@
 export const roomInfo =  [
+    //x and y are entrance coordinates, dir is direction the arrow that points at the entrance
+
+
     //floor2
     //2 small rooms left of the escalator, are these even classrooms?
     //{room: "2.0", x: 90, y: 1185, dir: "left"},
     //{room: "2.1", x: 90, y: 1160, dir: "left"},
     //left rooms on top
-    //some of the small rooms on top left might not actually be classrooms, and some of the commented out rooms might be classrooms
+    //some small rooms on top left might not actually be classrooms, and some commented out rooms might be classrooms
     {room: "2.010", x: 115, y: 1075, dir: "left"},
     //{room: "2.3", x: 115, y: 920, dir: "left"},
     //{room: "2.4", x: 115, y: 880, dir: "left"},
@@ -36,10 +39,10 @@ export const roomInfo =  [
     {room: "2.510", x: 255, y: 520, dir: "bottom"}, //wrong entrance
     {room: "2.500", x: 235, y: 1170, dir: "top"},
     //room just bottom left of the escalator
-    {room: "2.29", x: 90, y: 1315, dir: "left"}, //todo broken arrow //is this even a classroom?
+    //{room: "2.29", x: 90, y: 1315, dir: "left"}, //is this even a classroom?
     //left rooms on the bottom
-    {room: "2.30", x: 115, y: 1340, dir: "left"}, //could not find  name
-    {room: "2.31", x: 115, y: 1650, dir: "left"}, //could not find name
+    {room: "2.30", x: 115, y: 1340, dir: "left"}, //todo could not find  name
+    {room: "2.31", x: 115, y: 1650, dir: "left"}, //todo could not find name
     //right rooms on the bottom
     {room: "2.370", x: 285, y: 1645, dir: "right"},
     {room: "2.380", x: 285, y: 1400, dir: "right"},

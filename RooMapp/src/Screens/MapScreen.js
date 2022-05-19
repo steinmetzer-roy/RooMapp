@@ -45,7 +45,6 @@ const MapScreen = ({navigation, route}) => {
 
     ];
 
-    //todo verify/find room names
     //todo verify direction of escalator exits
 
     //names of the rooms with associated coordinates on the svg
@@ -76,7 +75,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[99].room);
+            setSelectedRoom(roomCoords[98].room);
             console.log("This room does not exist!");
 
         }

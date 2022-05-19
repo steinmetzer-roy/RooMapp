@@ -59,7 +59,6 @@ const MapArrowFloor2 = (props) => {
 
 
 
-    //todo logic missing for 3 rooms left of the escalator, see if they are even real classrooms
     //rooms that are on the left corridor
     if (x === leftCorridorX) {
         jsx = <G>

@@ -152,6 +152,6 @@ const SvgComponent = (props) => (
     </Svg>
 )
 
-//todo put the name of each room on the map
+//todo put the name of each room on the map?
 //todo use a touchable instead of onClick/onDoubleClick and showing the room info should not change the arrow( a double click triggers a click)
 export default SvgComponent;

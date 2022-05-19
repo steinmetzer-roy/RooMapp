@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Line, Polygon, G} from "react-native-svg";
+import {Line, G} from "react-native-svg";
+import {makeArrowJSX} from "./HelperFunctions";
 
 
 const MapArrowFloor4 = (props) => {
@@ -26,19 +27,7 @@ const MapArrowFloor4 = (props) => {
 
     let jsx;
 
-    //make the tip of the arrow
-    let points;
-    if (props.room.dir === "left") {
-        points = x + "," + (y - 5) + " " + x + "," + (y + 5) + " " + (x - 10) + "," + y;
-    } else if (props.room.dir === "top") {
-        points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y - 10);
-    } else if (props.room.dir === "bottom") {
-        points = (x - 5) + "," + (y) + " " + (x + 5) + "," + (y) + " " + (x) + "," + (y + 10);
-    } else if (props.room.dir === "right") {
-        points = x + "," + (y - 5) + " " + x + "," + (y + 5) + " " + (x + 10) + "," + y;
-    }
-
-    let triangle = <Polygon points={points} fill="#000000" stroke="#000000"/>;
+    let triangle = makeArrowJSX(props.room);
 
     //if room is not on 4th floor return nothing
      if (props.room.room.substring(0,1) !== "4") {

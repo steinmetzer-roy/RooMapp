@@ -1,6 +1,7 @@
 import * as React from "react"
 import Svg, {G, Path} from "react-native-svg"
 import MapArrowFloor3 from "../mapArrows/MapArrowFloor3"
+import {createClickableSvgRects} from "./HelperFunctions";
 
 //This component was created with a png to svg converter and a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 
@@ -33,119 +34,7 @@ const SvgComponent = (props) => (
             />
             <MapArrowFloor3 room={props.room}/>
 
-            <rect x={10} y={930} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.010")}
-                  onDoubleClick={props.onDoubleClick("3.010")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={710} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.040")}
-                  onDoubleClick={props.onDoubleClick("3.040")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={575} width={85} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("3.050")}
-                  onDoubleClick={props.onDoubleClick("3.050")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={465} width={85} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.070")}
-                  onDoubleClick={props.onDoubleClick("3.070")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={350} width={85} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("3.080")}
-                  onDoubleClick={props.onDoubleClick("3.080")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={185} width={85} height={170} opacity="0%" color="#ffffff" onClick={props.onClick("3.110")}
-                  onDoubleClick={props.onDoubleClick("3.110")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={10} width={85} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("3.120")}
-                  onDoubleClick={props.onDoubleClick("3.120")}
-                  style={{cursor: "pointer"}}/>
-
-
-
-
-
-
-
-            <rect x={300} y={10} width={90} height={125} opacity="0%" color="#ffffff" onClick={props.onClick("3.160")}
-                  onDoubleClick={props.onDoubleClick("3.160")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={135} width={90} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("3.170")}
-                  onDoubleClick={props.onDoubleClick("3.170")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={260} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("3.180")}
-                  onDoubleClick={props.onDoubleClick("3.180")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={350} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.190")}
-                  onDoubleClick={props.onDoubleClick("3.190")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={465} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("3.200")}
-                  onDoubleClick={props.onDoubleClick("3.200")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={575} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("3.210")}
-                  onDoubleClick={props.onDoubleClick("3.210")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={710} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.220")}
-                  onDoubleClick={props.onDoubleClick("3.220")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={820} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("3.230")}
-                  onDoubleClick={props.onDoubleClick("3.230")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={980} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.240")}
-                  onDoubleClick={props.onDoubleClick("3.240")}
-                  style={{cursor: "pointer"}}/>
-
-
-
-            <rect x={10} y={1305} width={85} height={165} opacity="0%" color="#ffffff" onClick={props.onClick("3.330")}
-                  onDoubleClick={props.onDoubleClick("3.330")}
-                  style={{cursor: "pointer"}}/>
-
-
-            <rect x={10} y={1635} width={85} height={155} opacity="0%" color="#ffffff" onClick={props.onClick("3.350")}
-                  onDoubleClick={props.onDoubleClick("3.350")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1635} width={85} height={155} opacity="0%" color="#ffffff" onClick={props.onClick("3.370")}
-                  onDoubleClick={props.onDoubleClick("3.370")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1390} width={85} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("3.380")}
-                  onDoubleClick={props.onDoubleClick("3.380")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1305} width={85} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("3.390")}
-                  onDoubleClick={props.onDoubleClick("3.390")}
-                  style={{cursor: "pointer"}}/>
-
-
-
-            <rect x={130} y={875} width={135} height={240} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.500")}
-                  onDoubleClick={props.onDoubleClick("3.500")}/>
-
-            <rect x={130} y={610} width={135} height={240} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.510")} onDoubleClick={props.onDoubleClick("3.510")}/>
-
-            <rect x={130} y={170} width={135} height={180} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.520")}
-                  onDoubleClick={props.onDoubleClick("3.520")}/>
-
-            <rect x={130} y={1305} width={135} height={190} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.530")}
-                  onDoubleClick={props.onDoubleClick("3.530")}/>
-
-            <rect x={130} y={1495} width={135} height={190} opacity="0%" color="#ffffff"
-                  style={{cursor: "pointer"}} onClick={props.onClick("3.540")}
-                  onDoubleClick={props.onDoubleClick("3.540")}/>
+            {createClickableSvgRects("3", props.onClick, props.onDoubleClick)}
 
 
         </G>

@@ -2,7 +2,7 @@ import {roomInfo} from "../data/RoomData";
 import {G} from "react-native-svg";
 
 export const createClickableSvgRects = (floor, onClick, onDoubleClick) => {
-
+//generates clickable <rect> elements for each room from the given floor
 
     let rooms = roomInfo;
 

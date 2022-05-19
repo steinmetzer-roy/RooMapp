@@ -24,7 +24,7 @@ const MapScreen = ({navigation, route}) => {
     //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(roomCoords[5].room);//todo is this state even needed?
     //what floor is showing right now
-    const [floor, setFloor] = useState(4); //todo is this state needed? can extract this from room name
+    const [floor, setFloor] = useState(3); //todo is this state needed? can extract this from room name
     //todo set initial floor to 3
 
     //execute this when focusing this component
@@ -41,7 +41,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[5].room);
+            setSelectedRoom(roomCoords[90].room);
             console.log("This room does not exist!");
 
         }

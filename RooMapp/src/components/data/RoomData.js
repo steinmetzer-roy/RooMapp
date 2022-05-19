@@ -1,6 +1,6 @@
 export const roomInfo = [
     //x and y are entrance coordinates, dir is direction the arrow that points at the entrance
-
+    //rectX, rectY, rectW, rectH form a rectangle , which is the clickable rectangle on the map
 
     //floor2
     //2 small rooms left of the escalator, are these even classrooms?
@@ -54,36 +54,36 @@ export const roomInfo = [
 
     //floor 3
     //rooms top left
-    {room: "3.010", x: 85, y: 905, dir: "bottom"},
-    {room: "3.040", x: 85, y: 900, dir: "top"},
-    {room: "3.050", x: 85, y: 685, dir: "top"},
-    {room: "3.070", x: 110, y: 475, dir: "left"},
-    {room: "3.100", x: 110, y: 450, dir: "left"},
-    {room: "3.110", x: 85, y: 160, dir: "bottom"},
-    {room: "3.120", x: 85, y: 160, dir: "top"},
+    {room: "3.010", x: 85, y: 905, dir: "bottom", rectX: 10, rectY: 930, rectW: 85, rectH: 165},
+    {room: "3.040", x: 85, y: 900, dir: "top", rectX: 10, rectY: 710, rectW: 85, rectH:165 },
+    {room: "3.050", x: 85, y: 685, dir: "top", rectX: 10, rectY: 575, rectW: 85, rectH: 90},
+    {room: "3.070", x: 110, y: 475, dir: "left", rectX: 10, rectY: 465, rectW: 85, rectH:110 },
+    {room: "3.100", x: 110, y: 450, dir: "left", rectX: 10, rectY: 350, rectW: 85, rectH: 115},
+    {room: "3.110", x: 85, y: 160, dir: "bottom", rectX: 10, rectY: 185, rectW: 85, rectH:170},
+    {room: "3.120", x: 85, y: 160, dir: "top", rectX: 10, rectY: 10, rectW: 85, rectH:125 },
     //rooms top right
-    {room: "3.160", x: 285, y: 30, dir: "right"},
-    {room: "3.170", x: 312, y: 240, dir: "top"},
-    {room: "3.180", x: 312, y: 240, dir: "bottom"},
-    {room: "3.190", x: 285, y: 450, dir: "right"},
-    {room: "3.200", x: 285, y: 475, dir: "right"},
-    {room: "3.210", x: 312, y: 685, dir: "top"},
-    {room: "3.220", x: 312, y: 685, dir: "bottom"},
-    {room: "3.230", x: 312, y: 955, dir: "top"},
-    {room: "3.240", x: 312, y: 955, dir: "bottom"},
+    {room: "3.160", x: 285, y: 30, dir: "right", rectX: 300, rectY: 10, rectW: 90, rectH: 125},
+    {room: "3.170", x: 312, y: 240, dir: "top", rectX: 300, rectY: 135, rectW: 90, rectH: 85},
+    {room: "3.180", x: 312, y: 240, dir: "bottom", rectX: 300, rectY: 260, rectW: 90, rectH: 90},
+    {room: "3.190", x: 285, y: 450, dir: "right", rectX: 300, rectY: 350, rectW: 90, rectH: 110},
+    {room: "3.200", x: 285, y: 475, dir: "right", rectX: 300, rectY: 465, rectW: 90, rectH: 115},
+    {room: "3.210", x: 312, y: 685, dir: "top", rectX: 300, rectY: 575, rectW: 90, rectH: 90},
+    {room: "3.220", x: 312, y: 685, dir: "bottom", rectX: 300 , rectY: 710, rectW: 90, rectH: 110},
+    {room: "3.230", x: 312, y: 955, dir: "top", rectX: 300, rectY: 820, rectW: 90, rectH: 115},
+    {room: "3.240", x: 312, y: 955, dir: "bottom", rectX: 300, rectY: 980, rectW: 90, rectH: 110},
     //rooms bottom left
-    {room: "3.330", x: 85, y: 1285, dir: "bottom"},
-    {room: "3.350", x: 110, y: 1778, dir: "left"},
+    {room: "3.330", x: 85, y: 1285, dir: "bottom", rectX: 10, rectY: 1305, rectW: 85, rectH: 165},
+    {room: "3.350", x: 110, y: 1778, dir: "left", rectX: 10, rectY: 1635, rectW: 85, rectH: 155},
     //rooms bottom right
-    {room: "3.370", x: 285, y: 1778, dir: "right"},
-    {room: "3.380", x: 285, y: 1400, dir: "right"},
-    {room: "3.390", x: 312, y: 1285, dir: "bottom"},
+    {room: "3.370", x: 285, y: 1778, dir: "right", rectX: 300, rectY: 1635, rectW: 85, rectH: 155},
+    {room: "3.380", x: 285, y: 1400, dir: "right", rectX: 300, rectY: 1390, rectW: 85, rectH: 110},
+    {room: "3.390", x: 312, y: 1285, dir: "bottom", rectX: 300, rectY: 1305, rectW: 85, rectH: 85},
     //big rooms in the middle
-    {room: "3.500", x: 165, y: 1175, dir: "top"},
-    {room: "3.510", x: 145, y: 530, dir: "bottom"},
-    {room: "3.520", x: 145, y: 120, dir: "bottom"},
-    {room: "3.530", x: 145, y: 1290, dir: "bottom"},
-    {room: "3.540", x: 145, y: 1700, dir: "top"},
+    {room: "3.500", x: 165, y: 1175, dir: "top", rectX: 130, rectY: 875, rectW: 135, rectH: 240},
+    {room: "3.510", x: 145, y: 530, dir: "bottom", rectX: 130, rectY: 610, rectW: 135, rectH: 240},
+    {room: "3.520", x: 145, y: 120, dir: "bottom", rectX: 130, rectY: 170, rectW: 135, rectH: 180},
+    {room: "3.530", x: 145, y: 1290, dir: "bottom", rectX: 130, rectY: 1305, rectW: 135, rectH: 190},
+    {room: "3.540", x: 145, y: 1700, dir: "top", rectX: 130, rectY: 1495, rectW: 135, rectH: 190},
 
 
     //floor4

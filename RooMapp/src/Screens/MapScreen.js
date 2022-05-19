@@ -107,6 +107,7 @@ const MapScreen = ({navigation, route}) => {
         let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
+            //todo should this change floor?
         } else {
             console.log("Could not find room");
         }

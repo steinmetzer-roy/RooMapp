@@ -16,20 +16,18 @@ const MapScreen = ({navigation, route}) => {
     //names of the rooms with associated coordinates on the svg
     const roomCoords = roomInfo;
 
-    //todo change initial room
+
     //room that the arrow is pointing to
-    const [selectedRoom, setSelectedRoom] = useState(roomCoords[5].room);
+    const [selectedRoom, setSelectedRoom] = useState(roomCoords[0].room);
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
-    const [modalRoom, setModalRoom] = useState(roomCoords[5].room);//todo is this state even needed?
+    const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
     //what floor is showing right now
-    const [floor, setFloor] = useState(2); //todo is this state needed? can extract this from room name
-    //todo set initial floor to 3
+    const [floor, setFloor] = useState(2);
 
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
-        //todo set appropriate room if wrong room entered
         if (route.params && route.params.room) {
             let room = route.params.room;
             if (roomCoords.find(element => element.room === room)) {
@@ -41,7 +39,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[5].room);
+            setSelectedRoom(roomCoords[0].room);
             console.log("This room does not exist!");
 
         }
@@ -107,7 +105,7 @@ const MapScreen = ({navigation, route}) => {
         let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
-            //todo should this change floor?
+            setFloor(parseInt(b.room.substring(0,1)));
         } else {
             console.log("Could not find room");
         }

@@ -38,5 +38,4 @@ const SvgComponent = (props) => (
         </G>
     </Svg>
 )
-//todo attach room names to clickable rooms
 export default SvgComponent

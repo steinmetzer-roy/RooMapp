@@ -1,6 +1,7 @@
 import * as React from "react"
 import Svg, { G, Path } from "react-native-svg"
 import MapArrowFloor4 from "../mapArrows/MapArrowFloor4";
+import {createClickableSvgRects} from "./HelperFunctions";
 
 const SvgComponent = (props) => (
     <Svg
@@ -31,158 +32,9 @@ const SvgComponent = (props) => (
 
             <MapArrowFloor4 room={props.room}/>
 
-            <rect x={10} y={1195} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={980} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={820} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={710} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={575} width={90} height={90} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={465} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={350} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={185} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={85} width={90} height={105} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={10} width={120} height={75} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={10} width={70} height={100} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={200} y={10} width={70} height={100} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={270} y={10} width={120} height={75} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={85} width={90} height={105} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={190} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={350} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={465} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={580} width={90} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={710} width={90} height={110} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={820} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={980} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1195} width={90} height={115} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
+            {createClickableSvgRects("4", props.onClick, props.onDoubleClick)}
 
 
-
-
-            <rect x={10} y={1305} width={90} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={1390} width={90} height={80} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={1630} width={90} height={80} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={10} y={1710} width={120} height={80} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={1670} width={70} height={120} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={200} y={1670} width={70} height={120} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={270} y={1705} width={120} height={80} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1630} width={90} height={80} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1390} width={90} height={105} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={300} y={1305} width={90} height={85} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-
-
-            <rect x={130} y={1305} width={140} height={135} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={1440} width={140} height={190} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={175} width={140} height={175} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={550} width={140} height={300} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
-
-            <rect x={130} y={875} width={140} height={275} opacity="0%" color="#ffffff" onClick={props.onClick("")}
-                  onDoubleClick={props.onDoubleClick("")}
-                  style={{cursor: "pointer"}}/>
         </G>
     </Svg>
 )

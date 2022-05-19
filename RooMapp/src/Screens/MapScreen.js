@@ -41,7 +41,7 @@ const MapScreen = ({navigation, route}) => {
             }
 
         } else {
-            setSelectedRoom(roomCoords[98].room);
+            setSelectedRoom(roomCoords[5].room);
             console.log("This room does not exist!");
 
         }

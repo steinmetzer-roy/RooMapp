@@ -7,6 +7,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-web";
 import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
 import { roomInfo } from "../components/data/RoomData";
+import RoomScreen from "./RoomScreen";
 
 
 const MapScreen = ({ navigation, route, customStyle }) => {
@@ -294,23 +295,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                     transparent={true}
                     visible={showModal}
                 >
-                    <View style={customStyle.modalView}>
-                        <View style={customStyle.modal}>
-                            <Text style={{ fontSize: 50 }}>
-                                Room: {modalRoom}
-                            </Text>
-                            <Pressable onPress={() => setShowModal(false)}
-                                style={({ pressed }) => [
-                                    { backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10, },
-                                    customStyle.button
-                                ]}
-                            >
-                                <Text>
-                                    Exit
-                                </Text>
-                            </Pressable>
-                        </View>
-                    </View>
+                    <RoomScreen customStyle={customStyle} modalRoom={modalRoom} setShowModal={setShowModal}/>
                 </Modal>
 
                 {/*Head*/}

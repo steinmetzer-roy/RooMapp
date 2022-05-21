@@ -5,6 +5,8 @@ import {createClickableSvgRects} from "./HelperFunctions";
 
 //This component was created with a png to svg converter and a svg to react-native component converter: https://react-svgr.com/playground/?native=true
 
+let cords = ""
+
 const SvgComponent = (props) => (
     <Svg
         xmlns="http://www.w3.org/2000/svg"
@@ -35,11 +37,19 @@ const SvgComponent = (props) => (
             <MapArrowFloor3 room={props.room}/>
 
             {createClickableSvgRects("3", props.onClick, props.onDoubleClick)}
+            {//props.navigation.setInterval(() => {toCall(props)},3000)
+            }
+            <circle cx={cords.xtr&&cords.xtr*256666.66} cy={cords.ytr&&cords.ytr*-750000} r={25} fill="green"></circle>
 
 
         </G>
     </Svg>
 )
+
+function toCall(props){
+      props.loccords.then((a) => {cords = a; console.log(cords)});
+      //console.log((cords.xtr*166666.66) + " " + (cords.ytr*-1000000))
+}
 
 //todo put the name of each room on the map?
 //todo use a touchable instead of onClick/onDoubleClick and showing the room info should not change the arrow( a double click triggers a click)

@@ -9,18 +9,18 @@ import {
 } from 'react-native';
 
 
-const CourseList = ({customStyle}) => { //this is a functional component
+const CourseList = ({ customStyle }) => { //this is a functional component
     const { courses } = useContext(CourseContext); //we want to use the course context inside here
     return courses.length ? ( //we need to cycle thro these courses and output something; we check if the courses array has any length
         <div>
             <View>
                 {courses.map(course => { //map thro the courses
-                    return (<CourseDetails course={course} key={course.id} customStyle={customStyle}/>);
+                    return (<CourseDetails course={course} key={course.id} customStyle={customStyle} />);
                 })}
             </View>
         </div>
     ) : (
-        <div style={{ fontFamily: "Arial", fontSize: 14, paddingTop: 13 }} > No courses to go to. Hello free time :)</ div>
+        <div style={{ fontFamily: "Arial", fontSize: 14, paddingTop: 13 }} > No courses to go to! Hello free time :)</ div>
     );
 }
 

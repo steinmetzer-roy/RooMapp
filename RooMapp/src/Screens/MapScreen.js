@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Pressable, Text, Modal, ScrollView} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Pressable, Text, Modal, ScrollView } from 'react-native';
 import Floor3 from "../components/floors/Floor3"
 import Floor2 from "../components/floors/Floor2"
 import Floor4 from "../components/floors/Floor4"
-import {useFocusEffect} from "@react-navigation/native";
-import {TouchableOpacity} from "react-native-web";
-import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
-import {roomInfo} from "../components/data/RoomData";
+import { useFocusEffect } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-web";
+import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
+import { roomInfo } from "../components/data/RoomData";
 
 
-const MapScreen = ({navigation, route}) => {
+const MapScreen = ({ navigation, route, customStyle }) => {
 
     //todo verify direction of escalator exits
 
@@ -32,7 +32,7 @@ const MapScreen = ({navigation, route}) => {
             let room = route.params.room;
             if (roomCoords.find(element => element.room === room)) {
                 setSelectedRoom(room);
-                setFloor(parseInt(room.substring(0,1)));
+                setFloor(parseInt(room.substring(0, 1)));
             } else {
                 setSelectedRoom(roomCoords[0].room);
                 console.log("This room does not exist!");
@@ -64,9 +64,9 @@ const MapScreen = ({navigation, route}) => {
     let vb;
     //change viewBox to only display top or bottom part of the map
     if (y <= 1200) {
-        vb = {x: 0, y: 0, w: 400, h: 1300};
+        vb = { x: 0, y: 0, w: 400, h: 1300 };
     } else {
-        vb = {x: 0, y: 1200, w: 400, h: 600};
+        vb = { x: 0, y: 1200, w: 400, h: 600 };
     }
 
     const [viewBox, setViewBox] = useState(vb);
@@ -82,9 +82,9 @@ const MapScreen = ({navigation, route}) => {
         //change viewBox to only display top or bottom part of the map
 
         if (y <= 1200) {
-            vb = {x: 0, y: 0, w: 400, h: 1300};
+            vb = { x: 0, y: 0, w: 400, h: 1300 };
         } else {
-            vb = {x: 0, y: 1200, w: 400, h: 600};
+            vb = { x: 0, y: 1200, w: 400, h: 600 };
         }
         setViewBox(vb);
 
@@ -105,7 +105,7 @@ const MapScreen = ({navigation, route}) => {
         let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
-            setFloor(parseInt(b.room.substring(0,1)));
+            setFloor(parseInt(b.room.substring(0, 1)));
         } else {
             console.log("Could not find room");
         }
@@ -152,7 +152,7 @@ const MapScreen = ({navigation, route}) => {
         x = x - e.deltaY / 8 * ratio * relativeX * modifier;
         y = y - e.deltaY / 8 * relativeY * modifier;
 
-        let v = {x: x, y: y, w: w, h: h};
+        let v = { x: x, y: y, w: w, h: h };
         setViewBox(v);
 
     }
@@ -165,47 +165,78 @@ const MapScreen = ({navigation, route}) => {
 
     }
 
+    //get location cords translated
+    const getCords = new Promise(resolve => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(resolve);
+            console.log("geolocation accepted")
+        } else {
+            console.log("geolocation denied")
+        }
+    })
+
+    function translate(pos) {
+        let crd = pos.coords;
+
+        let rotationAngle = 2.902482546;
+
+        //let x = 49.504297768442406 -49.5044028479121;
+        //let y = 5.9489314079671125 -5.9477025091986;
+
+        let x = crd.latitude - 49.5044028479121;
+        let y = crd.longitude - 5.9477025091986;
+        console.log(x + " " + y);
+
+        let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2 * x);
+        let ytr = -x * Math.sin(rotationAngle) + y * Math.cos(rotationAngle);
+        console.log(xtr + " " + ytr);
+
+        let newPos = { xtr: xtr, ytr: ytr };
+        console.log(newPos);
+        return newPos;
+    }
+
     const localData = getLocalData();
 
     const createListItems = () => {
 
-        let jsx = <View style={{flexDirection: "column"}}>
-            <View style={{alignItems: "center", flexDirection: "row", borderBottom: "solid"}} key={0}>
-                <Text style={styles.listItem}>
-                    Course
-                </Text>
-                <Text style={styles.listItem}>
-                    Room
-                </Text>
-                <Text style={styles.listItem}>
-                    Time
-                </Text>
-                <Text style={styles.listItem}>
-                    Weekday
-                </Text>
-            </View>
+        let jsx =
+            <View style={{ flexDirection: "column" }}>
+                <View style={{ alignItems: "center", flexDirection: "row", borderBottom: "solid" }} key={0}>
+                    <Text style={customStyle.listItem} >
+                        Course
+                    </Text>
+                    <Text style={customStyle.listItem}>
+                        Room
+                    </Text>
+                    <Text style={customStyle.listItem} >
+                        Time
+                    </Text>
+                    <Text style={customStyle.listItem}>
+                        Weekday
+                    </Text>
+                </View>
 
-            {localData.map(function (item, index) {
-                return <TouchableOpacity style={{alignItems: "center", flexDirection: "row"}} key={index + 1}
-                                         onPress={verifyAndChangeSelectedRoom(item.classroom)}>
-                    <Text style={styles.listItem}>
-                        {item.name}
-                    </Text>
-                    <Text style={styles.listItem}>
-                        {item.classroom}
-                    </Text>
-                    <Text style={styles.listItem}>
-                        {item.time}
-                    </Text>
-                    <Text style={styles.listItem}>
-                        {item.weekday}
-                    </Text>
-                </TouchableOpacity>
-            })
+                {localData.map(function (item, index) {
+                    return <TouchableOpacity style={{ alignItems: "center", flexDirection: "row" }} key={index + 1} onPress={verifyAndChangeSelectedRoom(item.classroom)}>
+                        <Text style={customStyle.listItem} >
+                            {item.name}
+                        </Text>
+                        <Text style={customStyle.listItem}>
+                            {item.classroom}
+                        </Text>
+                        <Text style={customStyle.listItem} >
+                            {item.time}
+                        </Text>
+                        <Text style={customStyle.listItem}>
+                            {item.weekday}
+                        </Text>
+                    </TouchableOpacity>
+                })
 
-            }
+                }
 
-        </View>;
+            </View>;
 
         return jsx;
 
@@ -220,6 +251,8 @@ const MapScreen = ({navigation, route}) => {
             height: listHeight,
             width: listWidth,
             margin: 10,
+            borderColor: '#C0C0C0',
+            borderWidth: 2,
         }
     };
 
@@ -227,27 +260,27 @@ const MapScreen = ({navigation, route}) => {
     const renderFloor = () => {
 
         if (floor === 2)
-            return <Floor2 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                           room={roomCoords.find(elements => elements.room === selectedRoom)}
-                           onClick={verifyAndChangeSelectedRoom}
-                           onDoubleClick={(room) => verifyAndShowModal(room)}
-                           onWheel={(e) => zoom(e)}/>
+            return <Floor2 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)} />
         else if (floor === 4)
-            return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                           room={roomCoords.find(elements => elements.room === selectedRoom)}
-                           onClick={verifyAndChangeSelectedRoom}
-                           onDoubleClick={(room) => verifyAndShowModal(room)}
-                           onWheel={(e) => zoom(e)}/>
+            return <Floor4 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)} />
         else
-            return <Floor3 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                        viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                        room={roomCoords.find(elements => elements.room === selectedRoom)}
-                        onClick={verifyAndChangeSelectedRoom}
-                        onDoubleClick={(room) => verifyAndShowModal(room)}
-                        onWheel={(e) => zoom(e)}
-                />
+            return <Floor3 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)}
+            />
 
 
 
@@ -255,214 +288,110 @@ const MapScreen = ({navigation, route}) => {
 
 
     return (
-
-        <View style={{flexDirection: "column"}}>
-            <Modal animationType="fade"
-                   transparent={true}
-                   visible={showModal}
-            >
-                <View style={styles.modalView}>
-                    <View style={styles.modal}>
-                        <Text style={{fontSize: 50}}>
-                            Room: {modalRoom}
-                        </Text>
-                        <Pressable onPress={() => setShowModal(false)}
-                                   style={({pressed}) => [
-                                       {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
-                                       styles.button
-                                   ]}
-                        >
-                            <Text>
-                                Exit
+        <View style={{ flex: 1, backgroundColor: '#EBEAED' }}>
+            <View style={{ flexDirection: "column" }}>
+                <Modal animationType="fade"
+                    transparent={true}
+                    visible={showModal}
+                >
+                    <View style={customStyle.modalView}>
+                        <View style={customStyle.modal}>
+                            <Text style={{ fontSize: 50 }}>
+                                Room: {modalRoom}
                             </Text>
-                        </Pressable>
+                            <Pressable onPress={() => setShowModal(false)}
+                                style={({ pressed }) => [
+                                    { backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10, },
+                                    customStyle.button
+                                ]}
+                            >
+                                <Text>
+                                    Exit
+                                </Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </Modal>
+
+                {/*Head*/}
+                <View style={customStyle.courseWrapper}>
+                    <View style={customStyle.titleWrapper}>
+                        <Text style={customStyle.title}>
+                            Maison du Savoir Floor {floor}
+                        </Text>
                     </View>
                 </View>
 
+                {/*Body*/}
+                <View style={customStyle.body}>
 
-            </Modal>
-            <View height={10} style={styles.head}>
-                <Text style={styles.title}>
-                    Maison du Savoir Floor {floor}
-                </Text>
+                    {/*left side*/}
+                    <View style={customStyle.leftSideView && { display: 0 }}>
+                    </View>
 
+                    <View style={customStyle.middleView}>
+
+                        <GestureHandlerRootView>
+
+
+                            <PanGestureHandler onHandlerStateChange={(evt) => {
+                                let { nativeEvent } = evt;
+                                //movement from left to right, ie previous floor
+                                if (nativeEvent.translationX > 30) {
+
+                                    if (floor === 2) {
+
+                                    } else {
+
+                                        setFloor(floor - 1);
+                                    }
+                                    //movement from right to left, ie next floor
+                                } else if (nativeEvent.translationX < - 30) {
+                                    if (floor === 4) {
+
+                                    } else {
+                                        setFloor(floor + 1);
+
+                                    }
+                                }
+                            }}>
+                                <View>
+                                    {renderFloor()}
+                                </View>
+
+                            </PanGestureHandler>
+                        </GestureHandlerRootView>
+
+                    </View>
+
+                    {/*right side*/}
+                    <View style={customStyle.rightSideView}>
+                        <Text style={{ margin: 10, fontSize: 25, color: "#FFFFFF" }}>
+                            Room {selectedRoom} selected!
+                        </Text>
+
+                        <ScrollView style={createListViewStyle()}>
+                            {createListItems()}
+                        </ScrollView>
+
+                        <Pressable onPress={onPressFunction}
+                            style={({ pressed }) => [
+                                { backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10, },
+                                customStyle.button
+                            ]}
+                        >
+                            <Text style={{ textAlign: "center" }}> Reset map</Text>
+                        </Pressable>
+
+
+                    </View>
+
+
+                </View>
             </View>
-            <View style={styles.body}>
-
-                <View style={styles.leftSideView}>
-
-                </View>
-                <View style={styles.middleView}>
-
-                    <GestureHandlerRootView>
-
-
-                    <PanGestureHandler onHandlerStateChange={(evt) => {
-                        let { nativeEvent } = evt;
-                        //movement from left to right, ie previous floor
-                        if (nativeEvent.translationX > 30) {
-
-                            if (floor === 2) {
-
-                            } else {
-
-                                setFloor(floor - 1);
-                            }
-                        //movement from right to left, ie next floor
-                        } else if (nativeEvent.translationX < - 30) {
-                            if (floor === 4) {
-
-                            } else {
-                                setFloor(floor + 1);
-
-                            }
-                        }
-                    }}>
-                        <View>
-                            {renderFloor()}
-                        </View>
-
-                    </PanGestureHandler>
-                    </GestureHandlerRootView>
-
-                </View>
-
-
-                <View style={styles.rightSideView}>
-                    <Text style={{margin: 10, fontSize: 25, color: "#FFFFFF"}}>
-                        Room {selectedRoom} selected!
-                    </Text>
-
-                    <ScrollView style={createListViewStyle()}>
-                        {createListItems()}
-                    </ScrollView>
-
-                    <Pressable onPress={onPressFunction}
-                               style={({pressed}) => [
-                                   {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
-                                   styles.button
-                               ]}
-                    >
-                        <Text style={{textAlign: "center"}}> Reset map</Text>
-                    </Pressable>
-
-
-                </View>
-
-            </View>
-
         </View>
-
 
     )
 }
-
-const styles = StyleSheet.create({
-    svg: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 10,
-        backgroundColor: "#000000",
-
-
-    },
-
-    body: {
-        alignItems: "start",
-        justifyContent: "center",
-        margin: 10,
-        backgroundColor: "#5555ff",
-        flexDirection: "row",
-
-
-    },
-
-    head: {
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 10,
-        backgroundColor: "#000fff",
-
-
-    },
-
-    title: {
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 40,
-        color: "#FFFFFF",
-
-
-    },
-    //"fake margin" made with borders of the same color as the outer component
-    //because box-sizing doesnt work...
-    rightSideView: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#0000ff",
-        flexDirection: "column",
-        borderWidth: 20,
-        borderColor: "#5555ff",
-
-
-    },
-
-    middleView: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#0000ff",
-        flexDirection: "column",
-        borderWidth: 20,
-        borderColor: "#5555ff",
-
-    },
-
-    leftSideView: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#ff00ff",
-        flexDirection: "column",
-        borderWidth: 20,
-        borderColor: "#5555ff",
-
-    },
-
-    button: {
-        height: 40,
-        width: "40%",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: 10,
-
-    },
-
-    modal: {
-        width: "40%",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#00ff00",
-    },
-
-    modalView: {
-        alignItems: "center",
-        justifyContent: "center",
-        flex: 1,
-        backgroundColor: "#00000099"
-    },
-
-    listItem: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 5,
-        textAlign: "center",
-    },
-
-
-});
 
 export default MapScreen;

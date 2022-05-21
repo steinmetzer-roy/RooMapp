@@ -1,0 +1,140 @@
+import React, { useContext, useState } from 'react';
+import { CourseContext } from '../contexts/CourseContext';
+import DatePicker from "react-datepicker";
+import {
+  StyleSheet, TextInput, KeyboardAvoidingView
+} from 'react-native';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
+const options = ['Database Management 2', 'SEP'];
+
+const classrooms = [
+  { room: '3.010' },
+  { room: '3.040' },
+  { room: '3.050' },
+  { room: '2.070' },
+  { room: '1.060' },
+];
+
+const options2 = classrooms.map((option) => {
+  const firstLetter = option.room[0];
+  return {
+    firstLetter: option.room[0],
+    ...option,
+  };
+});
+
+const NewCourseForm = ({ customStyle }) => {
+
+  const [time1, setStartDate] = useState('');
+  const { dispatch } = useContext(CourseContext); //context we want is the course one
+  const [name, setName] = useState('');
+  const [classroom, setClassroom] = useState('');
+  const [time, setTime] = useState('');
+  const [weekday, setWeekday] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'ADD_COURSE', course: {
+        name, classroom, time1, weekday
+      }
+    });
+    setName('');
+    setClassroom('');
+    setTime('');
+    setStartDate('');
+    setWeekday('');
+  }
+  // onChange is equal to some kind of a function that takes in an event object "e" and we update the state of "name" from line 6
+  return ( //creating the template
+
+    <KeyboardAvoidingView>
+
+      <form onSubmit={handleSubmit} >
+        <Autocomplete
+          disablePortal
+          value={name}
+          onChange={(event, newValue) => { setName(newValue); }}
+          id="name-box"
+          options={options}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Name" />}
+        />
+        <br></br>
+        <Autocomplete
+          id="grouped"
+          name={classroom}
+          inputValue={classroom}
+          isOptionEqualToValue={(option, value) => option.room === value}
+          onInputChange={(event, newValue) => { setClassroom(newValue.toString()); }}
+          options={options2.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+          groupBy={(option) => option.firstLetter}
+          getOptionLabel={(option) => option.room || ""}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Classroom" />}
+        />
+        <DatePicker
+          customInput={<TextInput style={customStyle.input} />}
+          selected={time1}
+          onChange={(date) => setStartDate(date)}
+          showTimeSelect
+          placeholderText='Time'
+          showTimeSelectOnly
+          timeIntervals={15}
+          timeCaption="Time"
+          dateFormat="h:mm aa"
+        />
+        {/* <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
+          onChange={(e) => setWeekday(e.target.value)} /> */}
+        <div>
+          <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            <option value="fri">Friday</option>
+            <option value="sat">Saturday</option>
+            <option value="sun">Sunday</option>
+          </select>
+        </div>
+        <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
+      </form >
+
+    </KeyboardAvoidingView >
+
+
+  );
+}
+
+/*
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EBEAED',
+  },
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    width: 250,
+    marginTop: 10,
+  },
+  addWrapper: {
+    width: 60,
+    marginTop: 10,
+    height: 60,
+    backgroundColor: '#FFF',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+  },
+});
+*/
+export default NewCourseForm;

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Pressable, Text, Modal, ScrollView} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Pressable, Text, Modal, ScrollView } from 'react-native';
 import Floor3 from "../components/floors/Floor3"
 import Floor2 from "../components/floors/Floor2"
 import Floor4 from "../components/floors/Floor4"
-import {useFocusEffect} from "@react-navigation/native";
-import {TouchableOpacity} from "react-native-web";
-import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
-import {roomInfo} from "../components/data/RoomData";
+import { useFocusEffect } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-web";
+import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
+import { roomInfo } from "../components/data/RoomData";
 
 
 const MapScreen = ({ navigation, route, customStyle }) => {
@@ -32,7 +32,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
             let room = route.params.room;
             if (roomCoords.find(element => element.room === room)) {
                 setSelectedRoom(room);
-                setFloor(parseInt(room.substring(0,1)));
+                setFloor(parseInt(room.substring(0, 1)));
             } else {
                 setSelectedRoom(roomCoords[0].room);
                 console.log("This room does not exist!");
@@ -105,7 +105,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
         let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
-            setFloor(parseInt(b.room.substring(0,1)));
+            setFloor(parseInt(b.room.substring(0, 1)));
         } else {
             console.log("Could not find room");
         }
@@ -183,11 +183,11 @@ const MapScreen = ({ navigation, route, customStyle }) => {
         //let x = 49.504297768442406 -49.5044028479121;
         //let y = 5.9489314079671125 -5.9477025091986;
 
-        let x = crd.latitude -49.5044028479121;
-        let y = crd.longitude -5.9477025091986;
+        let x = crd.latitude - 49.5044028479121;
+        let y = crd.longitude - 5.9477025091986;
         console.log(x + " " + y);
 
-        let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2*x);
+        let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2 * x);
         let ytr = -x * Math.sin(rotationAngle) + y * Math.cos(rotationAngle);
         console.log(xtr + " " + ytr);
 
@@ -260,27 +260,27 @@ const MapScreen = ({ navigation, route, customStyle }) => {
     const renderFloor = () => {
 
         if (floor === 2)
-            return <Floor2 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                           room={roomCoords.find(elements => elements.room === selectedRoom)}
-                           onClick={verifyAndChangeSelectedRoom}
-                           onDoubleClick={(room) => verifyAndShowModal(room)}
-                           onWheel={(e) => zoom(e)}/>
+            return <Floor2 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)} />
         else if (floor === 4)
-            return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                           room={roomCoords.find(elements => elements.room === selectedRoom)}
-                           onClick={verifyAndChangeSelectedRoom}
-                           onDoubleClick={(room) => verifyAndShowModal(room)}
-                           onWheel={(e) => zoom(e)}/>
+            return <Floor4 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)} />
         else
-            return <Floor3 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                        viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                        room={roomCoords.find(elements => elements.room === selectedRoom)}
-                        onClick={verifyAndChangeSelectedRoom}
-                        onDoubleClick={(room) => verifyAndShowModal(room)}
-                        onWheel={(e) => zoom(e)}
-                />
+            return <Floor3 style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                room={roomCoords.find(elements => elements.room === selectedRoom)}
+                onClick={verifyAndChangeSelectedRoom}
+                onDoubleClick={(room) => verifyAndShowModal(room)}
+                onWheel={(e) => zoom(e)}
+            />
 
 
 
@@ -325,23 +325,48 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                 {/*Body*/}
                 <View style={customStyle.body}>
 
-                    {/*Left side*/}
-                    <View style={customStyle.leftSideView & { display: "none" }} >
+                    {/*left side*/}
+                    <View style={customStyle.leftSideView && { display: 0 }}>
                     </View>
 
-                    {/*Middle*/}
                     <View style={customStyle.middleView}>
-                        <SvgImage style={customStyle.svg} height={height} preserveAspectRatio="xMidYMid meet"
-                            viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
-                            room={roomCoords.find(elements => elements.room === selectedRoom)}
-                            onClick={verifyAndChangeSelectedRoom} onDoubleClick={(room) => verifyAndShowModal(room)}
-                            onWheel={(e) => zoom(e)} loccords={getCords.then((a) => {translate(a)})}
-                        />
+
+                        <GestureHandlerRootView>
+
+
+                            <PanGestureHandler onHandlerStateChange={(evt) => {
+                                let { nativeEvent } = evt;
+                                //movement from left to right, ie previous floor
+                                if (nativeEvent.translationX > 30) {
+
+                                    if (floor === 2) {
+
+                                    } else {
+
+                                        setFloor(floor - 1);
+                                    }
+                                    //movement from right to left, ie next floor
+                                } else if (nativeEvent.translationX < - 30) {
+                                    if (floor === 4) {
+
+                                    } else {
+                                        setFloor(floor + 1);
+
+                                    }
+                                }
+                            }}>
+                                <View>
+                                    {renderFloor()}
+                                </View>
+
+                            </PanGestureHandler>
+                        </GestureHandlerRootView>
+
                     </View>
 
-                    {/*Right side*/}
+                    {/*right side*/}
                     <View style={customStyle.rightSideView}>
-                        <Text style={customStyle.rightSideTableTitle}>
+                        <Text style={{ margin: 10, fontSize: 25, color: "#FFFFFF" }}>
                             Room {selectedRoom} selected!
                         </Text>
 
@@ -351,81 +376,20 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
                         <Pressable onPress={onPressFunction}
                             style={({ pressed }) => [
-                                { backgroundColor: pressed ? "#55B0F6" : "#55BCF6", margin: 10 },
+                                { backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10, },
                                 customStyle.button
                             ]}
                         >
                             <Text style={{ textAlign: "center" }}> Reset map</Text>
                         </Pressable>
+
+
                     </View>
+
+
                 </View>
             </View>
-            <View style={customStyle.body}>
-
-                <View style={customStyle.leftSideView}>
-
-                </View>
-                <View style={customStyle.middleView}>
-
-                    <GestureHandlerRootView>
-
-
-                    <PanGestureHandler onHandlerStateChange={(evt) => {
-                        let { nativeEvent } = evt;
-                        //movement from left to right, ie previous floor
-                        if (nativeEvent.translationX > 30) {
-
-                            if (floor === 2) {
-
-                            } else {
-
-                                setFloor(floor - 1);
-                            }
-                        //movement from right to left, ie next floor
-                        } else if (nativeEvent.translationX < - 30) {
-                            if (floor === 4) {
-
-                            } else {
-                                setFloor(floor + 1);
-
-                            }
-                        }
-                    }}>
-                        <View>
-                            {renderFloor()}
-                        </View>
-
-                    </PanGestureHandler>
-                    </GestureHandlerRootView>
-
-                </View>
-
-
-                <View style={styles.rightSideView}>
-                    <Text style={{margin: 10, fontSize: 25, color: "#FFFFFF"}}>
-                        Room {selectedRoom} selected!
-                    </Text>
-
-                    <ScrollView style={createListViewStyle()}>
-                        {createListItems()}
-                    </ScrollView>
-
-                    <Pressable onPress={onPressFunction}
-                               style={({pressed}) => [
-                                   {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
-                                   styles.button
-                               ]}
-                    >
-                        <Text style={{textAlign: "center"}}> Reset map</Text>
-                    </Pressable>
-
-
-                </View>
-
-            </View>
-
         </View>
-
 
     )
 }

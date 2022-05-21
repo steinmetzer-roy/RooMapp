@@ -37,7 +37,8 @@ const SvgComponent = (props) => (
             <MapArrowFloor3 room={props.room}/>
 
             {createClickableSvgRects("3", props.onClick, props.onDoubleClick)}
-            {setInterval(() => {toCall(props)},3000)}
+            {//props.navigation.setInterval(() => {toCall(props)},3000)
+            }
             <circle cx={cords.xtr&&cords.xtr*256666.66} cy={cords.ytr&&cords.ytr*-750000} r={25} fill="green"></circle>
 
 

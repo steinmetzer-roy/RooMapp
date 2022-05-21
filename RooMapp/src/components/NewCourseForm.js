@@ -17,6 +17,15 @@ const classrooms = [
   { room: '2.070' },
   { room: '1.060' },
 ];
+const weekdayList = [
+  { label: "Monday" },
+  { label: "Tuesday" },
+  { label: "Wednesday" },
+  { label: "Thursday" },
+  { label: "Friday" },
+  { label: "Saturday" },
+  { label: "Sunday" }
+];
 
 const options2 = classrooms.map((option) => {
   const firstLetter = option.room[0];
@@ -89,17 +98,22 @@ const NewCourseForm = ({ customStyle }) => {
         />
         {/* <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
           onChange={(e) => setWeekday(e.target.value)} /> */}
-        <div>
+        {/* <div>
           <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
             <option value="mon">Monday</option>
-            <option value="tue">Tuesday</option>
-            <option value="wed">Wednesday</option>
-            <option value="thu">Thursday</option>
-            <option value="fri">Friday</option>
-            <option value="sat">Saturday</option>
-            <option value="sun">Sunday</option>
           </select>
-        </div>
+        </div> */}
+        <br></br>
+        <Autocomplete
+          disablePortal
+          id="weekday-dropdown"
+          inputValue={weekday}
+          onInputChange={(event, newValue) => { setWeekday(newValue); }}
+          options={weekdayList}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Day" />}
+        />
+
         <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
       </form >
 

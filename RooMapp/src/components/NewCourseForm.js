@@ -8,6 +8,8 @@ import {
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { InputLabel } from '@mui/material';
+
 
 
 const options = ['Database Management 2', 'SEP'];
@@ -57,6 +59,7 @@ const NewCourseForm = ({ customStyle }) => {
     setClassroom('');
     setTime('');
     setStartDate('');
+    setStartDate('');
     setWeekday('');
   }
   // onChange is equal to some kind of a function that takes in an event object "e" and we update the state of "name" from line 6
@@ -68,10 +71,10 @@ const NewCourseForm = ({ customStyle }) => {
         <Stack spacing={0.6}>
 
           <Autocomplete
+            id="name-box"
             disablePortal
             value={name}
             onChange={(event, newValue) => { setName(newValue); }}
-            id="name-box"
             options={options}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Name" />}
@@ -88,23 +91,12 @@ const NewCourseForm = ({ customStyle }) => {
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Classroom" />}
           />
-          {/* <DatePicker
-            // customInput={<TextInput style={customStyle.input} />}
-            selected={time1}
-            onChange={(date) => setStartDate(date)}
-            showTimeSelect
-            placeholderText='Time'
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
-          /> */}
 
           <TextField
             id="time"
             label=""
             type="time"
-            defaultValue="07:30"
+            // defaultValue=""
             selected={time1}
             onChange={(e) => setStartDate(e.target.value.toString())}
             InputLabelProps={{

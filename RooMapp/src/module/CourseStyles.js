@@ -87,13 +87,22 @@ const courseStyleDarkMode = StyleSheet.create({
         flex: 1,
         backgroundColor: '#2A2D32',
     },
-    sectionTitle: {
+    title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#888C93'
+        alignSelf: 'center',
+        padding: 15,
+        color: "#C0C0C0"
+    },
+    titleWrapper: {
+        borderWidth: 2,
+        borderColor: '#C0C0C0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10
     },
     item: {
-        backgroundColor: '#888C93',
+        backgroundColor: '#C0C0C0',
         padding: 15,
         borderRadius: 10,
         flexDirection: 'row',

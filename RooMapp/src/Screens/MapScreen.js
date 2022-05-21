@@ -243,19 +243,6 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
     }
 
-    //creates the style for the outermost view from the list
-    const createListViewStyle = () => {
-        return {
-            borderRadius: 10,
-            backgroundColor: "#FFFFFF",
-            height: listHeight,
-            width: listWidth,
-            margin: 10,
-            borderColor: '#C0C0C0',
-            borderWidth: 2,
-        }
-    };
-
     //renders the proper floor
     const renderFloor = () => {
 
@@ -288,7 +275,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#EBEAED' }}>
+        <View style={customStyle.container}>
             <View style={{ flexDirection: "column" }}>
                 <Modal animationType="fade"
                     transparent={true}
@@ -366,11 +353,11 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
                     {/*right side*/}
                     <View style={customStyle.rightSideView}>
-                        <Text style={{ margin: 10, fontSize: 25, color: "#FFFFFF" }}>
+                        <Text style={customStyle.rightSideTableTitle}>
                             Room {selectedRoom} selected!
                         </Text>
 
-                        <ScrollView style={createListViewStyle()}>
+                        <ScrollView style={[customStyle.rightSideListView ,{height: listHeight, width: listWidth}]}>
                             {createListItems()}
                         </ScrollView>
 

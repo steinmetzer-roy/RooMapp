@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { Button, Text, View } from 'react-native';
 //Modules
 import { courseStyle, courseStyleDarkMode } from './src/module/CourseStyles';
-import { mapStyle } from './src/module/MapStyles';
+import { mapStyle, mapStyleDarkMode } from './src/module/MapStyles';
 import { TouchableOpacity } from 'react-native-web';
 
 const Drawer = createDrawerNavigator();
@@ -45,8 +45,8 @@ export default function App() {
     return (
         <NavigationContainer >
             <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown: false, drawerStyle: courseCustomStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
-                <Drawer.Screen name="MapScreen" children={({ navigation, route}) => <SwipeGesture child={<MapScreen navigation={navigation} route={route} customStyle={mapCustomStyle}></MapScreen>} navigation={navigation}></SwipeGesture>} />
                 <Drawer.Screen name="CourseScreen" children={({ navigation }) => <SwipeGesture child={<CourseScreen customStyle={courseCustomStyle}></CourseScreen>} navigation={navigation}></SwipeGesture>} />
+                <Drawer.Screen name="MapScreen" children={({ navigation, route}) => <SwipeGesture child={<MapScreen navigation={navigation} route={route} customStyle={mapCustomStyle}></MapScreen>} navigation={navigation}></SwipeGesture>} />
             </Drawer.Navigator>
         </NavigationContainer >
     );

@@ -1,6 +1,9 @@
 export const roomInfo = [
     //x and y are entrance coordinates, dir is direction the arrow that points at the entrance
     //rectX, rectY, rectW, rectH form a rectangle , which is the clickable rectangle on the map
+    //seats, projectors,computers, access, other is information for the roomscreen
+
+    //todo fill in seats, projectors, computers, access, other, as of now only 3 rooms in floor 3 have that information
 
     //floor2
     //2 small rooms left of the escalator, are these even classrooms?

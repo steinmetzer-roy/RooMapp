@@ -10,6 +10,22 @@ import TextField from '@mui/material/TextField';
 
 const options = ['Database Management 2', 'SEP'];
 
+const classrooms = [
+  { room: '3.010' },
+  { room: '3.040' },
+  { room: '3.050' },
+  { room: '2.070' },
+  { room: '1.060' },
+];
+
+const options2 = classrooms.map((option) => {
+  const firstLetter = option.room[0];
+  return {
+    firstLetter: option.room[0],
+    ...option,
+  };
+});
+
 const NewCourseForm = ({ customStyle }) => {
 
   const [time1, setStartDate] = useState('');
@@ -38,51 +54,28 @@ const NewCourseForm = ({ customStyle }) => {
     <KeyboardAvoidingView>
 
       <form onSubmit={handleSubmit} >
-        {/* <TextInput style={customStyle.input} placeholder="Course Name" value={name}
-          onChange={(e) => setName(e.target.value)} /> */}
         <Autocomplete
           disablePortal
           value={name}
-          onChange={(event, newValue) => {
-            setName(newValue);
-          }}
+          onChange={(event, newValue) => { setName(newValue); }}
           id="name-box"
           options={options}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Name" />}
         />
-        {/* <TextInput style={customStyle.input} placeholder="Classroom Number" value={classroom}
-          onChange={(e) => setClassroom(e.target.value)} /> */}
-        <div>
-          <select value={classroom} onChange={(e) => setClassroom(e.target.value)}>
-            <option value="3.010">3.010</option>
-            <option value="3.040">3.040</option>
-            <option value="3.050">3.050</option>
-            <option value="3.070">3.070</option>
-            <option value="3.080">3.080</option>
-            <option value="3.110">3.110</option>
-            <option value="3.120">3.120</option>
-            <option value="3.160">3.160</option>
-            <option value="3.170">3.170</option>
-            <option value="3.180">3.180</option>
-            <option value="3.190">3.190</option>
-            <option value="3.200">3.200</option>
-            <option value="3.210">3.210</option>
-            <option value="3.220">3.220</option>
-            <option value="3.230">3.230</option>
-            <option value="3.240">3.240</option>
-            <option value="3.330">3.330</option>
-            <option value="3.350">3.350</option>
-            <option value="3.370">3.370</option>
-            <option value="3.380">3.380</option>
-            <option value="3.390">3.390</option>
-            <option value="3.500">3.500</option>
-            <option value="3.510">3.510</option>
-            <option value="3.520">3.520</option>
-            <option value="3.530">3.530</option>
-            <option value="3.540">3.540</option>
-          </select>
-        </div>
+        <br></br>
+        <Autocomplete
+          id="grouped"
+          name={classroom}
+          inputValue={classroom}
+          isOptionEqualToValue={(option, value) => option.room === value}
+          onInputChange={(event, newValue) => { setClassroom(newValue.toString()); }}
+          options={options2.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+          groupBy={(option) => option.firstLetter}
+          getOptionLabel={(option) => option.room || ""}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Classroom" />}
+        />
         <DatePicker
           customInput={<TextInput style={customStyle.input} />}
           selected={time1}
@@ -115,11 +108,6 @@ const NewCourseForm = ({ customStyle }) => {
 
   );
 }
-
-const options1 = [
-  { label: 'Database Management 2' },
-  { label: 'SEP' },
-];
 
 /*
 const styles = StyleSheet.create({

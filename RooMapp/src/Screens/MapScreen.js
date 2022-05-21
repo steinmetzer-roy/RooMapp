@@ -1,98 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Pressable, Text, Modal } from 'react-native';
-import SvgImage from "../components/MapSvg"
-import { useFocusEffect } from "@react-navigation/native";
-import { ScrollView, TouchableOpacity } from "react-native-web";
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Pressable, Text, Modal, ScrollView} from 'react-native';
+import Floor3 from "../components/floors/Floor3"
+import Floor2 from "../components/floors/Floor2"
+import Floor4 from "../components/floors/Floor4"
+import {useFocusEffect} from "@react-navigation/native";
+import {TouchableOpacity} from "react-native-web";
+import { GestureHandlerRootView, PanGestureHandler} from "react-native-gesture-handler";
+import {roomInfo} from "../components/data/RoomData";
 
 
 const MapScreen = ({ navigation, route, customStyle }) => {
 
-    //rooms to be used as input(for testing purposes)
-    const testRooms = [
-        "3.010",
-        "3.040",
-        "room4",
-        "3.070",
-        "room3",
-        "3.110",
-        "room11",
-        "room6",
-        "room8",
-        "room9",
-
-        "3.190",
-        "3.200",
-        "room1",
-        "3.220",
-        "3.230",
-        "room5",
-        "3.330",
-        "room2",
-        "3.350",
-        "3.370",
-        "3.380",
-        "room7",
-        "3.500",
-        "room12",
-        "3.520",
-        "3.530",
-        "3.540",
-
-
-    ];
-
-    //todo verify room names
-    //todo find direction of escalator exit
+    //todo verify direction of escalator exits
 
     //names of the rooms with associated coordinates on the svg
-    const roomCoords = [
-        { room: "3.010", x: 85, y: 905, dir: "bottom" },
-        { room: "3.040", x: 85, y: 900, dir: "top" },
-        { room: "3.050", x: 85, y: 685, dir: "top" },
-        { room: "3.070", x: 110, y: 475, dir: "left" },
-        { room: "3.080", x: 110, y: 450, dir: "left" },
-        { room: "3.110", x: 85, y: 160, dir: "bottom" },
-        { room: "3.120", x: 85, y: 160, dir: "top" },
-
-        { room: "3.160", x: 285, y: 30, dir: "right" },
-        { room: "3.170", x: 312, y: 240, dir: "top" },
-        { room: "3.180", x: 312, y: 240, dir: "bottom" },
-        { room: "3.190", x: 285, y: 450, dir: "right" },
-        { room: "3.200", x: 285, y: 475, dir: "right" },
-        { room: "3.210", x: 312, y: 685, dir: "top" },
-        { room: "3.220", x: 312, y: 685, dir: "bottom" },
-        { room: "3.230", x: 312, y: 955, dir: "top" },
-        { room: "3.240", x: 312, y: 955, dir: "bottom" },
-
-        { room: "3.330", x: 85, y: 1285, dir: "bottom" },
-        { room: "3.350", x: 110, y: 1778, dir: "left" },
-
-        { room: "3.370", x: 285, y: 1778, dir: "right" },
-        { room: "3.380", x: 285, y: 1400, dir: "right" },
-        { room: "3.390", x: 312, y: 1285, dir: "bottom" },
-
-        { room: "3.500", x: 165, y: 1175, dir: "top" },
-        { room: "3.510", x: 145, y: 530, dir: "bottom" },
-        { room: "3.520", x: 145, y: 120, dir: "bottom" },
-        { room: "3.530", x: 145, y: 1290, dir: "bottom" },
-        { room: "3.540", x: 145, y: 1700, dir: "top" },
+    const roomCoords = roomInfo;
 
 
-    ];
     //room that the arrow is pointing to
     const [selectedRoom, setSelectedRoom] = useState(roomCoords[0].room);
     //whether the modal is shown with the room information
     const [showModal, setShowModal] = useState(false);
     //what room information is shown in the modal
     const [modalRoom, setModalRoom] = useState(roomCoords[0].room);
+    //what floor is showing right now
+    const [floor, setFloor] = useState(2);
 
     //execute this when focusing this component
     useFocusEffect(React.useCallback(() => {
-
         if (route.params && route.params.room) {
             let room = route.params.room;
             if (roomCoords.find(element => element.room === room)) {
                 setSelectedRoom(room);
+                setFloor(parseInt(room.substring(0,1)));
             } else {
                 setSelectedRoom(roomCoords[0].room);
                 console.log("This room does not exist!");
@@ -150,12 +90,6 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
     }
 
-    //loops through the available rooms for testing purposes
-    const onPressFunctionTest = () => {
-        let index = testRooms.findIndex(elements => elements === selectedRoom);
-        setSelectedRoom(testRooms[(index + 1) % roomCoords.length]);
-    }
-
     //resets the viewBox
     const onPressFunction = () => {
         setViewBox(vb);
@@ -171,6 +105,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
         let b = roomCoords.find(elements => elements.room === room);
         if (b) {
             setSelectedRoom(b.room);
+            setFloor(parseInt(b.room.substring(0,1)));
         } else {
             console.log("Could not find room");
         }
@@ -321,6 +256,37 @@ const MapScreen = ({ navigation, route, customStyle }) => {
         }
     };
 
+    //renders the proper floor
+    const renderFloor = () => {
+
+        if (floor === 2)
+            return <Floor2 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                           room={roomCoords.find(elements => elements.room === selectedRoom)}
+                           onClick={verifyAndChangeSelectedRoom}
+                           onDoubleClick={(room) => verifyAndShowModal(room)}
+                           onWheel={(e) => zoom(e)}/>
+        else if (floor === 4)
+            return <Floor4 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                           viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                           room={roomCoords.find(elements => elements.room === selectedRoom)}
+                           onClick={verifyAndChangeSelectedRoom}
+                           onDoubleClick={(room) => verifyAndShowModal(room)}
+                           onWheel={(e) => zoom(e)}/>
+        else
+            return <Floor3 style={styles.svg} height={height} preserveAspectRatio="xMidYMid meet"
+                        viewBox={viewBox.x + " " + viewBox.y + " " + viewBox.w + " " + viewBox.h}
+                        room={roomCoords.find(elements => elements.room === selectedRoom)}
+                        onClick={verifyAndChangeSelectedRoom}
+                        onDoubleClick={(room) => verifyAndShowModal(room)}
+                        onWheel={(e) => zoom(e)}
+                />
+
+
+
+    };
+
+
     return (
         <View style={{ flex: 1, backgroundColor: '#EBEAED' }}>
             <View style={{ flexDirection: "column" }}>
@@ -351,7 +317,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                 <View style={customStyle.courseWrapper}>
                     <View style={customStyle.titleWrapper}>
                         <Text style={customStyle.title}>
-                            Maison du Savoir Floor 3
+                            Maison du Savoir Floor {floor}
                         </Text>
                     </View>
                 </View>
@@ -394,7 +360,73 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                     </View>
                 </View>
             </View>
+            <View style={customStyle.body}>
+
+                <View style={customStyle.leftSideView}>
+
+                </View>
+                <View style={customStyle.middleView}>
+
+                    <GestureHandlerRootView>
+
+
+                    <PanGestureHandler onHandlerStateChange={(evt) => {
+                        let { nativeEvent } = evt;
+                        //movement from left to right, ie previous floor
+                        if (nativeEvent.translationX > 30) {
+
+                            if (floor === 2) {
+
+                            } else {
+
+                                setFloor(floor - 1);
+                            }
+                        //movement from right to left, ie next floor
+                        } else if (nativeEvent.translationX < - 30) {
+                            if (floor === 4) {
+
+                            } else {
+                                setFloor(floor + 1);
+
+                            }
+                        }
+                    }}>
+                        <View>
+                            {renderFloor()}
+                        </View>
+
+                    </PanGestureHandler>
+                    </GestureHandlerRootView>
+
+                </View>
+
+
+                <View style={styles.rightSideView}>
+                    <Text style={{margin: 10, fontSize: 25, color: "#FFFFFF"}}>
+                        Room {selectedRoom} selected!
+                    </Text>
+
+                    <ScrollView style={createListViewStyle()}>
+                        {createListItems()}
+                    </ScrollView>
+
+                    <Pressable onPress={onPressFunction}
+                               style={({pressed}) => [
+                                   {backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10,},
+                                   styles.button
+                               ]}
+                    >
+                        <Text style={{textAlign: "center"}}> Reset map</Text>
+                    </Pressable>
+
+
+                </View>
+
+            </View>
+
         </View>
+
+
     )
 }
 

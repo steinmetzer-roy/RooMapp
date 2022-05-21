@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+
 
 const options = ['Database Management 2', 'SEP'];
 
@@ -63,58 +65,70 @@ const NewCourseForm = ({ customStyle }) => {
     <KeyboardAvoidingView>
 
       <form onSubmit={handleSubmit} >
-        <Autocomplete
-          disablePortal
-          value={name}
-          onChange={(event, newValue) => { setName(newValue); }}
-          id="name-box"
-          options={options}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Name" />}
-        />
-        <br></br>
-        <Autocomplete
-          id="grouped"
-          name={classroom}
-          inputValue={classroom}
-          isOptionEqualToValue={(option, value) => option.room === value}
-          onInputChange={(event, newValue) => { setClassroom(newValue.toString()); }}
-          options={options2.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-          groupBy={(option) => option.firstLetter}
-          getOptionLabel={(option) => option.room || ""}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Classroom" />}
-        />
-        <DatePicker
-          customInput={<TextInput style={customStyle.input} />}
-          selected={time1}
-          onChange={(date) => setStartDate(date)}
-          showTimeSelect
-          placeholderText='Time'
-          showTimeSelectOnly
-          timeIntervals={15}
-          timeCaption="Time"
-          dateFormat="h:mm aa"
-        />
-        {/* <TextInput style={customStyle.input} placeholder="Weekday" value={weekday}
-          onChange={(e) => setWeekday(e.target.value)} /> */}
-        {/* <div>
-          <select value={weekday} onChange={(e) => setWeekday(e.target.value)}>
-            <option value="mon">Monday</option>
-          </select>
-        </div> */}
-        <br></br>
-        <Autocomplete
-          disablePortal
-          id="weekday-dropdown"
-          inputValue={weekday}
-          onInputChange={(event, newValue) => { setWeekday(newValue); }}
-          options={weekdayList}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Day" />}
-        />
+        <Stack spacing={0.6}>
 
-        <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
+          <Autocomplete
+            disablePortal
+            value={name}
+            onChange={(event, newValue) => { setName(newValue); }}
+            id="name-box"
+            options={options}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Name" />}
+          />
+          <Autocomplete
+            id="grouped"
+            name={classroom}
+            inputValue={classroom}
+            isOptionEqualToValue={(option, value) => option.room === value}
+            onInputChange={(event, newValue) => { setClassroom(newValue.toString()); }}
+            options={options2.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+            groupBy={(option) => option.firstLetter}
+            getOptionLabel={(option) => option.room || ""}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Classroom" />}
+          />
+          {/* <DatePicker
+            // customInput={<TextInput style={customStyle.input} />}
+            selected={time1}
+            onChange={(date) => setStartDate(date)}
+            showTimeSelect
+            placeholderText='Time'
+            showTimeSelectOnly
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
+          /> */}
+
+          <TextField
+            id="time"
+            label=""
+            type="time"
+            defaultValue="07:30"
+            selected={time1}
+            onChange={(e) => setStartDate(e.target.value.toString())}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 60, // 1 min
+            }}
+            sx={{ width: 300 }}
+          />
+
+          <Autocomplete
+            disablePortal
+            id="weekday-dropdown"
+            inputValue={weekday}
+            onInputChange={(event, newValue) => { setWeekday(newValue); }}
+            options={weekdayList}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Day" />}
+          />
+
+          <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
+        </Stack>
+
       </form >
 
     </KeyboardAvoidingView >

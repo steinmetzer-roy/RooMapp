@@ -17,7 +17,7 @@ const CourseScreen = ({ customStyle }) => {
                 <CourseContextProvider>
                     <CourseList customStyle={customStyle} />
                     <View style={{ flex: 1 }}></View>
-                    <NewCourseForm customStyle={customStyle} />
+                    <NewCourseForm customStyle={customStyle.formBoxStyle} />
                 </CourseContextProvider>
             </View>
         </View>

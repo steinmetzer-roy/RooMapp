@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { CourseContext } from '../contexts/CourseContext';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   StyleSheet, TextInput, KeyboardAvoidingView
@@ -8,11 +7,8 @@ import {
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import { InputLabel } from '@mui/material';
 
-
-
-const options = ['Database Management 2', 'SEP'];
+const options = ['Database Management 2', 'Algorithms 3', 'SEP', 'Networks 2', 'Software Testing', 'Interaction Design'];
 
 const classrooms = [
   { room: '3.010' },
@@ -39,6 +35,7 @@ const options2 = classrooms.map((option) => {
   };
 });
 
+
 const NewCourseForm = ({ customStyle }) => {
 
   const [time1, setStartDate] = useState('');
@@ -59,19 +56,18 @@ const NewCourseForm = ({ customStyle }) => {
     setClassroom('');
     setTime('');
     setStartDate('');
-    setStartDate('');
     setWeekday('');
   }
-  // onChange is equal to some kind of a function that takes in an event object "e" and we update the state of "name" from line 6
-  return ( //creating the template
+
+  return (
 
     <KeyboardAvoidingView>
 
       <form onSubmit={handleSubmit} >
         <Stack spacing={0.6}>
-
           <Autocomplete
-            id="name-box"
+            style={customStyle.formBoxStyle}
+            id="namebox"
             disablePortal
             value={name}
             onChange={(event, newValue) => { setName(newValue); }}
@@ -79,6 +75,7 @@ const NewCourseForm = ({ customStyle }) => {
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Name" />}
           />
+
           <Autocomplete
             id="grouped"
             name={classroom}
@@ -109,8 +106,8 @@ const NewCourseForm = ({ customStyle }) => {
           />
 
           <Autocomplete
-            disablePortal
             id="weekday-dropdown"
+            disablePortal
             inputValue={weekday}
             onInputChange={(event, newValue) => { setWeekday(newValue); }}
             options={weekdayList}

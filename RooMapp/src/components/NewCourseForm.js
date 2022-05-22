@@ -66,18 +66,19 @@ const NewCourseForm = ({ customStyle }) => {
       <form onSubmit={handleSubmit} >
         <Stack spacing={0.6}>
           <Autocomplete
-            style={customStyle.formBoxStyle}
             id="namebox"
+            style={{ backgroundColor: '#EBE9E8' }}
             disablePortal
             value={name}
             onChange={(event, newValue) => { setName(newValue); }}
             options={options}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Name" />}
+            renderInput={(params) => <TextField  {...params} label="Name" />}
           />
 
           <Autocomplete
             id="grouped"
+            style={{ backgroundColor: '#EBE9E8' }}
             name={classroom}
             inputValue={classroom}
             isOptionEqualToValue={(option, value) => option.room === value}
@@ -91,6 +92,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <TextField
             id="time"
+            style={{ backgroundColor: '#EBE9E8' }}
             label=""
             type="time"
             // defaultValue=""
@@ -107,6 +109,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <Autocomplete
             id="weekday-dropdown"
+            style={{ backgroundColor: '#EBE9E8' }}
             disablePortal
             inputValue={weekday}
             onInputChange={(event, newValue) => { setWeekday(newValue); }}
@@ -115,7 +118,7 @@ const NewCourseForm = ({ customStyle }) => {
             renderInput={(params) => <TextField {...params} label="Day" />}
           />
 
-          <input style={{ width: 55, height: 55, backgroundColor: '#FFF', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
+          <input style={{ width: 55, height: 55, backgroundColor: '#EBE9E8', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
         </Stack>
 
       </form >

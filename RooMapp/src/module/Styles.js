@@ -62,9 +62,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         width: 250,
-    },
-    formBoxStyle: {
-        backgroundColor: 'red',
     }
 
 });
@@ -137,9 +134,6 @@ const stylesDarkMode = StyleSheet.create({
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         width: 250,
-    },
-    formBoxStyle: {
-        backgroundColor: 'red',
     }
 
 });

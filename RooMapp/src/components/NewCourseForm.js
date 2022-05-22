@@ -17,14 +17,14 @@ const classrooms = [
   { room: '2.070' },
   { room: '1.060' },
 ];
-const weekdayList = [
-  { label: "Monday" },
-  { label: "Tuesday" },
-  { label: "Wednesday" },
-  { label: "Thursday" },
-  { label: "Friday" },
-  { label: "Saturday" },
-  { label: "Sunday" }
+const weekdayList = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+  // { label: "Monday" },
+  // { label: "Tuesday" },
+  // { label: "Wednesday" },
+  // { label: "Thursday" },
+  // { label: "Friday" },
+  // { label: "Saturday" },
+  // { label: "Sunday" }
 ];
 
 const options2 = classrooms.map((option) => {
@@ -38,25 +38,23 @@ const options2 = classrooms.map((option) => {
 
 const NewCourseForm = ({ customStyle }) => {
 
-  const [time1, setStartDate] = useState('');
   const { dispatch } = useContext(CourseContext); //context we want is the course one
   const [name, setName] = useState('');
   const [classroom, setClassroom] = useState('');
-  const [time, setTime] = useState('');
   const [weekday, setWeekday] = useState('');
+  const [time1, setStartDate] = useState('');
 
   const handleSubmit = (e) => {
+    setName('');
+    setClassroom('');
+    setStartDate('');
+    setWeekday('');
     e.preventDefault();
     dispatch({
       type: 'ADD_COURSE', course: {
         name, classroom, time1, weekday
       }
     });
-    setName('');
-    setClassroom('');
-    setTime('');
-    setStartDate('');
-    setWeekday('');
   }
 
   return (
@@ -74,6 +72,7 @@ const NewCourseForm = ({ customStyle }) => {
             options={options}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField  {...params} label="Name" />}
+
           />
 
           <Autocomplete
@@ -81,13 +80,15 @@ const NewCourseForm = ({ customStyle }) => {
             style={{ backgroundColor: '#EBE9E8' }}
             name={classroom}
             inputValue={classroom}
-            isOptionEqualToValue={(option, value) => option.room === value}
+            // isOptionEqualToValue={(option, value) => option.room === value}
             onInputChange={(event, newValue) => { setClassroom(newValue.toString()); }}
             options={options2.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.room || ""}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Classroom" />}
+            selectOnFocus={true}
+            clearOnBlur={true}
           />
 
           <TextField
@@ -96,7 +97,7 @@ const NewCourseForm = ({ customStyle }) => {
             label=""
             type="time"
             // defaultValue=""
-            selected={time1}
+            value={time1}
             onChange={(e) => setStartDate(e.target.value.toString())}
             InputLabelProps={{
               shrink: true,
@@ -111,14 +112,15 @@ const NewCourseForm = ({ customStyle }) => {
             id="weekday-dropdown"
             style={{ backgroundColor: '#EBE9E8' }}
             disablePortal
-            inputValue={weekday}
-            onInputChange={(event, newValue) => { setWeekday(newValue); }}
+            value={weekday}
+            onChange={(event, newValue) => { setWeekday(newValue); }}
             options={weekdayList}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Day" />}
           />
 
           <input style={{ width: 55, height: 55, backgroundColor: '#EBE9E8', borderRadius: 60, justifyContent: 'center', alignItems: 'center', borderColor: '#C0C0C0', borderWidth: 1, }} type="submit" value="+" />
+
         </Stack>
 
       </form >

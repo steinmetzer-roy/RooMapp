@@ -12,6 +12,7 @@ import { Button, Text, View } from 'react-native';
 import { courseStyle, courseStyleDarkMode } from './src/module/CourseStyles';
 import { mapStyle, mapStyleDarkMode } from './src/module/MapStyles';
 import { TouchableOpacity } from 'react-native-web';
+import { copy_db_entries, ping_server } from './DBhelper';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,6 +39,14 @@ export default function App() {
                  }}>
                 <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
                     <Text style={courseCustomStyle.drawerButtonTitleStyle}>DarkMode</Text>
+                </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                ping_server().then(a => console.log(a)).catch(a => console.log(a));
+                copy_db_entries().then(a => console.log(a)).catch(a => console.log(a));
+            }}>
+                <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>Server Testing</Text>
                 </View>
             </TouchableOpacity>
         </>

@@ -17,10 +17,11 @@ const courseStyle = StyleSheet.create({
         padding: 15,
     },
     titleWrapper: {
-        borderWidth: 1,
-        borderColor: 'black',
+        borderWidth: 2,
+        borderColor: '#C0C0C0',
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 10
     },
     item: {
         backgroundColor: '#FFF',
@@ -61,7 +62,6 @@ const courseStyle = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 2,
         width: 250,
-        backgroundColor: '#C0C0C0',
         backgroundColor: 'white',
         borderColor: 'black',
     },

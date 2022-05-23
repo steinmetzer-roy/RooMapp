@@ -23,7 +23,7 @@ const CourseScreen = ({ customStyle }) => {
                         <CourseList customStyle={customStyle} />
                     </SimpleBarReact>
                     <View style={{ flex: 1 }}></View>
-                    <NewCourseForm customStyle={customStyle.formBoxStyle} />
+                    <NewCourseForm customStyle={customStyle} />
                 </CourseContextProvider>
             </View>
         </View>

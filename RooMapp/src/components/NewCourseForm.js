@@ -45,10 +45,10 @@ const NewCourseForm = ({ customStyle }) => {
   const [time1, setStartDate] = useState('');
 
   const handleSubmit = (e) => {
-    setName('');
+    setName('Software Testing');
     setClassroom('');
-    setStartDate('');
-    setWeekday('');
+    setStartDate("08:00");
+    setWeekday('Wednesday');
     e.preventDefault();
     dispatch({
       type: 'ADD_COURSE', course: {
@@ -72,7 +72,6 @@ const NewCourseForm = ({ customStyle }) => {
             options={options}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField  {...params} label="Name" />}
-
           />
 
           <Autocomplete
@@ -96,7 +95,6 @@ const NewCourseForm = ({ customStyle }) => {
             style={{ backgroundColor: '#EBE9E8' }}
             label=""
             type="time"
-            // defaultValue=""
             value={time1}
             onChange={(e) => setStartDate(e.target.value.toString())}
             InputLabelProps={{

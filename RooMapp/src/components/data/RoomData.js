@@ -1,6 +1,9 @@
 export const roomInfo = [
     //x and y are entrance coordinates, dir is direction the arrow that points at the entrance
     //rectX, rectY, rectW, rectH form a rectangle , which is the clickable rectangle on the map
+    //seats, projectors,computers, access, other is information for the roomscreen
+
+    //todo fill in seats, projectors, computers, access, other, as of now only 3 rooms in floor 3 have that information
 
     //floor2
     //2 small rooms left of the escalator, are these even classrooms?
@@ -65,9 +68,9 @@ export const roomInfo = [
     {room: "3.160", x: 285, y: 30, dir: "right", rectX: 300, rectY: 10, rectW: 90, rectH: 125},
     {room: "3.170", x: 312, y: 240, dir: "top", rectX: 300, rectY: 135, rectW: 90, rectH: 85},
     {room: "3.180", x: 312, y: 240, dir: "bottom", rectX: 300, rectY: 260, rectW: 90, rectH: 90},
-    {room: "3.190", x: 285, y: 450, dir: "right", rectX: 300, rectY: 350, rectW: 90, rectH: 110},
-    {room: "3.200", x: 285, y: 475, dir: "right", rectX: 300, rectY: 465, rectW: 90, rectH: 115},
-    {room: "3.210", x: 312, y: 685, dir: "top", rectX: 300, rectY: 575, rectW: 90, rectH: 90},
+    {room: "3.190", x: 285, y: 450, dir: "right", rectX: 300, rectY: 350, rectW: 90, rectH: 110, seats: 15, projectors: 1, computers: 0,access: "None", other: ""},
+    {room: "3.200", x: 285, y: 475, dir: "right", rectX: 300, rectY: 465, rectW: 90, rectH: 115, seats: 30, projectors: 1, computers: 30,access: "None", other: ""},
+    {room: "3.210", x: 312, y: 685, dir: "top", rectX: 300, rectY: 575, rectW: 90, rectH: 90, seats: 120, projectors: 2, computers: 0,access: "None", other: ""},
     {room: "3.220", x: 312, y: 685, dir: "bottom", rectX: 300, rectY: 710, rectW: 90, rectH: 110},
     {room: "3.230", x: 312, y: 955, dir: "top", rectX: 300, rectY: 820, rectW: 90, rectH: 115},
     {room: "3.240", x: 312, y: 955, dir: "bottom", rectX: 300, rectY: 980, rectW: 90, rectH: 110},

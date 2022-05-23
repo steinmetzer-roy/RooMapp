@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#55BCF6',
         opacity: 0.4,
         borderRadius: 5,
-        marginRight: 15,
+        marginRight: 0,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -99,7 +99,7 @@ const stylesDarkMode = StyleSheet.create({
         backgroundColor: 'black',
         opacity: 0.4,
         borderRadius: 5,
-        marginRight: 15,
+        marginRight: 0,
     },
     itemLeft: {
         flexDirection: 'row',

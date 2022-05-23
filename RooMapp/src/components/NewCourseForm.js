@@ -17,7 +17,7 @@ const classrooms = [
   { room: '2.070' },
   { room: '1.060' },
 ];
-const weekdayList = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+const weekdayList = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
   // { label: "Monday" },
   // { label: "Tuesday" },
   // { label: "Wednesday" },
@@ -46,9 +46,9 @@ const NewCourseForm = ({ customStyle }) => {
 
   const handleSubmit = (e) => {
     setName('Software Testing');
-    setClassroom('');
+    setClassroom('1.060');
     setStartDate("08:00");
-    setWeekday('Wednesday');
+    setWeekday('Wed');
     e.preventDefault();
     dispatch({
       type: 'ADD_COURSE', course: {
@@ -65,6 +65,7 @@ const NewCourseForm = ({ customStyle }) => {
         <Stack spacing={0.6}>
           <Autocomplete
             id="namebox"
+            freeSolo
             style={{ backgroundColor: '#EBE9E8' }}
             disablePortal
             value={name}

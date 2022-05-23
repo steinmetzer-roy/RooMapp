@@ -15,9 +15,9 @@ const CourseDetails = ({ course, customStyle }) => {
             <View style={customStyle.square}></View>
             <View style={customStyle.itemLeft} onClick={() => goToMapScreen(course.classroom)}>
                 <div> <Text> {course.name}</Text></div>
-                <div ><Text> {course.classroom}</Text></div>
-                <div ><Text> {course.time1}</Text></div>
-                <div ><Text> {course.weekday}</Text></div>
+                <div> <Text> {course.classroom}</Text></div>
+                <div> <Text> {course.time1}</Text></div>
+                <div> <Text> {course.weekday}</Text></div>
             </View>
             <View><button onClick={() => dispatch({ type: 'REMOVE_COURSE', id: course.id })}><FaEraser /></button></View>
         </View>

@@ -7,6 +7,8 @@ import {
 import CourseContextProvider from '../contexts/CourseContext';
 import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
+import SimpleBarReact from "simplebar-react";
+import "simplebar/src/simplebar.css";
 
 const CourseScreen = ({ customStyle }) => {
 
@@ -15,7 +17,9 @@ const CourseScreen = ({ customStyle }) => {
             <View style={customStyle.courseWrapper}>
                 <Text style={customStyle.sectionTitle}>My Courses</Text>
                 <CourseContextProvider>
-                    <CourseList customStyle={customStyle} />
+                    <SimpleBarReact style={{ maxHeight: 300 }}>
+                        <CourseList customStyle={customStyle} />
+                    </SimpleBarReact>
                     <View style={{ flex: 1 }}></View>
                     <NewCourseForm customStyle={customStyle.formBoxStyle} />
                 </CourseContextProvider>

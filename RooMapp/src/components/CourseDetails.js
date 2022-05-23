@@ -21,7 +21,6 @@ const CourseDetails = ({ course, customStyle }) => {
             </View>
             <View><button onClick={() => dispatch({ type: 'REMOVE_COURSE', id: course.id })}><FaEraser /></button></View>
         </View>
-
     );
 }
 /*

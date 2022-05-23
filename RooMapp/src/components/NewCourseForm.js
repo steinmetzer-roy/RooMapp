@@ -45,16 +45,23 @@ const NewCourseForm = ({ customStyle }) => {
   const [time1, setStartDate] = useState('');
 
   const handleSubmit = (e) => {
-    setName('Software Testing');
-    setClassroom('1.060');
-    setStartDate("08:00");
-    setWeekday('Wed');
-    e.preventDefault();
-    dispatch({
-      type: 'ADD_COURSE', course: {
-        name, classroom, time1, weekday
-      }
-    });
+
+    if (name !== "" && classroom !== "" && weekday !== "" && time1 !== "") {
+      setName('Software Testing');
+      setClassroom('1.060');
+      setStartDate("08:00");
+      setWeekday('Wed');
+      e.preventDefault();
+      dispatch({
+        type: 'ADD_COURSE', course: {
+          name, classroom, time1, weekday
+        }
+      });
+    } else {
+      alert("Please fill all the fields");
+    }
+
+
   }
 
   return (

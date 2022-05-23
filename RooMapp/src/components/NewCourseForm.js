@@ -71,20 +71,20 @@ const NewCourseForm = ({ customStyle }) => {
       <form onSubmit={handleSubmit} >
         <Stack spacing={0.6}>
           <Autocomplete
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
             id="namebox"
             freeSolo
-            style={{ backgroundColor: '#EBE9E8' }}
             disablePortal
             value={name}
             onChange={(event, newValue) => { setName(newValue); }}
             options={options}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField  {...params} label="Name" />}
+            renderInput={(params) => <TextField {...params} label="Name" />}
           />
 
           <Autocomplete
             id="grouped"
-            style={{ backgroundColor: '#EBE9E8' }}
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
             name={classroom}
             inputValue={classroom}
             // isOptionEqualToValue={(option, value) => option.room === value}
@@ -100,7 +100,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <TextField
             id="time"
-            style={{ backgroundColor: '#EBE9E8' }}
+            style={StyleSheet.flatten([{flexDirection:'row', flex:1},customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
             label=""
             type="time"
             value={time1}
@@ -116,7 +116,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <Autocomplete
             id="weekday-dropdown"
-            style={{ backgroundColor: '#EBE9E8' }}
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
             disablePortal
             value={weekday}
             onChange={(event, newValue) => { setWeekday(newValue); }}

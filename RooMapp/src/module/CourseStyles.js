@@ -38,7 +38,7 @@ const courseStyle = StyleSheet.create({
         backgroundColor: '#55BCF6',
         opacity: 0.4,
         borderRadius: 5,
-        marginRight: 15,
+        marginRight: 0,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -72,8 +72,8 @@ const courseStyle = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         width: 250,
-
     }
+
 });
 
 const courseStyleDarkMode = StyleSheet.create({
@@ -117,7 +117,7 @@ const courseStyleDarkMode = StyleSheet.create({
         backgroundColor: 'black',
         opacity: 0.4,
         borderRadius: 5,
-        marginRight: 15,
+        marginRight: 0,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -153,8 +153,8 @@ const courseStyleDarkMode = StyleSheet.create({
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         width: 250,
-
     }
+
 });
 
 export { courseStyle, courseStyleDarkMode };

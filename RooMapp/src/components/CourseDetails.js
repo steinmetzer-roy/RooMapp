@@ -6,7 +6,7 @@ import {
 import { FaEraser } from 'react-icons/fa';
 
 const CourseDetails = ({ course, customStyle }) => {
-    const hours = course.time1.toString().substring(11, 16);
+    // const hours = course.time1.toString().substring(11, 16);
 
     const { dispatch } = useContext(CourseContext);
     const { goToMapScreen } = useContext(CourseContext);
@@ -15,13 +15,12 @@ const CourseDetails = ({ course, customStyle }) => {
             <View style={customStyle.square}></View>
             <View style={customStyle.itemLeft} onClick={() => goToMapScreen(course.classroom)}>
                 <div> <Text> {course.name}</Text></div>
-                <div ><Text> {course.classroom}</Text></div>
-                <div ><Text> {hours}</Text></div>
-                <div ><Text> {course.weekday}</Text></div>
+                <div> <Text> {course.classroom}</Text></div>
+                <div> <Text> {course.time1}</Text></div>
+                <div> <Text> {course.weekday}</Text></div>
             </View>
             <View><button onClick={() => dispatch({ type: 'REMOVE_COURSE', id: course.id })}><FaEraser /></button></View>
         </View>
-
     );
 }
 

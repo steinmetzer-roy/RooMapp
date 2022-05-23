@@ -165,37 +165,6 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
     }
 
-    //get location cords translated
-    const getCords = new Promise(resolve => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(resolve);
-            console.log("geolocation accepted")
-        } else {
-            console.log("geolocation denied")
-        }
-    })
-
-    function translate(pos) {
-        let crd = pos.coords;
-
-        let rotationAngle = 2.902482546;
-
-        //let x = 49.504297768442406 -49.5044028479121;
-        //let y = 5.9489314079671125 -5.9477025091986;
-
-        let x = crd.latitude - 49.5044028479121;
-        let y = crd.longitude - 5.9477025091986;
-        console.log(x + " " + y);
-
-        let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2 * x);
-        let ytr = -x * Math.sin(rotationAngle) + y * Math.cos(rotationAngle);
-        console.log(xtr + " " + ytr);
-
-        let newPos = { xtr: xtr, ytr: ytr };
-        console.log(newPos);
-        return newPos;
-    }
-
     const localData = getLocalData();
 
     const createListItems = () => {

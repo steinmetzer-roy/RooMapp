@@ -37,18 +37,52 @@ const SvgComponent = (props) => (
             <MapArrowFloor3 room={props.room}/>
 
             {createClickableSvgRects("3", props.onClick, props.onDoubleClick)}
-            {//props.navigation.setInterval(() => {toCall(props)},3000)
+            {
+                setInterval(() => {toCall(getCords().then(a => {return translate(a)}))},3000)
             }
-            <circle cx={cords.xtr&&cords.xtr*256666.66} cy={cords.ytr&&cords.ytr*-750000} r={25} fill="green"></circle>
+            <circle cx={(cords.xtr == 0 || undefined || NaN) ? 0 : (cords.xtr*256666.66)} cy={(cords.xtr == 0 || undefined || NaN) ? 0 : (cords.ytr&&cords.ytr*-750000)} r={25} fill="green"></circle>
 
 
         </G>
     </Svg>
 )
 
-function toCall(props){
-      props.loccords.then((a) => {cords = a; console.log(cords)});
-      //console.log((cords.xtr*166666.66) + " " + (cords.ytr*-1000000))
+//get location cords translated
+const getCords = () =>{ return new Promise(resolve => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(resolve);
+        console.log("geolocation accepted")
+    } else {
+        console.log("geolocation denied")
+    }
+})}
+
+function translate(pos) {
+    let crd = pos.coords;
+
+    let rotationAngle = 2.902482546;
+
+    //let x = 49.504297768442406 -49.5044028479121;
+    //let y = 5.9489314079671125 -5.9477025091986;
+
+    let x = crd.latitude - 49.5044028479121;
+    let y = crd.longitude - 5.9477025091986;
+    console.log(x + " " + y);
+
+    let xtr = x * Math.cos(rotationAngle) + y * Math.sin(rotationAngle) + Math.abs(2 * x);
+    let ytr = -x * Math.sin(rotationAngle) + y * Math.cos(rotationAngle);
+    console.log(xtr + " " + ytr);
+
+    let newPos = { xtr: xtr, ytr: ytr };
+    console.log(newPos);
+    return newPos;
+}
+
+function toCall(cords_promise){
+    console.log(cords_promise);
+    cords_promise.then((a) => {cords = a; console.log(cords)});
+
+    //console.log((cords.xtr*166666.66) + " " + (cords.ytr*-1000000))
 }
 
 //todo put the name of each room on the map?

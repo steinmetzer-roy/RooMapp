@@ -3,7 +3,7 @@ let server = "1a6d-2a06-4944-16fe-3e00-50f8-bc85-faf7-4a9b.eu.ngrok.io"
 
 function ping_server() {
     return new Promise((resolve, reject) => {
-        fetch('http://${server}:5005/', {
+        fetch(`http://${server}:5005/`, {
             "method": "GET",
             "credentials": 'same-origin',
             "headers": {

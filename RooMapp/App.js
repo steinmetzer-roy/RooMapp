@@ -25,20 +25,20 @@ export default function App() {
         <>
             <TouchableOpacity onPress={() => { props.navigation.navigate('CourseScreen') }}>
                 <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
-                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>CourseScreen</Text>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>Courses</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { props.navigation.navigate('MapScreen') }}>
                 <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
-                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>MapScreen</Text>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>Map</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {
-                 courseCustomStyle == courseStyle ? setCourseCustomStyle(courseStyleDarkMode) : setCourseCustomStyle(courseStyle); 
-                 mapCustomStyle == mapStyle ? setMapCustomStyle(mapStyleDarkMode) : setMapCustomStyle(mapStyle)  
-                 }}>
+                courseCustomStyle == courseStyle ? setCourseCustomStyle(courseStyleDarkMode) : setCourseCustomStyle(courseStyle);
+                mapCustomStyle == mapStyle ? setMapCustomStyle(mapStyleDarkMode) : setMapCustomStyle(mapStyle)
+            }}>
                 <View style={courseCustomStyle.drawerButtonBackgroundStyle}>
-                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>DarkMode</Text>
+                    <Text style={courseCustomStyle.drawerButtonTitleStyle}>Dark Mode</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {
@@ -55,7 +55,7 @@ export default function App() {
         <NavigationContainer >
             <Drawer.Navigator useLegacyImplementation screenOptions={{ headerTransparent: true, headerTitle: "", headerShown: false, drawerStyle: courseCustomStyle.drawerNavStyle }} drawerContent={props => DrawerEl(props)}>
                 <Drawer.Screen name="CourseScreen" children={({ navigation }) => <SwipeGesture child={<CourseScreen customStyle={courseCustomStyle}></CourseScreen>} navigation={navigation}></SwipeGesture>} />
-                <Drawer.Screen name="MapScreen" children={({ navigation, route}) => <SwipeGesture child={<MapScreen navigation={navigation} route={route} customStyle={mapCustomStyle}></MapScreen>} navigation={navigation}></SwipeGesture>} />
+                <Drawer.Screen name="MapScreen" children={({ navigation, route }) => <SwipeGesture child={<MapScreen navigation={navigation} route={route} customStyle={mapCustomStyle}></MapScreen>} navigation={navigation}></SwipeGesture>} />
             </Drawer.Navigator>
         </NavigationContainer >
     );

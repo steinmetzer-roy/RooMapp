@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CourseContext } from '../contexts/CourseContext';
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -7,8 +7,10 @@ import {
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { ping_server, copy_db_entries } from '../../DBhelper';
 
-const options = ['Database Management 2', 'Algorithms 3', 'SEP', 'Networks 2', 'Software Testing', 'Interaction Design'];
+
+let options = ['Database Management 2', 'Algorithms 3', 'SEP', 'Networks 2', 'Software Testing', 'Interaction Design'];
 
 const classrooms = [
   { room: '3.010' },
@@ -44,6 +46,9 @@ const NewCourseForm = ({ customStyle }) => {
   const [weekday, setWeekday] = useState('');
   const [time1, setStartDate] = useState('');
 
+  const [optionss, setoptionss] = useState(['Database Management 2', 'Algorithms 3', 'SEP', 'Networks 2', 'Software Testing', 'Interaction Design']);
+  const [refreshed, setrefreshed] = useState(false)
+
   const handleSubmit = (e) => {
 
     if (name !== "" && classroom !== "" && weekday !== "" && time1 !== "") {
@@ -64,27 +69,52 @@ const NewCourseForm = ({ customStyle }) => {
 
   }
 
+  function updateOptions() {
+    ping_server().then(a => {
+      if (a === "Server is up") {
+        console.log("OK")
+        copy_db_entries().then(a => {
+          console.log(a.entries[0].name);
+          for (let index = 0; index < a.entries.length; index++) {
+            setoptionss(arr => [...arr, a.entries[index].name])
+          }
+        })
+      } else {
+        console.log("NOK")
+      }
+    }).catch(console.log("Couldn't connect to server"))
+  }
+
+
+
   return (
 
     <KeyboardAvoidingView>
-
+      {
+        useEffect(() => {
+          if (refreshed === false) {
+            updateOptions();
+            setrefreshed(true);
+          }
+        })
+      }
       <form onSubmit={handleSubmit} >
         <Stack spacing={0.6}>
           <Autocomplete
-            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle, customStyle.drawerNavStyle])}
             id="namebox"
             freeSolo
             disablePortal
             value={name}
             onChange={(event, newValue) => { setName(newValue); }}
-            options={options}
+            options={optionss}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label="Name" />}
           />
 
           <Autocomplete
             id="grouped"
-            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle, customStyle.drawerNavStyle])}
             name={classroom}
             inputValue={classroom}
             // isOptionEqualToValue={(option, value) => option.room === value}
@@ -100,7 +130,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <TextField
             id="time"
-            style={StyleSheet.flatten([{flexDirection:'row', flex:1},customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
+            style={StyleSheet.flatten([{ flexDirection: 'row', flex: 1 }, customStyle.drawerButtonBackgroundStyle, customStyle.drawerNavStyle])}
             label=""
             type="time"
             value={time1}
@@ -116,7 +146,7 @@ const NewCourseForm = ({ customStyle }) => {
 
           <Autocomplete
             id="weekday-dropdown"
-            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle,customStyle.drawerNavStyle])}
+            style={StyleSheet.flatten([customStyle.drawerButtonBackgroundStyle, customStyle.drawerNavStyle])}
             disablePortal
             value={weekday}
             onChange={(event, newValue) => { setWeekday(newValue); }}

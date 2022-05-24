@@ -11,6 +11,12 @@ import { ping_server, copy_db_entries } from '../../DBhelper';
 
 
 let options = ['Database Management 2', 'Algorithms 3', 'SEP', 'Networks 2', 'Software Testing', 'Interaction Design'];
+const styles = theme => ({
+  time1: {
+    paddingRight: '150px',
+  },
+});
+
 
 const classrooms = [
   { room: '3.010' },
@@ -20,13 +26,6 @@ const classrooms = [
   { room: '1.060' },
 ];
 const weekdayList = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
-  // { label: "Monday" },
-  // { label: "Tuesday" },
-  // { label: "Wednesday" },
-  // { label: "Thursday" },
-  // { label: "Friday" },
-  // { label: "Saturday" },
-  // { label: "Sunday" }
 ];
 
 const options2 = classrooms.map((option) => {
@@ -142,6 +141,8 @@ const NewCourseForm = ({ customStyle }) => {
               step: 60, // 1 min
             }}
             sx={{ width: 300 }}
+            className={time1}
+            fullWidth
           />
 
           <Autocomplete

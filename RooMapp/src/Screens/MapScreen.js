@@ -251,7 +251,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                     transparent={true}
                     visible={showModal}
                 >
-                    <RoomScreen customStyle={customStyle} modalRoom={modalRoom} setShowModal={setShowModal}/>
+                    <RoomScreen customStyle={customStyle} modalRoom={modalRoom} setShowModal={setShowModal} />
                 </Modal>
 
                 {/*Head*/}
@@ -308,10 +308,10 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                     {/*right side*/}
                     <View style={customStyle.rightSideView}>
                         <Text style={customStyle.rightSideTableTitle}>
-                            Room {selectedRoom} selected!
+                            Room {selectedRoom} selected
                         </Text>
 
-                        <ScrollView style={[customStyle.rightSideListView ,{height: listHeight, width: listWidth}]}>
+                        <ScrollView style={[customStyle.rightSideListView, { height: listHeight, width: listWidth }]}>
                             {createListItems()}
                         </ScrollView>
 

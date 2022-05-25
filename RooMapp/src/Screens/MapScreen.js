@@ -317,7 +317,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
                         <Pressable onPress={onPressFunction}
                             style={({ pressed }) => [
-                                { backgroundColor: pressed ? "#a0ff0a" : "#00ff00", margin: 10, },
+                                { backgroundColor: pressed ? "#c5d6ed" : "#a7b6c9", margin: 10, },
                                 customStyle.button
                             ]}
                         >

@@ -15,7 +15,7 @@ const mapStyle = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'center',
         padding: 15,
-        color:'black'
+        color: 'black'
     },
     titleWrapper: {
         borderWidth: 2,
@@ -24,7 +24,7 @@ const mapStyle = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10
     },
-    
+
     //background of map
     svg: {
         flex: 1,
@@ -59,12 +59,12 @@ const mapStyle = StyleSheet.create({
         fontSize: 25,
         color: "black"
     },
-    rightSideListView:{
-            borderRadius: 10,
-            backgroundColor: "#FFFFFF",
-            margin: 10,
-            borderColor: 'white',
-            borderWidth: 2,
+    rightSideListView: {
+        borderRadius: 10,
+        backgroundColor: "#FFFFFF",
+        margin: 10,
+        borderColor: 'white',
+        borderWidth: 2,
     },
     middleView: {
         flex: 1,
@@ -99,7 +99,7 @@ const mapStyle = StyleSheet.create({
         width: "40%",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#00ff00",
+        backgroundColor: "#d3e4f2",
     },
 
     modalView: {
@@ -144,7 +144,7 @@ const mapStyleDarkMode = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 10
     },
-    
+
     //background of map
     svg: {
         flex: 1,
@@ -179,13 +179,13 @@ const mapStyleDarkMode = StyleSheet.create({
         fontSize: 25,
         color: "#C0C0C0",
     },
-    rightSideListView:{
-            borderRadius: 10,
-            backgroundColor: "#C0C0C0",
-            margin: 10,
-            borderColor: 'white',
-            borderWidth: 2,
-            color: 'white'
+    rightSideListView: {
+        borderRadius: 10,
+        backgroundColor: "#C0C0C0",
+        margin: 10,
+        borderColor: 'white',
+        borderWidth: 2,
+        color: 'white'
     },
 
     middleView: {
@@ -243,4 +243,4 @@ const mapStyleDarkMode = StyleSheet.create({
 
 });
 
-export {mapStyle, mapStyleDarkMode}
+export { mapStyle, mapStyleDarkMode }

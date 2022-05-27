@@ -8,6 +8,7 @@ import { TouchableOpacity } from "react-native-web";
 import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
 import { roomInfo } from "../components/data/RoomData";
 import RoomScreen from "./RoomScreen";
+import { fontSize } from '@mui/system';
 
 
 const MapScreen = ({ navigation, route, customStyle }) => {
@@ -55,7 +56,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
     //let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     //let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     let height = Dimensions.get('window').height
-    let width = Dimensions.get('window').height
+    let width = Dimensions.get('window').width
     let listHeight = height * 0.3;
     let listWidth = width * 0.18;
     height = height * 0.8;
@@ -245,7 +246,6 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
     };
 
-
     return (
         <View style={customStyle.container}>
             <View style={{ flexDirection: "column" }}>
@@ -262,6 +262,9 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                         <Text style={customStyle.title}>
                             Maison du Savoir Floor {floor}
                         </Text>
+                        <Text style={[customStyle.title, {fontSize:12, padding:0}]}>
+                            {width<800 ? `Room ${selectedRoom}`: ""}
+                        </Text>
                     </View>
                 </View>
 
@@ -269,7 +272,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                 <View style={customStyle.body}>
 
                     {/*left side*/}
-                    <View style={customStyle.leftSideView && { display: 0 }}>
+                    <View style={[customStyle.leftSideView, { display: "none" }]}>
                     </View>
 
                     <View style={customStyle.middleView}>
@@ -308,7 +311,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                     </View>
 
                     {/*right side*/}
-                    <View style={customStyle.rightSideView}>
+                    <View style={[customStyle.rightSideView, { display: (width>800)?"":"none" }]}>
                         <Text style={customStyle.rightSideTableTitle}>
                             Room {selectedRoom} selected
                         </Text>

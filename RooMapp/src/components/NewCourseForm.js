@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CourseContext } from '../contexts/CourseContext';
-import "react-datepicker/dist/react-datepicker.css";
 import {
   StyleSheet, TextInput, KeyboardAvoidingView
 } from 'react-native';

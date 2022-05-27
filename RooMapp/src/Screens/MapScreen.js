@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Pressable, Text, Modal, ScrollView } from 'react-native';
+import { View, StyleSheet, Pressable, Text, Modal, ScrollView, Dimensions } from 'react-native';
 import Floor3 from "../components/floors/Floor3"
 import Floor2 from "../components/floors/Floor2"
 import Floor4 from "../components/floors/Floor4"
@@ -52,8 +52,10 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
 
     //set height and width
-    let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    //let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    //let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    let height = Dimensions.get('window').height
+    let width = Dimensions.get('window').height
     let listHeight = height * 0.3;
     let listWidth = width * 0.18;
     height = height * 0.8;

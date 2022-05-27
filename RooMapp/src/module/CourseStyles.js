@@ -72,6 +72,27 @@ const courseStyle = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         width: 250,
+    },
+    modal:{
+        backgroundColor: "#EBEAED", 
+        padding: 20, 
+        borderColor: "#C0C0C0", 
+        borderWidth: 3, 
+        borderRadius:15,
+        alignItems:'center', 
+        alignSelf:'center', 
+        flexDirection:'row',
+        position:'absolute', 
+        left:"50%", 
+        top:"50%",
+        transform: "translate(-50%, -50%)"
+    },
+    callCourseFormButton: {
+        alignSelf: 'center',
+        borderRadius: 40,
+        borderColor: "#C0C0C0",
+        borderWidth: 2, 
+        padding: 25
     }
 
 });
@@ -153,6 +174,27 @@ const courseStyleDarkMode = StyleSheet.create({
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
         width: 250,
+    },
+    modal:{
+        backgroundColor: "#2A2D32",
+        borderColor: "#C0C0C0", 
+        padding:20,
+        borderWidth: 3,
+        borderRadius:15, 
+        alignItems:'center', 
+        alignSelf:'center', 
+        flexDirection:'row',
+        position:'absolute', 
+        left:"50%", 
+        top:"50%",
+        transform: "translate(-50%, -50%)"
+    },
+    callCourseFormButton: {
+        alignSelf: 'center',
+        borderRadius: 40,
+        borderColor: "#C0C0C0",
+        borderWidth: 2, 
+        padding: 25
     }
 
 });

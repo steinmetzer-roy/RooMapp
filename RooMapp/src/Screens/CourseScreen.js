@@ -10,6 +10,7 @@ import CourseContextProvider from '../contexts/CourseContext';
 import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
 import { Modal } from 'react-native-web';
+import { FaEraser, FaPlus } from 'react-icons/fa';
 
 const CourseScreen = ({ customStyle }) => {
 
@@ -25,18 +26,18 @@ const CourseScreen = ({ customStyle }) => {
                 <CourseContextProvider>
                     <CourseList customStyle={customStyle} />
                     <View style={{ flex: 1 }}></View>
-                    <Modal 
-                    visible={showModal} 
-                    style={{ alignItems: "center", justifyContent: "center", flex:0}} 
-                    animationType="slide" 
-                    transparent={true}
+                    <Modal
+                        visible={showModal}
+                        animationType="slide"
+                        transparent={true}
                     >
-                        <View style={{ backgroundColor: "grey", padding: 10, borderColor: "lightgrey", borderWidth: 2 }}>
-                            <NewCourseForm customStyle={customStyle} setshowModal={setshowModal}/>
+                        <View style={customStyle.modal}>
+                            <NewCourseForm customStyle={customStyle} setshowModal={setshowModal} />
                         </View>
                     </Modal>
-                    {/*<NewCourseForm customStyle={customStyle} />*/}
-                    <Button style={{}} onPress={() => setshowModal(showModal?false:true)}></Button>
+                    <Pressable style={customStyle.callCourseFormButton} onPress={() => setshowModal(showModal ? false : true)}>
+                        <FaPlus></FaPlus>
+                    </Pressable>
                 </CourseContextProvider>
             </View>
         </View>

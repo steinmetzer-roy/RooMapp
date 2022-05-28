@@ -99,7 +99,7 @@ const mapStyle = StyleSheet.create({
         width: "40%",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#d3e4f2",
+        backgroundColor: "#EBEAED",
     },
 
     modalView: {

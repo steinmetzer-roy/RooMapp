@@ -1,13 +1,18 @@
 import { Pressable, Text, View, Image, Dimensions, StyleSheet } from "react-native";
 import React from "react";
 import { roomInfo } from "../components/data/RoomData";
+import { MdChairAlt } from 'react-icons/md';
+import { RiProjector2Line } from 'react-icons/ri';
+import { RiComputerLine } from 'react-icons/ri';
+import { BsPlusSquareDotted } from 'react-icons/bs';
+
 
 //these are the elements inside the modal
 const RoomScreen = ({ customStyle, modalRoom, setShowModal }) => {
 
     const dimensions = Dimensions.get('window');
     const imageHeight = Math.round(dimensions.width * 2160 / 2880) * 0.2;
-    const imageWidth = dimensions.width * 0.2;
+    const imageWidth = dimensions.width * 0.27;
 
     let imagePath;
     try {
@@ -21,22 +26,23 @@ const RoomScreen = ({ customStyle, modalRoom, setShowModal }) => {
     return (<View style={customStyle.modalView}>
         <View style={customStyle.modal}>
             <Text style={customStyle.title}>
-                Room: {modalRoom}
+                {modalRoom}
             </Text>
-            <View style={{ flexDirection: "row", width: imageWidth * 2 }}>
+            <View style={{ flexDirection: "column", width: imageWidth * 2 }}>
                 <View style={styles.view}>
+
                     <Text style={styles.text}>
-                        Number of seats: {roomInfo.find((elements => elements.room === modalRoom)).seats}
+                        <MdChairAlt /> {roomInfo.find((elements => elements.room === modalRoom)).seats}
                     </Text>
                     <Text style={styles.text}>
-                        Projectors: {roomInfo.find((elements => elements.room === modalRoom)).projectors}
+                        <RiProjector2Line /> {roomInfo.find((elements => elements.room === modalRoom)).projectors}
                     </Text>
                     <Text style={styles.text}>
-                        Computers: {roomInfo.find((elements => elements.room === modalRoom)).computers}
+                        <RiComputerLine /> {roomInfo.find((elements => elements.room === modalRoom)).computers}
                     </Text>
                 </View>
 
-                <View style={styles.view}>
+                {/* <View style={styles.view}>
 
                     <Text style={styles.text}>
                         Access: {roomInfo.find((elements => elements.room === modalRoom)).access}
@@ -44,9 +50,9 @@ const RoomScreen = ({ customStyle, modalRoom, setShowModal }) => {
 
 
                     <Text style={styles.text}>
-                        Other: {roomInfo.find((elements => elements.room === modalRoom)).other}
+                        <BsPlusSquareDotted /> {roomInfo.find((elements => elements.room === modalRoom)).other}
                     </Text>
-                </View>
+                </View> */}
                 <Image style={{
                     height: imageHeight,
                     width: imageWidth,

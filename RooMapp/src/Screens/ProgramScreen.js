@@ -2,6 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Modal } from 'react-native-web';
 import { copy_db_entries, ping_server } from '../../DBhelper';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 
 const SearchScreen = ({ customStyle }) => {
@@ -74,25 +75,38 @@ const SearchScreen = ({ customStyle }) => {
                 <View>
                     {plans.map(element => {
                         return (
-                            <Pressable key={element.program} onPress={() => {
-                                if (element.courses !== undefined) {
-                                    setmodalContent(
-                                        element.courses.map(course => {
-                                            let jsx = [];
-                                            if (course.name !== undefined) {
-                                                jsx = [...jsx, <Text key={course.name} >{course.name}</Text>]
-                                                return jsx;
-                                            }else{
-                                                return ([...modalContent, <Text key={course} >{course}</Text>])
-                                            }
-                                        }))
-                                    setshowModal(true)
-                                }
-                            }}>
-                                <View style={customStyle.item}>
-                                    <Text>Likes: {element.likes} Dislikes: {element.dislikes} Program: {element.program}</Text>
-                                </View>
-                            </Pressable>
+                            <View key={element.program} style={customStyle.item}>
+                                <Text>
+                                    <FaThumbsUp></FaThumbsUp> {element.likes}
+                                    <View style={{ padding: 8 }}></View>
+                                    <FaThumbsDown></FaThumbsDown> {element.dislikes}
+                                </Text>
+                                <Pressable onPress={() => {
+                                    if (element.courses !== undefined) {
+                                        setmodalContent(
+                                            element.courses.map(course => {
+                                                let jsx = [];
+                                                if (course.name !== undefined) {
+                                                    return <Text key={course.name}>
+                                                        <table>
+                                                            <td>{course.name}</td>
+                                                            <td>{course.classroom}</td>
+                                                            <td>{course.time}</td>
+                                                            <td>{course.weekday}</td>
+                                                        </table>
+                                                    </Text>
+                                                } else {
+                                                    return ([...modalContent, <Text key={course} >{course}</Text>])
+                                                }
+                                            }))
+                                        setshowModal(true)
+                                    }
+                                }}>
+                                    <Text style={{ alignSelf: 'center' }}> Program: {element.program} </Text>
+                                </Pressable>
+                                <View style={customStyle.square}></View>
+                            </View>
+
                         )
                     })
                     }

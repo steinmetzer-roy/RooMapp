@@ -11,6 +11,7 @@ import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
 import { Modal } from 'react-native-web';
 import { FaEraser, FaPlus } from 'react-icons/fa';
+import { grey } from '@mui/material/colors';
 
 const CourseScreen = ({ customStyle }) => {
 
@@ -36,7 +37,7 @@ const CourseScreen = ({ customStyle }) => {
                         </View>
                     </Modal>
                     <Pressable style={customStyle.callCourseFormButton} onPress={() => setshowModal(showModal ? false : true)}>
-                        <FaPlus></FaPlus>
+                        <FaPlus color={"#C0C0C0"}></FaPlus>
                     </Pressable>
                 </CourseContextProvider>
             </View>

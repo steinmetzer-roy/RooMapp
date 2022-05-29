@@ -5,25 +5,25 @@ import { copy_db_entries, ping_server } from '../../DBhelper';
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 
-const SearchScreen = ({ customStyle }) => {
+const SearchScreen = ({ customStyle, navigation }) => {
 
     function updateOptions() {
         ping_server().then(a => {
             if (a === "Server is up") {
-                console.log("OK")
+                //console.log("OK")
                 copy_db_entries().then(a => {
                     for (let i = 0; i < a.entries.length; i++) {
-                        //console.log(a.entries[i])
+                        ////console.log(a.entries[i])
                         if (a.entries[i].program !== undefined) {
                             setplans([...plans, a.entries[i]])
-                            //console.log("entered")
+                            ////console.log("entered")
                             for (let j = 0; j < a.entries[i].courses.length; j++) {
-                                //console.log(a.entries[i].courses[j])
+                                ////console.log(a.entries[i].courses[j])
                                 setmodalContent([...modalContent, <Text key={a.entries[i].courses[j].name} >{a.entries[i].courses[j].name}</Text>])
                             }
                         }
                     }
-                    console.log(plans)
+                    //console.log(plans)
                 })
             } else {
                 console.log("NOK")
@@ -45,7 +45,6 @@ const SearchScreen = ({ customStyle }) => {
         }
     ]);
 
-    const [list, setlist] = useState();
     const [modalContent, setmodalContent] = useState([])
     const [showModal, setshowModal] = useState(false)
     const [loaded, setloaded] = useState(false)
@@ -104,7 +103,24 @@ const SearchScreen = ({ customStyle }) => {
                                 }}>
                                     <Text style={{ alignSelf: 'center' }}> Program: {element.program} </Text>
                                 </Pressable>
-                                <View style={customStyle.square}></View>
+                                <Pressable onPress={() => {
+                                    let localStorageArray = localStorage.getItem('courses') ? JSON.parse(localStorage.getItem('courses')) : [];
+                                    ////console.log(localStorageArray);
+                                    element.courses.map(course => {
+                                        if (course.name !== undefined) {
+                                            ////console.log("in")
+                                            localStorageArray.push({ name: `${course.name}`, classroom: `${course.classroom}`, time1: `${course.time}`, weekday: `${course.weekday}`, id: `${element._id}+${course.name}` })
+                                            ////console.log(localStorageArray);
+                                        }
+                                    })
+                                    localStorage.setItem('courses',JSON.stringify(localStorageArray));
+                                    location.reload()
+                                    //navigation.navigate('CourseScreen')
+                                }}>
+                                    <View style={[customStyle.square, { width: 50, alignItems: 'center' }]}>
+                                        <Text>Save</Text>
+                                    </View>
+                                </Pressable>
                             </View>
 
                         )

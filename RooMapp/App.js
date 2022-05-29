@@ -84,6 +84,7 @@ export default function App() {
                     <Text style={courseCustomStyle.drawerButtonTitleStyle}>Dark Mode</Text>
                 </View>
             </Pressable>
+            {/*
             <Pressable style={{ display: 0 }} onPress={() => {
                 ping_server().then(a => console.log(a)).catch(a => console.log(a));
                 copy_db_entries().then(a => console.log(a)).catch(a => console.log(a));
@@ -92,6 +93,7 @@ export default function App() {
                     <Text style={courseCustomStyle.drawerButtonTitleStyle}>Server Testing</Text>
                 </View>
             </Pressable>
+            */}
         </>
 
     return (

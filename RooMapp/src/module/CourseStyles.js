@@ -120,7 +120,8 @@ const courseStyleDarkMode = StyleSheet.create({
         borderColor: '#C0C0C0',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        color: "#C0C0C0"
     },
     item: {
         backgroundColor: '#C0C0C0',

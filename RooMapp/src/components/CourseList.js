@@ -5,17 +5,32 @@ import React, { useContext } from 'react'; //useContext is a hook
 import CourseDetails from './CourseDetails';
 import { CourseContext } from '../contexts/CourseContext';
 import {
-    View,
+    View, Text
 } from 'react-native';
 
 
 const CourseList = ({ customStyle }) => { //this is a functional component
     const { courses } = useContext(CourseContext); //we want to use the course context inside here
+
+    const dayOfWeekName = new Date().toLocaleString(
+        'default', { weekday: 'long' }
+    );
+
     return courses.length ? ( //we need to cycle thro these courses and output something; we check if the courses array has any length
         <div>
             <View>
+                <Text style={[customStyle.titleWrapper,{alignSelf:'center', marginTop:10, paddingHorizontal:20, paddingVertical:5}]}>Today's Menu</Text>
                 {courses.map(course => { //map thro the courses
-                    return (<CourseDetails course={course} key={course.id} customStyle={customStyle} />);
+                    if (dayOfWeekName.startsWith(course.weekday)) {
+                        return (<CourseDetails course={course} key={course.id} customStyle={customStyle} />);
+                    }
+                })}
+                <Text style={[customStyle.titleWrapper,{alignSelf:'center', marginTop:10, paddingHorizontal:20, paddingVertical:5}]}>Future Menu</Text>
+                {
+                courses.map(course => { //map thro the courses
+                    if (!dayOfWeekName.startsWith(course.weekday)) {
+                        return (<CourseDetails course={course} key={course.id} customStyle={customStyle} />);
+                    }
                 })}
             </View>
         </div>

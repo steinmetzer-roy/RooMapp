@@ -1,9 +1,9 @@
 let ping_status_promise = null
-let server = "ec3e-2a06-4944-16fe-3e00-50f8-bc85-faf7-4a9b.eu.ngrok.io"
+let server = "3.73.55.75:5005/"
 
 function ping_server() {
     return new Promise((resolve, reject) => {
-        fetch(`https://${server}/`, {
+        fetch(`http://${server}/`, {
             "method": "GET",
             "credentials": 'same-origin',
             "headers": {
@@ -31,7 +31,7 @@ function copy_db_entries() {
     let promise_json
 
     return new Promise((resolve,reject) => {
-        promise_req = fetch(`https://${server}/test_database/_all_docs?include_docs=true`, {
+        promise_req = fetch(`http://${server}/test_database/_all_docs?include_docs=true`, {
             "method": "GET",
             "headers": {
               "Content-Type": "application/json"

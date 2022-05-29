@@ -18,7 +18,7 @@ const RoomScreen = ({ customStyle, modalRoom, setShowModal }) => {
     try {
         imagePath = require("../../assets/rooms/" + modalRoom.slice(0, 1) + modalRoom.slice(2, 5) + " 1.jpg");
     } catch (e) {
-        console.log("Could not find image for room " + modalRoom);
+        //console.log("Could not find image for room " + modalRoom);
         imagePath = "";
     }
 

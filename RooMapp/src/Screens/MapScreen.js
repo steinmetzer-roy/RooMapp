@@ -14,7 +14,6 @@ import { fontSize } from '@mui/system';
 const MapScreen = ({ navigation, route, customStyle }) => {
 
     //todo verify direction of escalator exits
-
     //names of the rooms with associated coordinates on the svg
     const roomCoords = roomInfo;
 
@@ -37,12 +36,12 @@ const MapScreen = ({ navigation, route, customStyle }) => {
                 setFloor(parseInt(room.substring(0, 1)));
             } else {
                 setSelectedRoom(roomCoords[0].room);
-                console.log("This room does not exist!");
+                //console.log("This room does not exist!");
             }
 
         } else {
             setSelectedRoom(roomCoords[0].room);
-            console.log("This room does not exist!");
+            //console.log("This room does not exist!");
 
         }
 
@@ -111,7 +110,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
             setSelectedRoom(b.room);
             setFloor(parseInt(b.room.substring(0, 1)));
         } else {
-            console.log("Could not find room");
+            //console.log("Could not find room");
         }
     }
 
@@ -122,7 +121,7 @@ const MapScreen = ({ navigation, route, customStyle }) => {
             setModalRoom(room);
             setShowModal(true);
         } else {
-            console.log("Could not find room");
+            //console.log("Could not find room");
         }
 
     }

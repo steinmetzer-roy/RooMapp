@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -11,7 +11,6 @@ import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
 import { Modal } from 'react-native-web';
 import { FaEraser, FaPlus } from 'react-icons/fa';
-import { grey } from '@mui/material/colors';
 
 const CourseScreen = ({ customStyle }) => {
 

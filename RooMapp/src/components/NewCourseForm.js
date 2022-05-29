@@ -66,15 +66,15 @@ const NewCourseForm = ({ customStyle, setshowModal }) => {
   function updateOptions() {
     ping_server().then(a => {
       if (a === "Server is up") {
-        console.log("OK")
+        //console.log("OK")
         copy_db_entries().then(a => {
-          console.log(a.entries[0].name);
+          //console.log(a.entries[0].name);
           /*for (let index = 0; index < a.entries.length; index++) {
             setoptionss(arr => [...arr, a.entries[index].name])
           }*/
         })
       } else {
-        console.log("NOK")
+        //console.log("NOK")
       }
     }).catch(console.log("Couldn't connect to server"))
   }

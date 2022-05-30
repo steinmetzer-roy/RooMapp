@@ -52,10 +52,10 @@ const MapScreen = ({ navigation, route, customStyle }) => {
 
 
     //set height and width
-    //let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    //let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    let height = Dimensions.get('window').height
-    let width = Dimensions.get('window').width
+    let height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) - 50;
+    let width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    //let height = Dimensions.get('window').height
+    //let width = Dimensions.get('window').width
     let listHeight = height * 0.3;
     let listWidth = width * 0.18;
     height = height * 0.8;

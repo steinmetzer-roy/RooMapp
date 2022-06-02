@@ -1,3 +1,5 @@
+// CourseDetails holds all the necessary information to be able to display the courses after they have been added using the form
+
 import React, { useContext } from 'react';
 import { CourseContext } from '../contexts/CourseContext';
 import {
@@ -6,10 +8,13 @@ import {
 import { FaEraser } from 'react-icons/fa';
 
 const CourseDetails = ({ course, customStyle }) => {
-    // const hours = course.time1.toString().substring(11, 16);
 
+    // dispatching is a way to trigger a state change
     const { dispatch } = useContext(CourseContext);
+
     const { goToMapScreen } = useContext(CourseContext);
+
+    // what shows up in the list is defined here (names of courses, what time they takes place, etc.)
     return (
         <View style={customStyle.item}>
             <View style={customStyle.square}></View>

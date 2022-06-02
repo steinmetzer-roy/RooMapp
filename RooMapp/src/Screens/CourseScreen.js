@@ -1,11 +1,7 @@
-import React, { Component, useEffect, useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    Button,
-    Pressable
-} from 'react-native';
+//CourseScreen - The whole screen that displays the list of courses and the form
+
+import React, { useState } from 'react';
+import { Text, View, Pressable } from 'react-native';
 import CourseContextProvider from '../contexts/CourseContext';
 import NewCourseForm from '../components/NewCourseForm';
 import CourseList from '../components/CourseList';
@@ -40,6 +36,7 @@ const CourseScreen = ({ customStyle }) => {
                     </Pressable>
                 </CourseContextProvider>
             </View>
+
         </View>
     );
 }
